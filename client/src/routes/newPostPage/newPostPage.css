@@ -1,0 +1,55 @@
+.newPostPage .locationSelector{
+     height: 70vh;
+}
+
+.coor{
+     font-size: xx-small;
+}
+
+.newPostPage label{
+     font-size: 15.5px;
+}
+
+
+.newPostPage input{
+     background-color: var(--light);
+     outline: none;
+}
+.newPostPage input:focus{
+     background-color: var(--light);
+     border: none;
+     outline: none;
+}
+.newPostPage input:active{
+     background-color: var(--light);
+     border: none;
+     outline: none;
+}
+.newPostPage textarea{
+     background-color: var(--light);
+     outline: none;
+}
+.newPostPage textarea:focus{
+     background-color: var(--light);
+     border: none;
+     outline: none;
+}
+.newPostPage textarea:active{
+     background-color: var(--light);
+     border: none;
+     outline: none;
+}
+.newPostPage select{
+     background-color: var(--light);
+     outline: none;
+}
+.newPostPage select:focus{
+     background-color: var(--light);
+     border: none;
+     outline: none;
+}
+.newPostPage select:active{
+     background-color: var(--light);
+     border: none;
+     outline: none;
+}

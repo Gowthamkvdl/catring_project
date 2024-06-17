@@ -1,0 +1,8 @@
+.listPage{
+    margin-top: 70px;
+}
+
+.listPage .map{
+    position: sticky;
+    top: 70px;
+}

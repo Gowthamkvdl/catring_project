@@ -1,0 +1,34 @@
+.card{
+    height: auto;
+}
+
+.link{
+    text-decoration: none;
+}
+
+
+.card:hover{
+    background-color: rgb(231, 233, 248)important;
+}
+
+.card .amount{
+    font-weight: bolder;
+}
+
+.card svg{
+    margin-bottom: 2.5px;
+}
+
+.card .post-time{
+    opacity: .8;
+    font-size: small;
+}
+
+.card .stars-count{
+    font-size: 15px;
+}
+
+.card .event-name{
+    color: rgb(116, 14, 211);
+    font-size: 1.5rem;
+}

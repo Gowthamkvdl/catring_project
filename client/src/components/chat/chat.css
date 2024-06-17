@@ -1,0 +1,47 @@
+
+
+.chatList{
+    max-height: 70vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    border-radius: 5px;
+}
+
+.chat-box{
+    height: 50%;
+    
+}
+
+.chatMessage{
+    background-color: rgba(240, 248, 255, 0.356);
+    width: fit-content;
+    border-radius: 5px;
+    padding: 5px;
+    max-width: 65%;
+}
+
+.chat{
+    cursor: pointer;
+}
+
+.modal-body{
+    height: 60vh;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.close{
+    cursor: pointer;
+}
+
+.w-95{
+    width: 95%;
+}
+
+.fs-8{
+    font-size: 12.5px;
+}
+
+.opacity-65{
+    opacity: 65;
+}

@@ -1,0 +1,20 @@
+.singlePage .profile h6 {
+  max-width: 200px;
+}
+
+.singlePage .link {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+/* .singlePage svg{
+    margin-bottom: 2px;
+    margin-right: 5px;
+
+} */
+
+
+
+.small-text {
+  font-size: 13.5px;
+}

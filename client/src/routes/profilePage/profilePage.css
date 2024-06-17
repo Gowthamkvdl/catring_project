@@ -1,0 +1,7 @@
+.honorScore{
+    background-color: rgba(248, 237, 237, 0.13);
+    color: var(--light);
+    padding: 0px 4px 0 4px ;
+    border-radius: 4px ;
+    margin-top:5px;
+}

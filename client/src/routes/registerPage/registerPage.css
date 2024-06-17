@@ -1,0 +1,10 @@
+.navbarHeight{
+    margin-top: 70px;
+}
+
+.form{
+    color: var(--dark);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

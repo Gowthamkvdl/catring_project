@@ -1,0 +1,13 @@
+.navbar{
+    transition: .75s;
+}
+
+.navbar a{
+    text-decoration: none;  
+    color: var(--light) !important;
+    font-size: 1.2rem;
+}
+
+.navbar .nav-link button a{
+    color: var(--dark) !important;
+}
