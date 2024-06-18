@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "prisma": "^5.15.0",
     "react-transition-group": "^4.4.5"
   }
 }
