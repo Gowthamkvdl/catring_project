@@ -39,7 +39,6 @@ const profilePage = () => {
             </div>
             <div className="profileInfo col-8">
               <div className=" content mb-2">User Name : gowthamkvdl</div>
-              <div className=" content mb-2">Name : Gowtham K</div>
               <div className=" content mb-2">Phone : 7010399378</div>
               <div className=" content mb-2">Email : gowthamkvdl@gmail.com</div>
               <div className=" content mb-2">City : Vadalur</div>
