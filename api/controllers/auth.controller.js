@@ -45,7 +45,6 @@ export const register = async (req, res) => {
         password: hashedPassword,
       },
     });
-    console.log(process.env.JWT_SECRET_KEY);
 
     res.status(200).json({ message: "Registration successful! Please login to continue." });
   } catch (error) {

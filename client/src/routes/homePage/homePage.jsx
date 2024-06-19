@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./homePage.css";
-import bgVideo from "../../assets/bg-video.mp4"
+import bgVideo from "../../assets/bg-video.mp4";
 import Input from "../../components/input/input";
 import Typed from "typed.js";
-import ArrowBtn from "../../components/arrowBtn/arrowBtn"
+import ArrowBtn from "../../components/arrowBtn/arrowBtn";
 import { useNavigate } from "react-router-dom";
-
+import AnimatedBg from "../../components/animatedBg/AnimatedBg";
 
 const homePage = () => {
   const statements = [
@@ -50,6 +50,9 @@ const homePage = () => {
       <video className="bg-video" muted loop autoPlay>
         {/* <source src={bgVideo} type="video/mp4" /> */}
       </video>
+      <div className="bg">
+        <AnimatedBg />
+      </div>
       <div className="hero-section mt-lg-5 mt-3 flex-column text-light d-flex justify-content-center align-item-center">
         <div className="hero-text text-center">
           <span>Effortless</span>
