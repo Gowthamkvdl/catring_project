@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import "./registerPage.css";
 import jobHuntSvg from "../../assets/jobImg.svg";
 import InputField from "../../components/inputField/inputField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import apiRequest from "../../lib/apiRequest.js";
 
 const registerPage = () => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      console.log(formData.get("name"))
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
 
+    const username = formData.get("username");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const age = formData.get("age");
+    const city = formData.get("city");
+    const password = formData.get("password");
+
+    try {
+      setError(null);
+      setLoading(true);
+      const res = await apiRequest.post("/auth/register", {
+        username,
+        email,
+        phone,
+        age,
+        city,
+        password,
+      });
+      navigate("/login");
+    } catch (error) {
+      setError(error.response.data.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="container navbarHeight">
@@ -25,7 +52,7 @@ const registerPage = () => {
             <InputField
               label={"Enter Your UserName"}
               inputType={"text"}
-              inputName={"name"}
+              inputName={"username"}
             />
             <InputField
               label={"Enter Your Email"}
@@ -52,8 +79,16 @@ const registerPage = () => {
               inputType={"password"}
               inputName={"password"}
             />
-            <Link className="float-end mt-2" to={"/login"}>Already have an account?</Link>
-            <button className="btn btn-yellow w-100 my-4 fs-5">Register</button>
+            <Link className="float-end mt-2" to={"/login"}>
+              Already have an account?
+            </Link>
+            {error && <span className="">{error}</span>}
+            <button
+              disabled={loading}
+              className="btn btn-yellow w-100 my-4 fs-5"
+            >
+              Register
+            </button>
           </form>
         </div>
       </div>

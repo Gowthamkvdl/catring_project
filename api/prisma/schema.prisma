@@ -18,7 +18,7 @@ model User {
   city String
   avatar String?
   address String?
-  starRating Int @default(0)
+  starRating Int?
   honorScore Int @default(100)
   createdAt DateTime @default(now())
 }

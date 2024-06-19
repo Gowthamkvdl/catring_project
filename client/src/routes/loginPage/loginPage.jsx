@@ -1,14 +1,43 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./loginPage.css";
 import jobHuntSvg from "../../assets/jobImg.svg";
 import InputField from "../../components/inputField/inputField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import apiRequest from "../../lib/apiRequest";
+import { AuthContext } from "../../context/AuthContext";
 
 const loginPage = () => {
-  const handleSubmit = (e) => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { updateUser } = useContext(AuthContext);
+  
+  const handleSubmit = async (e) => {
+    
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData.get("name"));
+
+    const username = formData.get("username");
+    const password = formData.get("password");
+
+    try {
+      setError(null);
+      setLoading(true);
+      const res = await apiRequest.post("/auth/login", {
+        username,
+        password,
+      });
+      // Set user info in local storage
+      localStorage.setItem("user", JSON.stringify(res.data));
+      console.log(res.data);
+      updateUser(res.data);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      setError(error.response.data.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -23,7 +52,7 @@ const loginPage = () => {
             <InputField
               label={"UserName"}
               inputType={"text"}
-              inputName={"name"}
+              inputName={"username"}
             />
             <InputField
               label={"Password"}
@@ -33,7 +62,14 @@ const loginPage = () => {
             <Link className="float-end mt-2" to={"/register"}>
               Don't have an account?
             </Link>
-            <button className="btn btn-yellow w-100 my-4 fs-5">Login</button>
+            <div className="mt-2 opacity-95"></div>
+            {error && <span className="">{error}</span>}
+            <button
+              disabled={loading}
+              className="btn btn-yellow w-100 my-4 fs-5"
+            >
+              Login
+            </button>
           </form>
         </div>
       </div>

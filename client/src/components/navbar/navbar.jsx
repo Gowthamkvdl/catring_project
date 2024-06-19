@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import './navbar.css'
-import {Link} from "react-router-dom"
+import React, { useContext, useEffect, useState } from "react";
+import "./navbar.css";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 
 const navbar = () => {
-
   const [bg, setBg] = useState("bg-transperant");
-
+  const { currentUser, updateUser } = useContext(AuthContext);
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      window.scrollY > 50 ? setBg("bg-dark") : setBg("bg-transperant");
+      window.scrollY > 50 ? setBg("bg-darkcolor") : setBg("bg-transperant");
     });
-  },[bg]);
+  }, [bg]);
 
   return (
     <nav className={`navbar navbar-expand-md navbar-dark ${bg} fixed-top`}>
@@ -62,20 +63,42 @@ const navbar = () => {
                   <Link to={"contact"}>Contact</Link>
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <button className="btn btn-yellow btn-sm">
-                    <Link to="login">Login</Link>
-                  </button>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <button className="btn btn-yellow btn-sm">
-                    <Link to="register">Register</Link>
-                  </button>
-                </a>
-              </li>
+              {currentUser ? (
+                <Link to={"/profile"}>
+                  <div className="ms-3 mt-2 userInfo mb-2 d-flex align-items-center gap-2">
+                    <img
+                      src={
+                        currentUser.avatar
+                          ? currentUser.avatar
+                          : dummyProfilePic
+                      }
+                      height="40px"
+                      className="rounded-circle"
+                      alt=""
+                    />
+                    <span className="fs-6 text-uppercase">
+                      {currentUser.username}
+                    </span>
+                  </div>
+                </Link>
+              ) : (
+                <div className="btn d-flex">
+                  <li className="nav-item">
+                    <a className="nav-link" href="#">
+                      <button className="btn btn-yellow btn-sm">
+                        <Link to="login">Login</Link>
+                      </button>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#">
+                      <button className="btn btn-yellow btn-sm">
+                        <Link to="register">Register</Link>
+                      </button>
+                    </a>
+                  </li>
+                </div>
+              )}
               {/* <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"
@@ -113,6 +136,6 @@ const navbar = () => {
       </div>
     </nav>
   );
-}
+};
 
-export default navbar
+export default navbar;
