@@ -9,6 +9,11 @@
   background-color: var(--dark);
 }
 
+.cursor-pointer{
+  cursor: pointer;
+  width: fit-content;
+}
+
 body{
   color: rgba(255, 255, 255, 0.938);
   background-color: #141414;

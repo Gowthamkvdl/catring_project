@@ -16,7 +16,7 @@ const SinglePage = () => {
                 <div className="user w-100 d-flex align-items-center">
                   <img
                     src={dummyProfile}
-                    className="rounded p-1 rounded-3"
+                    className="rounded-circle"
                     height="50px"
                     alt=""
                   />

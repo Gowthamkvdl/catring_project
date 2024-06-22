@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./components/layout/layout";
+import {Layout, AuthLayout}  from "./components/layout/layout";
 import HomePage from "./routes/homePage/homePage";
 import AboutPage from "./routes/aboutPage/aboutPage";
 import ContactPage from "./routes/contactPage/contactPage"
@@ -24,44 +24,50 @@ const App = () => {
           element: <HomePage />,
         },
         {
-          path: "about",
+          path: "/about",
           element: <AboutPage />,
         },
         {
-          path: "contact",
+          path: "/contact",
           element: <ContactPage />,
         },
         {
-          path: "login",
+          path: "/login",
           element: <LoginPage />,
         },
         {
-          path: "register",
+          path: "/register",
           element: <RegisterPage />,
         },
         {
-          path: "profile",
-          element: <ProfilePage/>,
-        },
-        {
-          path: "update-profile",
-          element: <ProfileUpdatePage/>,
-        },
-        {
-          path: "list",
+          path: "/list",
           element: <ListPage />,
         },
         {
-          path: "single-page",
+          path: "/single-page",
           element: <SinglePage />,
         },
+      ],
+    },
+    {
+      path: "/",
+      element: <AuthLayout />,
+      children: [
         {
-          path: "new-post",
+          path: "/new-post",
           element: <NewPostPage />,
         },
         {
-          path: "user-profile",
+          path: "/user-profile",
           element: <UserProfile />,
+        },
+        {
+          path: "/profile",
+          element: <ProfilePage />,
+        },
+        {
+          path: "/update-profile",
+          element: <ProfileUpdatePage />,
         },
       ],
     },

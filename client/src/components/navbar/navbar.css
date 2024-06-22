@@ -11,3 +11,9 @@
 .navbar .nav-link button a{
     color: var(--dark) !important;
 }
+
+.navProPic{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}

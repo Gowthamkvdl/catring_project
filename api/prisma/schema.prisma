@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,16 +8,42 @@ datasource db {
 }
 
 model User {
-  userId String @id @default(auto()) @map("_id") @db.ObjectId
-  username String @unique
-  email String @unique
-  phone String 
-  password String
-  age String
-  city String
-  avatar String?
-  address String?
+  userId     String   @id @default(auto()) @map("_id") @db.ObjectId
+  username   String   @unique
+  email      String   @unique
+  phone      String
+  password   String
+  age        String
+  city       String
+  avatar     String?
+  address    String?
   starRating Int?
-  honorScore Int @default(100)
-  createdAt DateTime @default(now())
+  honorScore Int      @default(100)
+  createdAt  DateTime @default(now())
+  posts      Post[]
+}
+
+model Post {
+  postId              String   @id @default(auto()) @map("_id") @db.ObjectId
+  eventName           String
+  salary              Int
+  city                String
+  workingHrs          Int
+  noOfStaffsReq       Int
+  noOfStaffsSatisfied Int?     @default(0)
+  vegetableCutting    YesOrNo
+  busFare             YesOrNo
+  experience          YesOrNo
+  address            String
+  description         String
+  latitude            String
+  longitude           String
+  createdAt           DateTime @default(now())
+  user                User     @relation(fields: [userId], references: [userId])
+  userId              String   @db.ObjectId
+}
+
+enum YesOrNo {
+  yes
+  no
 }

@@ -24,13 +24,12 @@ export const register = async (req, res) => {
     const existsEmailAndPhone = await prisma.user.findFirst({
       where: {
         OR: [
-          { email: email },
-          { phone: phone },
+          { email: email }
         ],
       },
     });
     if (existsEmailAndPhone) {
-      res.status(400).json({ message: "Email or phone number already exists. Please try with a different email id or phone number." });
+      res.status(400).json({ message: "Email already exists. Please try with a different email." });
       return;
     }
   
@@ -54,7 +53,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   const { username, password } = req.body;
-
+  
   try {
     // CHECK IF THE USER EXISTS
     const user = await prisma.user.findUnique({
@@ -63,19 +62,18 @@ export const login = async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: "Invalid Credentials!" });
     }
-
     //CHECK IF THE PASSOWRD IS CORRECT
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       return res.status(401).json({ message: "Incorrect Password!" });
     }
-
+    
     //GENERATE COOKIE TOKEN AND SEND IT TO THE USER
     const age = 1000 * 60 * 60 * 24 * 7;
-
+    
     const token = jwt.sign(
       {
-        id: user.id,
+        id: user.userId,
         // isAdmin: true,
       },
       process.env.JWT_SECRET_KEY,

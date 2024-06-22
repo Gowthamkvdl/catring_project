@@ -10,7 +10,7 @@ const Card = (item) => {
     <div className="card bg-light mt-3 p-3 d-flex justify-content-between">
       <Link className="link" to={"/single-page/" + item.id}>
         <div className="userInfo mb-2 d-flex align-items-center gap-2">
-          <img src={dummyProfilePic} height="30px" className="rounded" alt="" />
+          <img src={dummyProfilePic} height="30px" className="rounded-circle" alt="" />
           <span>UserName</span>
         </div>
         <div className="eventName text-dark">

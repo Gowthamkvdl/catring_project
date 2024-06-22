@@ -12,278 +12,215 @@ const Chat = () => {
     <div className="chats my-5 my-md-0">
       <h2 className="title">CHATS</h2>
       <div className="chatList">
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
+        </div>
+        <div
+          className="chat text-dark bg-light rounded mx-auto w-95"
+          onClick={handleShow}
+        >
+          <div className="row ps-0 p-2 mt-2 d-flex justify-content-center align-items-center">
+            <div className="col-2">
+              <img src={dummyProfilePic} className="navProPic ms-3" alt="" />
+            </div>
+            <div className="col-10">
+              <p className="content mb-0">
+                Gowtham K
+                <span className="opacity-65 fs-8 float-end">1 min ago</span>
+              </p>
+              <p className="content mb-0 opacity-75">Last message</p>
             </div>
           </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
-            </div>
-          </div>
-          <div className="chat text-dark bg-light rounded mx-auto w-95"
-            onClick={handleShow} >
-            <div className="row p-2 mt-2">
-              <div className="col-2">
-                <img
-                  src={dummyProfilePic}
-                  className="img-fluid rounded p-1"
-                  alt=""
-                />
-              </div>
-              <div className="col-10">
-                <p className="content mb-0">
-                  Gowtham K
-                  <span className="opacity-65 fs-8 float-end">1 min ago</span>
-                </p>
-                <p className="content mb-0 opacity-75">Last message</p>
-              </div>
-            </div>
-          </div>
+        </div>
+        
       </div>
 
       <div
-        className={`modal fade text-dark ${
-          showModal ? "show d-block" : ""
-        }`}
+        className={`modal fade text-dark ${showModal ? "show d-block" : ""}`}
         style={{
           backgroundColor: showModal ? "rgba(0, 0, 0, 0.5)" : "transparent",
         }}
@@ -294,7 +231,7 @@ const Chat = () => {
               <div className="user w-100 d-flex align-items-center">
                 <img
                   src={dummyProfilePic}
-                  className="rounded p-1"
+                  className="navProPic"
                   height="50px"
                   alt=""
                 />

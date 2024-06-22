@@ -5,3 +5,13 @@
     border-radius: 4px ;
     margin-top:5px;
 }
+
+.small-font{
+    opacity: .7 !important;
+}
+
+.profilePic img{
+    height: 200px;
+    width: 200px;
+    margin: 0 auto 0 auto;
+}

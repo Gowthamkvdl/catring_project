@@ -72,8 +72,7 @@ const navbar = () => {
                           ? currentUser.avatar
                           : dummyProfilePic
                       }
-                      height="40px"
-                      className="rounded-circle"
+                      className="navProPic" 
                       alt=""
                     />
                     <span className="fs-6 text-uppercase">
