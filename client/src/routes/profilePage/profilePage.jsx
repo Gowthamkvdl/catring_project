@@ -70,31 +70,31 @@ const profilePage = () => {
                 </span>
               </div>
             </div>
-            <div className="profileInfo col-8">
-              <div className=" content mb-3">
+            <div className="profileInfo col-12 col-md-8 ">
+              <div className=" content mb-2">
                 <span className="small-font">User Name </span> <br />{" "}
                 <span className="little-big-font fs-5">{currentUser.username}</span>
               </div>
-              <div className=" content mb-3">
+              <div className=" content mb-2">
                 <span className="small-font">Phone </span> <br />{" "}
                 <span className="little-big-font fs-5">{currentUser.phone}</span>
               </div>
-              <div className=" content mb-3">
+              <div className=" content mb-2">
                 <span className="small-font">Email </span> <br />{" "}
                 <span className="little-big-font fs-5">{currentUser.email}</span>
               </div>
-              <div className=" content mb-3">
+              <div className=" content mb-2">
                 <span className="small-font">City </span> <br />{" "}
                 <span className="little-big-font fs-5">{currentUser.city}</span>
               </div>
-              <div className=" content mb-3">
+              <div className=" content mb-2">
                 <span className="small-font">Address </span> <br />{" "}
                 <span className="little-big-font fs-5">
                   {currentUser.address ? currentUser.address : "Not provided"}
                 </span>
               </div>
             </div>
-            <div className="row mt-4">
+            <div className="row mt-4 mx-auto w-100">
               <div className="col-6">
                 <button className="btn btn-yellow w-100 ">My Events</button>
               </div>

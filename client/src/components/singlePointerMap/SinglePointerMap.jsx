@@ -10,7 +10,7 @@ const Map = ({ latitude, longitude }) => {
     <MapContainer
       className="singlePointermap"
       center={[latitude, longitude]}
-      zoom={13}
+      zoom={10}
       scrollWheelZoom={true}
     >
       <TileLayer

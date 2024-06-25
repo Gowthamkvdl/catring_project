@@ -7,9 +7,9 @@ const Pin = ({ item }) => {
   return (
     <Marker position={[item.latitude, item.longitude]}>
       <Popup>
-        <Link to={"single-page/"+item.id} className="popUp p-0">
-          <span>{item.name}</span>
-          <span className="fw-bold">{item.salary ? "" : " ₹1000"}</span>
+        <Link to={"/" + item.postId} className="popUp p-0">
+          <span>{item.city}</span>
+          <span className="fw-bold"> ₹{item.salary}</span>
         </Link>
       </Popup>
     </Marker>

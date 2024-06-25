@@ -216,7 +216,6 @@ const Chat = () => {
             </div>
           </div>
         </div>
-        
       </div>
 
       <div
@@ -227,8 +226,8 @@ const Chat = () => {
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
-            <div className="modal-header ">
-              <div className="user w-100 d-flex align-items-center">
+            <div className="modal-header d-flex justify-content-between ">
+              <div className="user w-100 d-flex align-items-center ">
                 <img
                   src={dummyProfilePic}
                   className="navProPic"

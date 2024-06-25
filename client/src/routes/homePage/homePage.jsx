@@ -36,10 +36,6 @@ const homePage = () => {
   }, []);
 
   const navigate = useNavigate();
-  const handleSearch = (e) => {
-    e.preventDefault(e.target);
-    navigate("list");
-  };
   const handleClick = (e) => {
     e.preventDefault(e.target);
     navigate("new-post");
@@ -62,7 +58,7 @@ const homePage = () => {
           Our platform not only connects catering contractors with skilled
           server staff but also creates abundant job opportunities for servers.
         </p>
-        <div className="row mx-auto w-90 w-md-75 mt-4 ">
+        <div className="row mx-auto w-90 w-md-75 mt-5 ">
           <div className=" mx-auto col-12 col-md-5  mb-md-0 mb-4 glass p-3 ">
             <h3>For Server Staff:</h3>
             <p className="">
@@ -70,7 +66,7 @@ const homePage = () => {
               Connect with top contractors, showcase your skills, and find work
               that fits your schedule.
             </p>
-            <Input handleSubmit={handleSearch} />
+            <Input />
           </div>
           <div className="col-12 mx-auto col-md-5  glass p-3">
             <h3>For Catering Contractors:</h3>

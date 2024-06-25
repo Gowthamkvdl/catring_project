@@ -4,19 +4,34 @@ import StarRating from "../../components/startRating/startRating";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 import Progressbar from "../progressBar/Progressbar";
 import { Link } from "react-router-dom";
+import { format } from "timeago.js";
 
-const Card = (item) => {
+
+
+const Card = ({item}) => {
+
+  const date = item.startDate;
+  const dateObj = new Date(date);
+  const formattedDate = dateObj.toLocaleDateString("en-GB");
+
   return (
     <div className="card bg-light mt-3 p-3 d-flex justify-content-between">
-      <Link className="link" to={"/single-page/" + item.id}>
-        <div className="userInfo mb-2 d-flex align-items-center gap-2">
-          <img src={dummyProfilePic} height="30px" className="rounded-circle" alt="" />
-          <span>UserName</span>
+      <Link className="link" to={"/" + item.postId}>
+        <div className="userInfo mb-2 fs-5 d-flex align-items-center gap-2">
+          <img
+            src={item.user.avatar ? item.user.avatar : dummyProfilePic}
+            className="cardProPic"
+            alt=""
+          />
+          <span className="text-uppercase fs-6">{item.user.username}</span>
         </div>
         <div className="eventName text-dark">
-          <h4 className="m-0">
-            <span className="event-name">Event Name</span>
-            <span className="float-end amount">₹1000</span>
+          <h4 className="d-flex justify-content-between">
+            <span className="event-name">
+              {item.eventName}
+              <span className="fs-6"> ({formattedDate})</span>
+            </span>
+            <span className="float-end amount">₹{item.salary}</span>
           </h4>
           <div className="location py-1">
             <svg
@@ -29,27 +44,35 @@ const Card = (item) => {
             >
               <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
             </svg>
-            <span>Location</span>
+            <span className="text-uppercase">{item.city}</span>
           </div>
         </div>
       </Link>
-      <div className="eventDesc">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-        corporis nulla eius in aliquam quibusdam iste? aliquam quibusdam iste?
-      </div>
+      <div className="eventDesc">{item.description}</div>
       <div className="bar row d-flex justify-content-center align-items-center">
         <div className="col-12">
           <div className="mb-0 mt-2 float-end">
-            Status of Recruitment: <b>80/100</b>
+            Status of Recruitment:{" "}
+            <b>
+              {item.noOfStaffsSatisfied}/{item.noOfStaffsReq}
+            </b>
           </div>
-          <Progressbar width={80} />
+          <Progressbar width={item.noOfStaffsSatisfied} />
         </div>
       </div>
       <div className="extras">
-        <div className="spec d-flex align-items-center gap-5">
+        <div className="spec d-flex align-items-center gap-2">
           <div className="stars d-flex align-items-center">
-            <StarRating editable={false} totalStars={4.5} size={20} />
-            <span className="stars-count">4.5</span>
+            <StarRating
+              editable={false}
+              totalStars={item.user.starRating}
+              size={20}
+            />
+            <span className="stars-count ms-1">
+              {item.user.starRating < 1
+                ? "(New)"
+                : item.user.starRating}
+            </span>
           </div>
           <div className="veg-cutting d-flex align-items-center">
             <svg
@@ -80,7 +103,7 @@ const Card = (item) => {
                 ></path>{" "}
               </g>
             </svg>
-            <span>No</span>
+            <span className="text-capitalize">{item.vegetableCutting}</span>
           </div>
           <div className="travel-amount d-flex align-items-center">
             <svg
@@ -93,7 +116,7 @@ const Card = (item) => {
             >
               <path d="M16 7a1 1 0 0 1-1 1v3.5c0 .818-.393 1.544-1 2v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5V14H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2a2.5 2.5 0 0 1-1-2V8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1V2.64C1 1.452 1.845.408 3.064.268A44 44 0 0 1 8 0c2.1 0 3.792.136 4.936.268C14.155.408 15 1.452 15 2.64V4a1 1 0 0 1 1 1zM3.552 3.22A43 43 0 0 1 8 3c1.837 0 3.353.107 4.448.22a.5.5 0 0 0 .104-.994A44 44 0 0 0 8 2c-1.876 0-3.426.109-4.552.226a.5.5 0 1 0 .104.994M8 4c-1.876 0-3.426.109-4.552.226A.5.5 0 0 0 3 4.723v3.554a.5.5 0 0 0 .448.497C4.574 8.891 6.124 9 8 9s3.426-.109 4.552-.226A.5.5 0 0 0 13 8.277V4.723a.5.5 0 0 0-.448-.497A44 44 0 0 0 8 4m-3 7a1 1 0 1 0-2 0 1 1 0 0 0 2 0m8 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m-7 0a1 1 0 0 0 1 1h2a1 1 0 1 0 0-2H7a1 1 0 0 0-1 1" />
             </svg>
-            <span>Yes</span>
+            <span className="text-capitalize">{item.busFare}</span>
           </div>
         </div>
 
@@ -111,7 +134,7 @@ const Card = (item) => {
             </svg>
             <span> Save</span>
           </span>
-          <span className="post-time"> 2 minutes ago</span>
+          <span className="post-time">{format(item.createdAt)}</span>
         </div>
       </div>
     </div>

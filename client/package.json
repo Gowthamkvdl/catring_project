@@ -12,6 +12,7 @@
   "dependencies": {
     "@mui/material": "^5.15.19",
     "bootstrap": "^5.3.3",
+    "date-formatter-lts": "^1.0.0",
     "framer-motion": "^11.2.10",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
@@ -20,6 +21,7 @@
     "react-leaflet": "^4.2.1",
     "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^6.23.1",
+    "timeago.js": "^4.0.2",
     "typed.js": "^2.1.0"
   },
   "devDependencies": {

@@ -39,8 +39,8 @@
   justify-content: center;
   color: #212121;
   background-color: #e8e8e8;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   font-size: 24px;
   text-transform: uppercase;
   border: 2px solid #212121;
@@ -58,9 +58,11 @@
 
 .searchButton .span {
   margin-bottom: 3px;
+  margin-left: 2px;
   position: relative;
-  font-size: 25px;
+  font-size: 30px;
   z-index: 2;
+  text-decoration: none!important;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
@@ -73,7 +75,7 @@
   left: 0%;
   bottom: 0%;
   transform: translate(-100%, 100%);
-  border-radius: 10px;
+  border-radius: 50%;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
 }
 

@@ -29,7 +29,7 @@ const contactPage = () => {
   };
 
   return (
-    <div className="container contact">
+    <div className="container contact mb-5">
       <div className="wrapper">
         <h1 className="title">Contact</h1>
         <div className="row mt-4">
@@ -105,7 +105,7 @@ const contactPage = () => {
               <div className="mb-3">
                 <label htmlFor="name">Your Name</label>
                 <input
-                  placeholder="Enter your name"
+                  required
                   type="text"
                   id="name"
                   name="name"
@@ -116,7 +116,7 @@ const contactPage = () => {
               <div className="mb-3 ">
                 <label htmlFor="number">Your Phone Number</label>
                 <input
-                  placeholder="Enter your phone number"
+                  required
                   type="text"
                   id="number"
                   name="phone"
@@ -127,7 +127,7 @@ const contactPage = () => {
               <div className="mb-3 ">
                 <label htmlFor="email">Your Email</label>
                 <input
-                  placeholder="Enter your email"
+                  required
                   type="email"
                   id="email"
                   name="email"
@@ -139,7 +139,7 @@ const contactPage = () => {
                 <label htmlFor="text">Write your message</label>
                 <textarea
                   rows="4"
-                  placeholder="Write Here"
+                  required
                   type="text"
                   id="text"
                   name="message"

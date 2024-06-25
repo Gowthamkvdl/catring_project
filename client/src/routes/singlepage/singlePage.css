@@ -13,8 +13,14 @@
 
 } */
 
-
+.bg-text{
+  background-color: aqua;
+}
 
 .small-text {
   font-size: 13.5px;
+}
+
+.user{
+  width: fit-content !important;
 }

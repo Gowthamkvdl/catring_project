@@ -1,9 +1,9 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import {Layout, AuthLayout}  from "./components/layout/layout";
+import { Layout, AuthLayout } from "./components/layout/layout";
 import HomePage from "./routes/homePage/homePage";
 import AboutPage from "./routes/aboutPage/aboutPage";
-import ContactPage from "./routes/contactPage/contactPage"
+import ContactPage from "./routes/contactPage/contactPage";
 import LoginPage from "./routes/loginPage/loginPage";
 import RegisterPage from "./routes/registerPage/registerPage";
 import ProfilePage from "./routes/profilePage/profilePage";
@@ -12,6 +12,7 @@ import ListPage from "./routes/listPage/listPage";
 import NewPostPage from "./routes/newPostPage/NewPostPage";
 import SinglePage from "./routes/singlepage/SinglePage";
 import UserProfile from "./routes/userProfilePage/UserProfile";
+import { listPageLoader, singlePageLoader } from "./lib/loader.js";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -42,10 +43,12 @@ const App = () => {
         {
           path: "/list",
           element: <ListPage />,
+          loader: listPageLoader,
         },
         {
-          path: "/single-page",
+          path: "/:id",
           element: <SinglePage />,
+          loader: singlePageLoader,
         },
       ],
     },

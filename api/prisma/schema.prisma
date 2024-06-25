@@ -26,18 +26,20 @@ model User {
 model Post {
   postId              String   @id @default(auto()) @map("_id") @db.ObjectId
   eventName           String
+  startDate           String
+  startTime           String
   salary              Int
   city                String
-  workingHrs          Int
+  workingDays         Int
   noOfStaffsReq       Int
   noOfStaffsSatisfied Int?     @default(0)
   vegetableCutting    YesOrNo
   busFare             YesOrNo
   experience          YesOrNo
-  address            String
+  address             String
   description         String
-  latitude            String
-  longitude           String
+  latitude            Float
+  longitude           Float
   createdAt           DateTime @default(now())
   user                User     @relation(fields: [userId], references: [userId])
   userId              String   @db.ObjectId

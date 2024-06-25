@@ -13,6 +13,10 @@ const navbar = () => {
     });
   }, [bg]);
 
+  const handleClick = () => {
+
+  }
+
   return (
     <nav className={`navbar navbar-expand-md navbar-dark ${bg} fixed-top`}>
       <div className="container">
@@ -30,14 +34,14 @@ const navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="offcanvas offcanvas-end text-bg-dark"
+          className="offcanvas w-75 offcanvas-start text-bg-dark"
           tabindex="-1"
           id="offcanvasDarkNavbar"
           aria-labelledby="offcanvasDarkNavbarLabel"
         >
-          <div className="offcanvas-header">
-            <h5 className="offcanvas-title" id="offcanvasDarkNavbarLabel">
-              Catring
+          <div className="offcanvas-header ">
+            <h5 className="offcanvas-title fs-1" id="offcanvasDarkNavbarLabel">
+              CATRING
             </h5>
             <button
               type="button"
@@ -46,33 +50,39 @@ const navbar = () => {
               aria-label="Close"
             ></button>
           </div>
-          <div className="offcanvas-body">
-            <ul className="navbar-nav align-items-center justify-content-end flex-grow-1 pe-3">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  <Link to={"/"}>Home</Link>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <Link to={"about"}>About</Link>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <Link to={"contact"}>Contact</Link>
-                </a>
-              </li>
+          <div className="offcanvas-body d-flex justify-content-center align-items-center">
+            <ul className="navbar-nav align-items-center justify-content-end flex-grow-1 pe-md-3">
+              <Link to={"/"}>
+                <li className="nav-item mb-1">
+                  <a className="nav-link active" aria-current="page" href="#">
+                    Home
+                  </a>
+                </li>
+              </Link>
+              <Link to={"about"}>
+                <li className="nav-item mb-1">
+                  <a className="nav-link" href="#">
+                    About
+                  </a>
+                </li>
+              </Link>
+              <Link to={"/contact"}>
+                <li className="nav-item mb-1">
+                  <a className="nav-link" href="#">
+                    Contact
+                  </a>
+                </li>
+              </Link>
               {currentUser ? (
-                <Link to={"/profile"}>
-                  <div className="ms-3 mt-2 userInfo mb-2 d-flex align-items-center gap-2">
+                <Link to={"/profile"} onClick={handleClick} >
+                  <div className="ms-3 mt-2 userInfo mb-1 d-flex align-items-center gap-2">
                     <img
                       src={
                         currentUser.avatar
                           ? currentUser.avatar
                           : dummyProfilePic
                       }
-                      className="navProPic" 
+                      className="navProPic"
                       alt=""
                     />
                     <span className="fs-6 text-uppercase">
@@ -81,24 +91,26 @@ const navbar = () => {
                   </div>
                 </Link>
               ) : (
-                <div className="btn d-flex">
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      <button className="btn btn-yellow btn-sm">
-                        <Link to="login">Login</Link>
-                      </button>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      <button className="btn btn-yellow btn-sm">
-                        <Link to="register">Register</Link>
-                      </button>
-                    </a>
-                  </li>
+                <div className="d-flex flex-column align-items-center">
+                  <Link to={"/login"}>
+                    <li className="nav-item mb-1 w-100">
+                      <a className="nav-link" href="#">
+                        <button className="btn btn-yellow btn-sm">Login</button>
+                      </a>
+                    </li>
+                  </Link>
+                  <Link to="/register">
+                    <li className="nav-item mb-1">
+                      <a className="nav-link" href="#">
+                        <button className="btn btn-yellow btn-sm">
+                          Register
+                        </button>
+                      </a>
+                    </li>
+                  </Link>
                 </div>
               )}
-              {/* <li className="nav-item dropdown">
+              {/* <li className="nav-item mb-1 dropdown">
                   <a
                     className="nav-link dropdown-toggle"
                     href="#"

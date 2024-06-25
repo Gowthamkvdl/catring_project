@@ -5,6 +5,11 @@
   --dark: #141414;
 }
 
+html, body {
+  overflow: auto !important; /* Ensure this is set to auto or scroll */
+}
+
+
 .bg-darkcolor{
   background-color: var(--dark);
 }

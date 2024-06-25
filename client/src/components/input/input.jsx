@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./input.css";
+import {Link} from "react-router-dom"
 
-const input = ({ handleSubmit }) => {
+const input = () => {
+  const [location, setLocation] = useState("");
+
   return (
     <div>
-      <form
-        onSubmit={handleSubmit}
-        action=""
-        className="d-flex gap-1 align-items-center flex-row "
-      >
+      <form action="" className="d-flex gap-1 align-items-center flex-row ">
         <input
           type="text"
-          name="text"
+          name="location"
+          onChange={(e) => setLocation(e.target.value)}
           className="inputBox text-dark"
           placeholder="Search job by location..."
         />
-        <button class="searchButton">
-          <span class="span">🔎</span>
-        </button>
+        <Link to={`\list?location=${location}&minSalary=${""}&date=${""}&maxDutyHours=${""}`} className="link">
+          <button class="searchButton">
+            <span class="span">🔎</span>
+          </button>
+        </Link>
       </form>
     </div>
   );
