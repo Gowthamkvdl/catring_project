@@ -1,30 +1,32 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./card.css";
 import StarRating from "../../components/startRating/startRating";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 import Progressbar from "../progressBar/Progressbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { format } from "timeago.js";
+import { AuthContext } from "../../context/AuthContext";
 
-
-
-const Card = ({item}) => {
+const Card = ({ item }) => {
+  const [loaded, setLoaded] = useState(false);
 
   const date = item.startDate;
   const dateObj = new Date(date);
   const formattedDate = dateObj.toLocaleDateString("en-GB");
 
   return (
-    <div className="card bg-light mt-3 p-3 d-flex justify-content-between">
+    <div
+      className={`card bg-light mt-3 p-3 d-flex justify-content-between`}
+    >
       <Link className="link" to={"/" + item.postId}>
-        <div className="userInfo mb-2 fs-5 d-flex align-items-center gap-2">
+        {item.user && <div className="userInfo mb-2 fs-5 d-flex align-items-center gap-2">
           <img
             src={item.user.avatar ? item.user.avatar : dummyProfilePic}
             className="cardProPic"
             alt=""
           />
           <span className="text-uppercase fs-6">{item.user.username}</span>
-        </div>
+        </div>}
         <div className="eventName text-dark">
           <h4 className="d-flex justify-content-between">
             <span className="event-name">
@@ -62,18 +64,16 @@ const Card = ({item}) => {
       </div>
       <div className="extras">
         <div className="spec d-flex align-items-center gap-2">
-          <div className="stars d-flex align-items-center">
+          {item.user && <div className="stars d-flex align-items-center">
             <StarRating
               editable={false}
               totalStars={item.user.starRating}
               size={20}
             />
             <span className="stars-count ms-1">
-              {item.user.starRating < 1
-                ? "(New)"
-                : item.user.starRating}
+              {item.user.starRating < 1 ? "(New)" : item.user.starRating}
             </span>
-          </div>
+          </div>}
           <div className="veg-cutting d-flex align-items-center">
             <svg
               width="30px"
@@ -120,20 +120,7 @@ const Card = ({item}) => {
           </div>
         </div>
 
-        <div className="">
-          <span className="mx-2 float-end">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              fill=""
-              class="bi bi-bookmark"
-              viewBox="0 0 16 16"
-            >
-              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z" />
-            </svg>
-            <span> Save</span>
-          </span>
+        <div className="mx-2 float-end">
           <span className="post-time">{format(item.createdAt)}</span>
         </div>
       </div>

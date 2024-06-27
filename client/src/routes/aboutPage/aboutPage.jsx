@@ -1,10 +1,13 @@
 import React from "react";
 import "./aboutPage.css";
+import BackBtn from "../../components/backBtn/BackBtn";
+
 
 const aboutPage = () => {
   return (
-    <div className="about container">
+    <div className="about container navbarHeight">
       <div className="wrapper">
+      <BackBtn color="white" />
         <h1 className="title">About</h1>
         <section className="mt-4" >
           <h2>Empowering Opportunities for Servers</h2>

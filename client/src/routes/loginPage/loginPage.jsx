@@ -5,6 +5,8 @@ import InputField from "../../components/inputField/inputField";
 import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
+import BackBtn from "../../components/backBtn/BackBtn";
+
 
 const loginPage = () => {
   const [error, setError] = useState(null);
@@ -47,6 +49,7 @@ const loginPage = () => {
           <img src={jobHuntSvg} alt="" />
         </div>
         <div className="col-12 col-lg-6 p-4 pt-0 p-md-5 form">
+          <BackBtn />
           <h1 className="title">Login</h1>
           <form action="" onSubmit={handleSubmit}>
             <InputField

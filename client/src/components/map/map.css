@@ -1,4 +1,7 @@
-.map{
-    height: 88vh;
-    border-radius: 5px;
+/* map.css */
+.map {
+  min-height: calc(100vh - 80px); /* Adjusted for the sticky positioning */
+  position: fixed;
+  width: 480px;
+  border-radius: 5px;
 }

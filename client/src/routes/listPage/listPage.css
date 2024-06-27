@@ -1,9 +1,35 @@
+/* listPage.css */
 .listPage {
   margin-top: 70px;
+  display: flex;
+  flex-direction: column;
 }
 
-.listPage .map {
-  position: -webkit-sticky;
+.listPage .d-flex {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.filterAndCards {
+  flex: 1.25;
+}
+
+.listPageContainer {
+  height: auto;
+}
+
+.listPageMap {
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 0;
   position: sticky;
-  top: 0;
+  top: 70px; /* Adjusted to make the map sticky at the top with a 70px offset */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .listPageMap {
+    display: block;
+  }
 }

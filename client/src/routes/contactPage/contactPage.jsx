@@ -1,6 +1,8 @@
 import React from "react";
 import "./contactPage.css";
 import ArrowBtn from "../../components/arrowBtn/arrowBtn";
+import BackBtn from "../../components/backBtn/BackBtn";
+
 
 const contactPage = () => {
   const [result, setResult] = React.useState("");
@@ -29,7 +31,8 @@ const contactPage = () => {
   };
 
   return (
-    <div className="container contact mb-5">
+    <div className="container contact navbarHeight mb-5">
+      <BackBtn color="white" />
       <div className="wrapper">
         <h1 className="title">Contact</h1>
         <div className="row mt-4">

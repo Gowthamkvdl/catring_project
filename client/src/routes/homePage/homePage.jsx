@@ -42,13 +42,13 @@ const homePage = () => {
   };
 
   return (
-    <div className="homePage">
+    <div className="homePage gridBg">
       <video className="bg-video" muted loop autoPlay>
         {/* <source src={bgVideo} type="video/mp4" /> */}
       </video>
-      <div className="bg">
+      {/* <div className="bg">
         <AnimatedBg />
-      </div>
+      </div> */}
       <div className="hero-section mt-lg-5 mt-3 flex-column text-light d-flex justify-content-center align-item-center">
         <div className="hero-text text-center">
           <span>Effortless</span>

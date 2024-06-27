@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./profilePage.css";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 import StarRating from "../../components/startRating/startRating";
@@ -6,14 +6,46 @@ import Chat from "../../components/chat/chat";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
+import Card from "../../components/card/Card";
+import BackBtn from "../../components/backBtn/BackBtn";
 
 const profilePage = () => {
   const { currentUser, updateUser } = useContext(AuthContext);
+  const [events, setEvents] = useState(null);
+  const [myEventsLoading, setMyEventsLoading] = useState(false);
+  const [savedEventsLoading, setSavedEventsLoading] = useState(false);
 
   const navigate = useNavigate();
   const handleEdit = () => {
     navigate("/update-profile");
   };
+
+  const showMyEvents = async () => {
+    try {
+      setMyEventsLoading(true);
+      const events = await apiRequest.get("/user/profilePosts");
+      const myEvents = events.data.userPosts;
+      setEvents(myEvents);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setMyEventsLoading(false);
+    }
+  };
+
+  const showSavedPosts = async () => {
+    try {
+      setSavedEventsLoading(true);
+      const events = await apiRequest.get("/user/profilePosts");
+      const savedEvents = events.data.savedPost;
+      setEvents(savedEvents);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setSavedEventsLoading(false);
+    }
+  };
+
 
   const handleLogout = async () => {
     try {
@@ -28,8 +60,9 @@ const profilePage = () => {
 
   return (
     <div className="profile container navbarHeight">
-      <div className="row pt-3">
+      <div className="row ">
         <div className="col-12 col-md-7">
+          <BackBtn color="white" />
           <h2 className="title">
             USER PROFILE
             <button
@@ -43,7 +76,7 @@ const profilePage = () => {
             </button>
           </h2>
           <div className="profile mt-4 row">
-            <div className="profilePic  d-flex p-5 pb-3 pt-2 p-md-0 pb-md-0  flex-column justify-content-center col-12 col-md-4">
+            <div className="profilePic  d-flex p-5 pb-3 pt-2 p-md-0 pb-md-0  flex-column col-12 col-md-4">
               <img
                 src={currentUser.avatar || dummyProfilePic}
                 alt=""
@@ -73,15 +106,21 @@ const profilePage = () => {
             <div className="profileInfo col-12 col-md-8 ">
               <div className=" content mb-2">
                 <span className="small-font">User Name </span> <br />{" "}
-                <span className="little-big-font fs-5">{currentUser.username}</span>
+                <span className="little-big-font fs-5">
+                  {currentUser.username}
+                </span>
               </div>
               <div className=" content mb-2">
                 <span className="small-font">Phone </span> <br />{" "}
-                <span className="little-big-font fs-5">{currentUser.phone}</span>
+                <span className="little-big-font fs-5">
+                  {currentUser.phone}
+                </span>
               </div>
               <div className=" content mb-2">
                 <span className="small-font">Email </span> <br />{" "}
-                <span className="little-big-font fs-5">{currentUser.email}</span>
+                <span className="little-big-font fs-5">
+                  {currentUser.email}
+                </span>
               </div>
               <div className=" content mb-2">
                 <span className="small-font">City </span> <br />{" "}
@@ -94,13 +133,34 @@ const profilePage = () => {
                 </span>
               </div>
             </div>
-            <div className="row mt-4 mx-auto w-100">
-              <div className="col-6">
-                <button className="btn btn-yellow w-100 ">My Events</button>
-              </div>
-              <div className="col-6">
-                <button className="btn btn-yellow w-100 ">Saved Events</button>
-              </div>
+          </div>
+          <div className="row my-3">
+            <div className="col-6">
+              <button
+                className="btn btn-yellow w-100 "
+                disabled={myEventsLoading}
+                onClick={showMyEvents}
+              >
+                My Events
+              </button>
+            </div>
+            <div className="col-6">
+              <button
+                className="btn btn-yellow w-100"
+                disabled={savedEventsLoading}
+                onClick={showSavedPosts}
+              >
+                Saved Events
+              </button>
+            </div>
+            <div className="col-12">
+              {events && events.length > 0 ? (
+                events.map((post) => <Card item={post} key={post.postId} />)
+              ) : (
+                <div className="text-center mt-4">
+                  {events && <h4>No events found</h4>}
+                </div>
+              )}
             </div>
           </div>
         </div>

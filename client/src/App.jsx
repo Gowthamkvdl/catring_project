@@ -13,12 +13,15 @@ import NewPostPage from "./routes/newPostPage/NewPostPage";
 import SinglePage from "./routes/singlepage/SinglePage";
 import UserProfile from "./routes/userProfilePage/UserProfile";
 import { listPageLoader, singlePageLoader } from "./lib/loader.js";
+import PageNotFound from "./routes/pageNotFound/PageNotFound";
+
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
+      // errorElement: <PageNotFound />,
       children: [
         {
           path: "/",

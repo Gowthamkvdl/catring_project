@@ -1,7 +1,10 @@
 import prisma from "../lib/prisma.js";
+import jwt from "jsonwebtoken";
+
 
 export const getPosts = async (req, res) => {
   const query = req.query;
+  const limit = parseInt(query.limit) || 5; // Set default limit to 5
 
   try {
     const posts = await prisma.post.findMany({
@@ -19,7 +22,7 @@ export const getPosts = async (req, res) => {
         startDate: query.date || undefined,
       },
       orderBy: {
-        startDate: "desc", // or 'desc' for descending order
+        createdAt: "desc", // or 'desc' for descending order
       },
       include: {
         user: {
@@ -33,9 +36,10 @@ export const getPosts = async (req, res) => {
           },
         },
       },
+      take: limit,
     });
 
-    res.status(200).json(posts);
+    res.status(200).json({ postData: posts, total: posts.length });
   } catch (error) {
     console.error("Error fetching posts:", error);
     res.status(500).json({ message: "Failed to get posts" });
@@ -67,7 +71,26 @@ export const getPost = async (req, res) => {
       return res.status(404).json({ message: "Post not found" });
     }
 
-    res.status(200).json(post);
+    const token = req.cookies?.token;
+    
+    if (token) {
+      jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, user) => {
+        if (!err) {
+          const saved = await prisma.savedPosts.findUnique({
+            where: {
+              userId_postId: {
+                postId: paramPostId,
+                userId: user.id,
+              },
+            },
+          });
+          return res.status(200).json({...post, isSaved: saved ? true: false})
+        }
+      });
+    }else{
+      return res.status(200).json({...post, isSaved: false})
+    }
+
   } catch (error) {
     console.log(error);
     res.status(401).json({ message: "Failed to get Post" });

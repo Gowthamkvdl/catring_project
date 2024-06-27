@@ -3,6 +3,7 @@ import "./newPostPage.css";
 import LocationSelector from "../../components/locationSelector/LocationSelector";
 import apiRequest from "../../lib/apiRequest.js";
 import { Link, useNavigate } from "react-router-dom";
+import BackBtn from "../../components/backBtn/BackBtn";
 
 const NewPostPage = () => {
   const [coordinates, setCoordinates] = useState({
@@ -13,7 +14,6 @@ const NewPostPage = () => {
   const [error, setError] = useState("");
   const [isLodading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  
 
   const handlePositionChange = (newPosition) => {
     setCoordinates(newPosition);
@@ -34,10 +34,10 @@ const NewPostPage = () => {
     const busFare = formData.get("busFare");
     const address = formData.get("address");
     const description = formData.get("description");
-    
+
     try {
-      setError("")
-      setIsLoading(true)
+      setError("");
+      setIsLoading(true);
       const post = await apiRequest.post("/post", {
         eventName,
         salary: parseInt(salary),
@@ -58,17 +58,18 @@ const NewPostPage = () => {
       console.log(post.data);
     } catch (error) {
       console.log(error);
-      setError("Some Error Occurred. Please try again later.")
+      setError("Some Error Occurred. Please try again later.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
-  
+
   return (
     <div className="container newPostPage navbarHeight mb-5">
       <form action="" onSubmit={handleSubmit}>
         <div className="row bg-light text-dark newPostPage rounded-3 mx-1">
           <div className="col-12 p-4 col-lg-7">
+            <BackBtn />
             <div className="mb-3">
               <h3 className="title">New Event Post</h3>
             </div>
@@ -245,10 +246,14 @@ const NewPostPage = () => {
             <div className="opacity-90 coor my-2">
               Current Coordinates: {coordinates.lat}, {coordinates.lng}
             </div>
-            <button disabled={isLodading} type="submit" className="btn w-100 fs-4 float-end btn-yellow my-2">
+            <button
+              disabled={isLodading}
+              type="submit"
+              className="btn w-100 fs-4 float-end btn-yellow my-2"
+            >
               Post Event
             </button>
-            {error && <span className="content text-dark" >{error}</span>}
+            {error && <span className="content text-dark">{error}</span>}
           </div>
         </div>
       </form>

@@ -15,7 +15,7 @@ const input = () => {
           className="inputBox text-dark"
           placeholder="Search job by location..."
         />
-        <Link to={`\list?location=${location}&minSalary=${""}&date=${""}&maxDutyHours=${""}`} className="link">
+        <Link to={`\list?location=${location}&minSalary=${""}&date=${""}&maxDutyHours=${""}&limit=${"5"}`} className="link">
           <button class="searchButton">
             <span class="span">🔎</span>
           </button>

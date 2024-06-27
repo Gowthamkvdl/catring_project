@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest.js";
 import UploadWidget from "../../components/upload/Upload";
+import BackBtn from "../../components/backBtn/BackBtn";
+
 
 const profileUpdatePage = () => {
   const navigate = useNavigate();
@@ -63,16 +65,14 @@ const profileUpdatePage = () => {
   return (
     <div>
       <div className="updateProfile container navbarHeight">
+        <BackBtn color="white" />
         <div className="row pt-3">
           <div className="col-12 col-md-7">
             <h2 className="title">
               EDIT USER PROFILE
-              <button className="float-end btn btn-yellow" onClick={handleBack}>
-                back
-              </button>
             </h2>
             <div className="profile mt-4 row">
-              <div className="profilePic d-flex p-5 pt-2 pb-3 p-md-0 pb-md-0 flex-column justify-content-center p-5 col-12 col-md-4">
+              <div className="profilePic d-flex p-5 pt-2 pb-3 p-md-0 pb-md-0 flex-column p-5 col-12 col-md-4">
                 <img
                   src={avatar || dummyProfilePic}
                   alt=""

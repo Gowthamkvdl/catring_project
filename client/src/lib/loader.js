@@ -8,9 +8,11 @@ export const singlePageLoader = async ({ params }) => {
 };
 
 export const listPageLoader = async ({ request }) => {
-  const location = request.url.split("?")[1];
-  const postPromsie = apiRequest.get("/post/?" + location);
+  const [location, limitStr] = request.url.split("?")[1].split("&limit=");
+  const limit = parseInt(limitStr);
+  const postPromise = apiRequest.get(`/post/?${location}&limit=${limit}`);
   return defer({
-    postResponse: postPromsie,
-  })
+    postResponse: postPromise,
+  });
 };
+

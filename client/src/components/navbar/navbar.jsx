@@ -91,7 +91,7 @@ const navbar = () => {
                   </div>
                 </Link>
               ) : (
-                <div className="d-flex flex-column align-items-center">
+                <div className="d-flex flex-column flex-md-row align-items-center">
                   <Link to={"/login"}>
                     <li className="nav-item mb-1 w-100">
                       <a className="nav-link" href="#">

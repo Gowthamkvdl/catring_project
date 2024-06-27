@@ -1,28 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./filter.css";
 import { useSearchParams } from "react-router-dom";
 
-const Filter = () => {
+const Filter = ({ query, setQuery, loadMore }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const initialQuery = {
-    location: searchParams.get("location") || "",
-    date: searchParams.get("date") || "",
-    maxWorkingDays: searchParams.get("maxWorkingDays") || 100,
-    minSalary: searchParams.get("minSalary") || 0,
-  };
-
-  const [query, setQuery] = useState(initialQuery);
 
   useEffect(() => {
     setSearchParams(query);
   }, [query, setSearchParams]);
 
   const handleChange = (e) => {
-    setQuery({
-      ...query,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setQuery((prevQuery) => ({
+      ...prevQuery,
+      [name]: value,
+    }));
   };
 
   const handleSearch = (e) => {
@@ -31,7 +23,13 @@ const Filter = () => {
   };
 
   const handleReset = () => {
-    setQuery(initialQuery);
+    setQuery({
+      location: "",
+      date: "",
+      maxWorkingDays: "100",
+      minSalary: "0",
+      limit: "5",
+    });
     setSearchParams({});
   };
 
@@ -40,13 +38,11 @@ const Filter = () => {
       <h4>
         Search result for{" "}
         <span className="text-uppercase">
-          {searchParams.get("location")
-            ? searchParams.get("location")
-            : "Tamil Nadu"}
+          {query.location ? query.location : "Tamil Nadu"}
         </span>
       </h4>
       <form action="">
-        <div className="row ">
+        <div className="row">
           <div className="col-12 mb-2">
             <input
               onChange={handleChange}
@@ -94,15 +90,7 @@ const Filter = () => {
               </label>
               <div className="input-group">
                 <input
-                  onChange={(e) => {
-                    handleChange(e);
-                    if (e.target.value === "") {
-                      setQuery((prevQuery) => ({
-                        ...prevQuery,
-                        date: "",
-                      }));
-                    }
-                  }}
+                  onChange={handleChange}
                   value={query.date}
                   min={0}
                   name="date"
@@ -111,7 +99,7 @@ const Filter = () => {
                   aria-label="Date"
                 />
                 <button
-                  className="btn w-25 btn-secondary"
+                  className="btn btn-secondary"
                   type="button"
                   onClick={() =>
                     setQuery((prevQuery) => ({ ...prevQuery, date: "" }))
