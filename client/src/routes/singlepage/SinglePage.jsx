@@ -14,6 +14,7 @@ const SinglePage = () => {
   const [saved, setSaved] = useState(post.isSaved)
   const [isLoading, setIsLoading] = useState(false)
   const {currentUser} = useContext(AuthContext)
+  const [deleting, setDeleting] = useState(false)
 
   const handleSave = async () => {
     setSaved((prev) => !prev)
@@ -32,15 +33,37 @@ const SinglePage = () => {
     }
   }
 
+  const handleDelete = async () => {
+    try {
+      setDeleting(true)
+      await apiRequest.delete(`post/${post.postId}`)
+      navigate(-1)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setDeleting(false)
+    }
+  }
+
 
   return (
     <div className="singlePage navbarHeight container">
       <div className="row text-dark mx-1 p-3 rounded-3 bg-light">
         <div className="col-md-7 col-12 h-auto">
-            <BackBtn color={"black"}/>
+          <BackBtn color={"black"} />
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            className={`btn btn-danger float-end ${
+              post.userId === currentUser.userId ? "" : "d-none"
+            }`}
+          >
+            Delete Post
+          </button>
           <div className="row">
             <div className="col-12">
-              <Link className="link" to={"/user-profile"}>
+              <Link className="link" to={"/user-profile/?id="+post.user.userId}>
                 <div className="user d-flex align-items-center">
                   <img
                     src={post.user.avatar ? post.user.avatar : dummyProfile}
@@ -146,7 +169,11 @@ const SinglePage = () => {
               </button>
             </div>
             <div className="save w-100">
-              <button desabled={isLoading} className="btn w-100 btn-yellow" onClick={handleSave}>
+              <button
+                disabled={isLoading}
+                className="btn w-100 btn-yellow"
+                onClick={handleSave}
+              >
                 {saved ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -171,6 +198,48 @@ const SinglePage = () => {
                   </svg>
                 )}
                 {saved ? "Event Saved" : "Save Event"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade "
+        id="staticBackdrop"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content text-dark">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                Are you sure?
+              </h1>
+              <button
+                type="button"
+                class="btn-close shadow-none"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body h-100">Do you want to delete this post?</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                disabled={deleting}
+                type="button"
+                onClick={handleDelete}
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >
+                Delete Post
               </button>
             </div>
           </div>

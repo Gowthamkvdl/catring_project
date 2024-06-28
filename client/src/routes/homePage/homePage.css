@@ -57,6 +57,43 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
+.gridBg {
+  height: 100%;
+  width: 100%;
+  background-color: var(--dark);
+  background-image: linear-gradient(
+      0deg,
+      transparent 24%,
+      var(--lightDark) 25%,
+      var(--lightDark) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--lightDark) 75%,
+      var(--lightDark) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      var(--lightDark) 25%,
+      var(--lightDark) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--lightDark) 75%,
+      var(--lightDark) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-size: 60px 60px;
+  background-position: center;
+}
+
+.bg-gradient {
+  background: -webkit-linear-gradient(90deg, #000000, #9f84f8);
+  background: linear-gradient(360deg, #000000, #9f84f8) !important;
+}
+
 .hero-text {
   animation-name: animated-text;
   animation-duration: 2s;

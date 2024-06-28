@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
 import Card from "../../components/card/Card";
 import BackBtn from "../../components/backBtn/BackBtn";
+import Loader from "../../components/loader/Loader";
 
 const profilePage = () => {
   const { currentUser, updateUser } = useContext(AuthContext);
@@ -154,11 +155,18 @@ const profilePage = () => {
               </button>
             </div>
             <div className="col-12">
-              {events && events.length > 0 ? (
-                events.map((post) => <Card item={post} key={post.postId} />)
+              {(myEventsLoading || savedEventsLoading) && (
+                <Loader message={"Loading..."} />
+              )}
+              {!(myEventsLoading || savedEventsLoading) &&
+              events &&
+              events.length > 0 ? (
+                events.slice().reverse().map((post) => <Card item={post} key={post.postId} />)
               ) : (
                 <div className="text-center mt-4">
-                  {events && <h4>No events found</h4>}
+                  {!(myEventsLoading || savedEventsLoading) && events && (
+                    <h4>No events found</h4>
+                  )}
                 </div>
               )}
             </div>

@@ -64,7 +64,7 @@ const App = () => {
           element: <NewPostPage />,
         },
         {
-          path: "/user-profile",
+          path: "/user-profile/",
           element: <UserProfile />,
         },
         {

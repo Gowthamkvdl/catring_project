@@ -42,7 +42,7 @@ const homePage = () => {
   };
 
   return (
-    <div className="homePage gridBg">
+    <div className="homePage bg-gradient">
       <video className="bg-video" muted loop autoPlay>
         {/* <source src={bgVideo} type="video/mp4" /> */}
       </video>

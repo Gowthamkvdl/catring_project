@@ -1,7 +1,7 @@
 import React, { useEffect, useId, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import "./animatedBg.css";
-import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
+// import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 
 
 const GridPattern = ({

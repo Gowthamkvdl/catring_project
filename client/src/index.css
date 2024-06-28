@@ -3,7 +3,7 @@
   --yellow: #c5fe00;
   --light: #e8e8e8;
   --dark: #141414;
-  --lightDark: #625454;
+  --lightDark: #3d3d3d;
 }
 
 html, body {
@@ -80,17 +80,6 @@ body{
     color: var(--dark);
     font-weight: 500;
     border: var(--yellow) !important;
-}
-
-.gridBg {
-  height: 100%;
-  width: 100%;
-  background-color: var(--dark);
-  background-image:
-    radial-gradient(circle at top, rgba(0,0,0,0) 9%, rgba(0,0,0,0.3617822128851541) 31%, rgba(0,0,0,0.5746673669467788) 50%, rgba(0,0,0,1) 78%),
-    linear-gradient(0deg, transparent 24%, var(--lightDark) 25%, var(--lightDark) 26%, transparent 27%, transparent 74%, var(--lightDark) 75%, var(--lightDark) 76%, transparent 77%, transparent),
-    linear-gradient(90deg, transparent 24%, var(--lightDark) 25%, var(--lightDark) 26%, transparent 27%, transparent 74%, var(--lightDark) 75%, var(--lightDark) 76%, transparent 77%, transparent);
-  background-size: cover, 55px 55px, 55px 55px;
 }
 
 

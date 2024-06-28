@@ -18,6 +18,22 @@
   height: auto;
 }
 
+.blink {
+  animation: blinkAnimation 1s infinite;
+}
+
+@keyframes blinkAnimation {
+  0% {
+    color: lightcyan;
+  }
+  50% {
+    color: transparent;
+  }
+  100% {
+    color: lightcyan;
+  }
+}
+
 .listPageMap {
   flex-grow: 1;
   flex-shrink: 0;

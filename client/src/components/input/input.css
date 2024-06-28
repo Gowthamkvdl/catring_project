@@ -43,7 +43,7 @@
   height: 50px;
   font-size: 24px;
   text-transform: uppercase;
-  border: 2px solid #212121;
+  border: 2px solid #e8e8e8;
   border-radius: 50% !important;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
 
@@ -52,15 +52,15 @@
 }
 
 .searchButton{
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
 }
 
 .searchButton .span {
   margin-bottom: 3px;
   margin-left: 2px;
   position: relative;
-  font-size: 30px;
+  font-size: 25px;
   z-index: 2;
   text-decoration: none!important;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
@@ -81,7 +81,7 @@
 
 .searchButton:hover::before {
   transform: translate(0,0);
-  transition-delay: 0.4s;
+  /* transition-delay: 0.4s; */
 }
 
 .searchButton:hover .span {

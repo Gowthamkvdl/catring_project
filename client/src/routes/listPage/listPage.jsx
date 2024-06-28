@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useState, useEffect, useRef } from "react";
 import "./listPage.css";
 import Filter from "../../components/filter/filter";
 import Card from "../../components/card/Card";
@@ -13,6 +13,7 @@ const ListPage = () => {
   const posts = useLoaderData();
   const [searchParams, setSearchParams] = useSearchParams();
   const [totalPost, setTotalPost] = useState(0);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const initialQuery = {
     location: searchParams.get("location") || "",
@@ -24,18 +25,55 @@ const ListPage = () => {
 
   const [query, setQuery] = useState(initialQuery);
 
-  const loadMore = () => {
+  const loadMore = async () => {
+    setIsLoadingMore(true);
     setQuery((prevQuery) => ({
       ...prevQuery,
       limit: (Number(prevQuery.limit) || 0) + 5,
     }));
   };
 
+  // Ref for the "Load More" button
+  const loadMoreButtonRef = useRef(null);
+
+  // Set up Intersection Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (
+            entry.isIntersecting &&
+            totalPost >= query.limit &&
+            !isLoadingMore
+          ) {
+            loadMore();
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      }
+    );
+
+    const button = loadMoreButtonRef.current;
+    if (button) {
+      observer.observe(button);
+    }
+
+    return () => {
+      if (button) {
+        observer.unobserve(button);
+      }
+    };
+  }, [query.limit, totalPost, isLoadingMore]);
+
   return (
     <div className="listPage container">
       <div className="d-flex flex-row mx-auto">
         <div className="filterAndCards">
-        <BackBtn color={"#ffffff"} link={"/"} />
+          <BackBtn color={"#ffffff"} link={"/"} />
           <div className="filter">
             <Filter query={query} setQuery={setQuery} loadMore={loadMore} />
           </div>
@@ -55,28 +93,37 @@ const ListPage = () => {
                   </div>
                 }
               >
-                {(postResponse) =>
-                  postResponse.data.postData.length > 0 ? (
-                    (setTotalPost(postResponse.data.postData.length),
-                    postResponse.data.postData.map((post) => (
+                {(postResponse) => {
+                  const postData = postResponse.data.postData;
+                  if (postData.length > 0) {
+                    if (totalPost !== postData.length) {
+                      setTotalPost(postData.length);
+                      setIsLoadingMore(false);
+                    }
+                    return postData.map((post) => (
                       <Card item={post} key={post.postId} />
-                    )))
-                  ) : (
-                    <div>
-                      {setTotalPost(0)}
-                      <NoData heading={"No jobs found"} text={"No jobs found. Please use the filter to find suitable jobs."} />
-                      
-                    </div>
-                  )
-                }
+                    ));
+                  } else {
+                    setTotalPost(0);
+                    setIsLoadingMore(false);
+                    return (
+                      <NoData
+                        heading={"No jobs found"}
+                        text={
+                          "No jobs found. Please use the filter to find suitable jobs."
+                        }
+                      />
+                    );
+                  }
+                }}
               </Await>
               <div
-                className={`btn btn-yellow mt-3 d-flex justify-content-center mx-1 ${
-                  totalPost < query.limit ? "d-none" : ""
-                }`}
+                ref={loadMoreButtonRef} // Reference for the "Load More" button
+                className={`btn text-light mt-3 d-flex fs-5 justify-content-center mx-1 `}
                 onClick={loadMore}
               >
-                Show more jobs
+                {isLoadingMore && <span className="blink" >Loading more jobs...</span>}
+                {!isLoadingMore && totalPost > 0 ? "No more jobs!" : ""}
               </div>
             </Suspense>
           </div>
@@ -85,7 +132,7 @@ const ListPage = () => {
           <Suspense
             fallback={
               <div>
-                <Loader message={"Loading Map..."}></Loader>
+                {/* <Loader message={"Loading Map..."}></Loader> */}
               </div>
             }
           >
