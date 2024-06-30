@@ -295,7 +295,7 @@ const Chat = () => {
                   className="form-control shadow-none w-100"
                   placeholder="Write Message..."
                 ></textarea>
-                <button type="submit" className="float-end btn btn-yellow">
+                <button type="submit" className="float-end btn btn-warning">
                   Send
                 </button>
               </form>

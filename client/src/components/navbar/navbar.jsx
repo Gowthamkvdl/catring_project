@@ -18,7 +18,7 @@ const navbar = () => {
   }
 
   return (
-    <nav className={`navbar navbar-expand-md navbar-dark ${bg} fixed-top`}>
+    <nav className={`navbar navbar-expand-md ${bg} fixed-top`}>
       <div className="container">
         <a className="navbar-brand fw-bold fs-3" href="/">
           CATRING
@@ -95,14 +95,14 @@ const navbar = () => {
                   <Link to={"/login"}>
                     <li className="nav-item mb-1 w-100">
                       <a className="nav-link" href="#">
-                        <button className="btn btn-yellow btn-sm">Login</button>
+                        <button className="btn btn-warning btn-sm">Login</button>
                       </a>
                     </li>
                   </Link>
                   <Link to="/register">
                     <li className="nav-item mb-1">
                       <a className="nav-link" href="#">
-                        <button className="btn btn-yellow btn-sm">
+                        <button className="btn btn-warning btn-sm">
                           Register
                         </button>
                       </a>

@@ -12,6 +12,10 @@
     color: var(--dark) !important;
 }
 
+.bg-darkcolor{
+    background-color: var(--dark) !important;
+}
+
 .navProPic{
     height: 40px;
     width: 40px;

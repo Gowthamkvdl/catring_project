@@ -69,7 +69,7 @@ const loginPage = () => {
             {error && <span className="">{error}</span>}
             <button
               disabled={loading}
-              className="btn btn-yellow w-100 my-4 fs-5"
+              className="btn btn-warning w-100 my-4 fs-5"
             >
               Login
             </button>

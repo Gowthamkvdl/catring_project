@@ -148,7 +148,7 @@ const profileUpdatePage = () => {
                   <button
                     disabled={isLodaing}
                     type="submit"
-                    className="btn btn-yellow float-end"
+                    className="btn btn-warning float-end"
                   >
                     Update
                   </button>

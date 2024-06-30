@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "@emotion/react": "^11.11.4",
     "axios": "^1.7.2",
     "prisma": "^5.15.0",
+    "react-awesome-reveal": "^4.2.12",
     "react-transition-group": "^4.4.5"
   }
 }

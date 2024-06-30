@@ -56,7 +56,7 @@ const SinglePage = () => {
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
             className={`btn btn-danger float-end ${
-              post.userId === currentUser.userId ? "" : "d-none"
+              currentUser && post.userId === currentUser.userId ? "" : "d-none"
             }`}
           >
             Delete Post
@@ -115,7 +115,7 @@ const SinglePage = () => {
             </div>
             <div className="col-md-3 col-12">
               <div className="join-btn">
-                <button className="btn btn-yellow w-100">Join Now</button>
+                <button className="btn btn-warning w-100">Join Now</button>
               </div>
             </div>
           </div>
@@ -154,7 +154,7 @@ const SinglePage = () => {
           </div>
           <div className="btns d-flex gap-2 mt-2">
             <div className="chat w-100">
-              <button className="btn w-100 btn-yellow">
+              <button className="btn w-100 btn-warning">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -171,7 +171,7 @@ const SinglePage = () => {
             <div className="save w-100">
               <button
                 disabled={isLoading}
-                className="btn w-100 btn-yellow"
+                className="btn w-100 btn-warning"
                 onClick={handleSave}
               >
                 {saved ? (

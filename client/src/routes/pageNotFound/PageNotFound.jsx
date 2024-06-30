@@ -10,7 +10,7 @@ const pageNotFound = () => {
         <img src={error404} alt="" className="img-fluid img404 px-md-5 mx-md-5 w-md-50" />
         <h1 classname="fs-1">Page not found (404)</h1>
         <h5 className="text-primary">Oops! It seems like the page you are looking for does not exist.</h5>
-        <Link to={"/"} className="btn btn-yellow my-2">Back to Home</Link>
+        <Link to={"/"} className="btn btn-warning my-2">Back to Home</Link>
       </div>
     </div>
   );

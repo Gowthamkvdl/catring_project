@@ -249,7 +249,7 @@ const NewPostPage = () => {
             <button
               disabled={isLodading}
               type="submit"
-              className="btn w-100 fs-4 float-end btn-yellow my-2"
+              className="btn w-100 fs-4 float-end btn-warning my-2"
             >
               Post Event
             </button>

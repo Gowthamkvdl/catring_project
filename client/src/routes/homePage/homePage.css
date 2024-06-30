@@ -2,7 +2,6 @@
   position: relative;
   overflow: hidden;
   height: auto;
-  padding-bottom: 100px;
 }
 
 .bg-video {
@@ -27,17 +26,29 @@
   height: 100%;
 }
 
-.hero-section span {
-  font-size: 3rem;
+.hero-text {
+  font-size: 2.9rem;
+  height: 130px;
+  line-height: 55px;
+}
+
+.hero-section p {
+  font-size: large !important;
+}
+
+.homeImg {
+  margin-top: 110px !important;
 }
 
 @media (max-width: 767px) {
   .hero-text {
-    height: 155px;
-    margin-top: 140px;
+    height: 180px;
   }
   .hero-section span {
     font-size: 2.4rem;
+  }
+  .homeImg{
+    margin-top: 30px !important;
   }
 }
 
@@ -50,16 +61,13 @@
 .glass {
   backdrop-filter: blur(2px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(245, 245, 245, 0.116);
-  border-radius: 41px 0px 40px 0px;
-  -webkit-border-radius: 41px 0px 40px 0px;
-  -moz-border-radius: 41px 0px 40px 0px;
-  border: 1px solid rgba(255, 255, 255, 0.125);
+  background-color: rgba(255, 255, 255, 0.129);
+  border-radius: 20px;
+
 }
 
+
 .gridBg {
-  height: 100%;
-  width: 100%;
   background-color: var(--dark);
   background-image: linear-gradient(
       0deg,
@@ -85,19 +93,28 @@
       transparent 77%,
       transparent
     );
-  background-size: 60px 60px;
+  background-size: 50px 50px;
   background-position: center;
 }
 
 .bg-gradient {
-  background: -webkit-linear-gradient(90deg, #000000, #9f84f8);
-  background: linear-gradient(360deg, #000000, #9f84f8) !important;
+  background: linear-gradient(180deg, #3586ff 0%, #141414 90%) !important;
+}
+
+.bg-glow {
+  filter: drop-shadow(0px 0px 1.5px white);
+}
+
+.bg-blob{
+  border-radius: 78% 22% 49% 49% / 50% 65% 35% 50%;
+  background-color: var(--yellow);
+  box-shadow: 1px 1px 10px black;
 }
 
 .hero-text {
   animation-name: animated-text;
   animation-duration: 2s;
-  margin-top: 120px;
+  margin-top: 80px;
 }
 
 @keyframes animated-text {
@@ -108,3 +125,4 @@
     opacity: 1;
   }
 }
+

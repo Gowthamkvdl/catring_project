@@ -70,8 +70,8 @@ const ListPage = () => {
   }, [query.limit, totalPost, isLoadingMore]);
 
   return (
-    <div className="listPage container">
-      <div className="d-flex flex-row mx-auto">
+    <div className="listPage  container">
+      <div className="d-flex w-100 flex-row">
         <div className="filterAndCards">
           <BackBtn color={"#ffffff"} link={"/"} />
           <div className="filter">
@@ -118,11 +118,13 @@ const ListPage = () => {
                 }}
               </Await>
               <div
-                ref={loadMoreButtonRef} // Reference for the "Load More" button
+                ref={loadMoreButtonRef} 
                 className={`btn text-light mt-3 d-flex fs-5 justify-content-center mx-1 `}
                 onClick={loadMore}
               >
-                {isLoadingMore && <span className="blink" >Loading more jobs...</span>}
+                {isLoadingMore && (
+                  <span className="blink">Loading more jobs...</span>
+                )}
                 {!isLoadingMore && totalPost > 0 ? "No more jobs!" : ""}
               </div>
             </Suspense>
@@ -131,9 +133,7 @@ const ListPage = () => {
         <div className="listPageMap d-none d-md-block">
           <Suspense
             fallback={
-              <div>
-                {/* <Loader message={"Loading Map..."}></Loader> */}
-              </div>
+              <div>{/* <Loader message={"Loading Map..."}></Loader> */}</div>
             }
           >
             <Await resolve={posts.postResponse} errorElement={<p></p>}>

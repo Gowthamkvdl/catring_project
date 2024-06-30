@@ -67,7 +67,7 @@ const profilePage = () => {
           <h2 className="title">
             USER PROFILE
             <button
-              className=" ms-2 float-end btn btn-yellow"
+              className=" ms-2 float-end btn btn-warning"
               onClick={handleEdit}
             >
               Edit
@@ -138,7 +138,7 @@ const profilePage = () => {
           <div className="row my-3">
             <div className="col-6">
               <button
-                className="btn btn-yellow w-100 "
+                className="btn btn-warning w-100 "
                 disabled={myEventsLoading}
                 onClick={showMyEvents}
               >
@@ -147,7 +147,7 @@ const profilePage = () => {
             </div>
             <div className="col-6">
               <button
-                className="btn btn-yellow w-100"
+                className="btn btn-warning w-100"
                 disabled={savedEventsLoading}
                 onClick={showSavedPosts}
               >

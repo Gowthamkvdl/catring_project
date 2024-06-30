@@ -129,7 +129,7 @@ const Filter = ({ query, setQuery, loadMore }) => {
             >
               <button
                 type="button"
-                className="btn btn-yellow w-50 fw-600 shadow-none"
+                className="btn btn-warning w-50 fw-600 shadow-none"
                 onClick={handleSearch}
               >
                 Search
