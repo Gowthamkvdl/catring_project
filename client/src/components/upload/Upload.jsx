@@ -51,7 +51,7 @@ function UploadWidget({ uwConfig, setAvatar }) {
     <CloudinaryScriptContext.Provider value={{ loaded }}>
       <button
         id="upload_widget"
-        className="btn btn-primary mx-auto" 
+        className="btn btn-warning mx-auto" 
         onClick={initializeCloudinaryWidget}
       >
         Upload

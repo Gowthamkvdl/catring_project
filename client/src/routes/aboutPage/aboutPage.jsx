@@ -10,7 +10,7 @@ const aboutPage = () => {
       <BackBtn color="white" />
         <h1 className="title">About</h1>
         <section className="mt-4" >
-          <h2>Empowering Opportunities for Servers</h2>
+          <h2 className="fs-3">Empowering Opportunities for Servers</h2>
           <p className="content">
             Our platform not only connects catering contractors with skilled
             server staff but also creates abundant job opportunities for
@@ -18,7 +18,7 @@ const aboutPage = () => {
           </p>
         </section>
         <section>
-          <h4>For Catering Contractors:</h4>
+          <h4 className="fs-3">For Catering Contractors:</h4>
           <p className="content">
             Find reliable, experienced servers quickly and ensure your event
             runs smoothly. Browse profiles, check availability, and hire the
@@ -26,7 +26,7 @@ const aboutPage = () => {
           </p>
         </section>
         <section>
-          <h4>For Server Staff:</h4>
+          <h4 className="fs-3">For Server Staff:</h4>
           <p className="content">
             Discover exciting job opportunities in the catering industry.
             Connect with top contractors, showcase your skills, and find work
@@ -34,7 +34,7 @@ const aboutPage = () => {
           </p>
         </section>
         <section>
-          <h4>A Win-Win for All</h4>
+          <h4 className="fs-3">A Win-Win for All</h4>
           <p className="content">
             We make event staffing effortless and efficient, empowering servers
             and helping contractors achieve event success.

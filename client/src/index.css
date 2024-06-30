@@ -58,7 +58,7 @@ body{
   font-size: 1.3rem;
   text-align: justify;
   margin-bottom: 25px;
-  text-indent: 50px;
+  /* text-indent: 50px; */
 }
 
 .open-sans-font {
@@ -70,6 +70,9 @@ body{
     "wdth" 100;
 }
 
+.text-indend {
+  text-indent: 50px;
+}
 
 
 

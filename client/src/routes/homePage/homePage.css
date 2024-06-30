@@ -98,7 +98,7 @@
 }
 
 .bg-gradient {
-  background: linear-gradient(180deg, #3586ff 0%, #141414 90%) !important;
+  /* background: linear-gradient(180deg, #3586ff 0%, #141414 90%) !important; */
 }
 
 .bg-glow {
@@ -113,7 +113,7 @@
 
 .hero-text {
   animation-name: animated-text;
-  animation-duration: 2s;
+  animation-duration: .75s;
   margin-top: 80px;
 }
 

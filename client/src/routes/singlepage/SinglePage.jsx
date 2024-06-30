@@ -227,7 +227,7 @@ const SinglePage = () => {
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn btn-warning"
                 data-bs-dismiss="modal"
               >
                 Close
