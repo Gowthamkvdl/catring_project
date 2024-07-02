@@ -4,47 +4,48 @@ import dummyProfile from "../../assets/dummyProfilePic.jpg";
 import Progressbar from "../../components/progressBar/Progressbar";
 import SinglePointerMap from "../../components/singlePointerMap/SinglePointerMap";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
-import {AuthContext} from "../../context/AuthContext"
+import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest.js";
 import BackBtn from "../../components/backBtn/BackBtn";
+import { toast } from "react-hot-toast";
 
 const SinglePage = () => {
   const post = useLoaderData();
   const navigate = useNavigate();
-  const [saved, setSaved] = useState(post.isSaved)
-  const [isLoading, setIsLoading] = useState(false)
-  const {currentUser} = useContext(AuthContext)
-  const [deleting, setDeleting] = useState(false)
+  const [saved, setSaved] = useState(post.isSaved);
+  const { currentUser } = useContext(AuthContext);
+  const [deleting, setDeleting] = useState(false);
 
   const handleSave = async () => {
-    setSaved((prev) => !prev)
-    if(!currentUser){
-      navigate("/login")
+    setSaved((prev) => !prev);
+    if (!currentUser) {
+      navigate("/login");
     }
     try {
-      setIsLoading(true)
-      await apiRequest.post("user/save",{postId: post.postId})
+      await apiRequest.post("user/save", { postId: post.postId });
     } catch (error) {
-      console.log(error)
-    setSaved((prev) => !prev);
-
+      console.log(error);
+      setSaved((prev) => !prev);
     } finally {
-      setIsLoading(false)
+      toast.success(saved ? "Unsaved" : "Saved", {
+        id: "save event",
+      });
     }
-  }
-
+  };
+  
+  
   const handleDelete = async () => {
     try {
-      setDeleting(true)
-      await apiRequest.delete(`post/${post.postId}`)
-      navigate(-1)
+      setDeleting(true);
+      await apiRequest.delete(`post/${post.postId}`);
+      navigate(-1);
+      toast.success("Your Post Deleted Successfully!")
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
-      setDeleting(false)
+      setDeleting(false);
     }
-  }
-
+  };
 
   return (
     <div className="singlePage navbarHeight container">
@@ -63,18 +64,23 @@ const SinglePage = () => {
           </button>
           <div className="row">
             <div className="col-12">
-              <Link className="link" to={"/user-profile/?id="+post.user.userId}>
-                <div className="user d-flex align-items-center">
-                  <img
-                    src={post.user.avatar ? post.user.avatar : dummyProfile}
-                    className="navProPic"
-                    alt=""
-                  />
-                  <span className="name mx-2 fs-5 text-uppercase">
-                    {post.user.username}
-                  </span>
-                </div>
-              </Link>
+              <div className="fit-content">
+                <Link
+                  className="link"
+                  to={"/user-profile/?id=" + post.user.userId}
+                >
+                  <div className="user d-flex align-items-center">
+                    <img
+                      src={post.user.avatar ? post.user.avatar : dummyProfile}
+                      className="navProPic"
+                      alt=""
+                    />
+                    <span className="name mx-2 fs-5 text-uppercase">
+                      {post.user.username}
+                    </span>
+                  </div>
+                </Link>
+              </div>
               <h4 className="mt-3">
                 {post.eventName}
                 <div className="float-end fw-bold bg-text text-dark p-1 rounded">
@@ -165,12 +171,11 @@ const SinglePage = () => {
                 >
                   <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
                 </svg>
-                Send Message
+                Chat
               </button>
             </div>
             <div className="save w-100">
               <button
-                disabled={isLoading}
                 className="btn w-100 btn-warning"
                 onClick={handleSave}
               >
@@ -211,7 +216,7 @@ const SinglePage = () => {
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <div class="modal-content text-dark">
+          <div class="modal-content bg-light text-dark">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="staticBackdropLabel">
                 Are you sure?

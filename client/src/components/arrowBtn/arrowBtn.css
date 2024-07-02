@@ -11,7 +11,7 @@
   letter-spacing: 0.05em;
   display: flex;
   align-items: center;
-  box-shadow: inset 0 0 1.6em -0.6em #e8e8e8;
+  justify-content: center; /* Center the content horizontally */
   overflow: hidden;
   position: relative;
   height: 2.8em;
@@ -23,9 +23,9 @@
   background: #212121;
   margin-left: 1em;
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important; /* Center the SVG horizontally and vertically */
   height: 2.2em;
   width: 2.2em;
   border-radius: 0.7em;

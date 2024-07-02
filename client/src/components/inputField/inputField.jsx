@@ -5,7 +5,7 @@ const InputField = ({ label, inputType, inputName }) => {
   return (
     <div className="inputField mt-4">
       <div className="wave-group">
-        <input required type={inputType} name={inputName} className="input" />
+        <input required type={inputType} name={inputName} className="input bg-light" />
         <span className="bar"></span>
         <label className="label">
           {label.split(" ").map((char, index) => (

@@ -138,7 +138,7 @@ const ListPage = () => {
           >
             <Await resolve={posts.postResponse} errorElement={<p></p>}>
               {(postResponse) => (
-                <Map className="map" items={postResponse.data.postData} />
+                <Map items={postResponse.data.postData} />
               )}
             </Await>
           </Suspense>

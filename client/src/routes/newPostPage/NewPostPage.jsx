@@ -4,6 +4,7 @@ import LocationSelector from "../../components/locationSelector/LocationSelector
 import apiRequest from "../../lib/apiRequest.js";
 import { Link, useNavigate } from "react-router-dom";
 import BackBtn from "../../components/backBtn/BackBtn";
+import toast from "react-hot-toast";
 
 const NewPostPage = () => {
   const [coordinates, setCoordinates] = useState({
@@ -55,10 +56,10 @@ const NewPostPage = () => {
         longitude: parseFloat(coordinates.lng),
       });
       navigate(`/${post.data.postId}`);
-      console.log(post.data);
+      toast.success("Your post is now live!");
     } catch (error) {
       console.log(error);
-      setError("Some Error Occurred. Please try again later.");
+      toast.success("Some Error Occurred. Please try again later.");
     } finally {
       setIsLoading(false);
     }
@@ -86,7 +87,7 @@ const NewPostPage = () => {
                   className="form-control shadow-none"
                 />
               </div>
-              <div className="input-group w-25">
+              <div className="input-group w-50">
                 <label htmlFor="salary" className="form-label mb-0 w-100">
                   Salary
                 </label>

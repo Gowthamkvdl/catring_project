@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest.js";
 import UploadWidget from "../../components/upload/Upload";
 import BackBtn from "../../components/backBtn/BackBtn";
+import { toast } from "react-hot-toast";
 
 
 const profileUpdatePage = () => {
@@ -13,8 +14,6 @@ const profileUpdatePage = () => {
   const { currentUser, updateUser } = useContext(AuthContext);
   const [changePass, setChangePassword] = useState(false);
   const [isLodaing, setIsLoading] = useState(false);
-  const [info, setInfo] = useState(null);
-  const [error, setError] = useState("");
   const [avatar,setAvatar] = useState(currentUser.avatar)
 
   const handleSave = async (e) => {
@@ -31,8 +30,11 @@ const profileUpdatePage = () => {
       if (newPassword === newPassword1) {
         password = newPassword;
       } else {
-        setInfo(
-          "The password you reentered is not maching with the new password"
+        toast.error(
+          "The password you reentered is not maching with the new password",{
+            id:"password missmatch",
+            duration: 5000
+          }
         );
         return;
       }
@@ -40,7 +42,6 @@ const profileUpdatePage = () => {
 
     try {
       setIsLoading(true)
-      setError(null)
       const updatedUser = await apiRequest.put(`/user/${currentUser.userId}`, {
         phone,
         city,
@@ -50,8 +51,11 @@ const profileUpdatePage = () => {
       });
       updateUser(updatedUser.data);
       navigate("/profile");
+      toast.success("Profile Updated Successfully!",{
+        id:"profile update"
+      })
     } catch (error) {
-      setError(error.response.data.message);
+      toast.error(error.response.data.message);
     } finally {
       setIsLoading(false)
     }
@@ -66,7 +70,7 @@ const profileUpdatePage = () => {
     <div>
       <div className="updateProfile container navbarHeight">
         <BackBtn color="white" />
-        <div className="row pt-3">
+        <div className="row">
           <div className="col-12 col-md-7">
             <h2 className="title">
               EDIT USER PROFILE
@@ -143,8 +147,6 @@ const profileUpdatePage = () => {
                   >
                     {!changePass ? "Change Password?" : "Don't change Password"}
                   </div>
-                  {info && <p className="text-light my-2 fs-6">{info}</p>}
-                  {error && <p className="text-light my-2 fs-6">{error}</p>}
                   <button
                     disabled={isLodaing}
                     type="submit"

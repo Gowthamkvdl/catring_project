@@ -5,9 +5,9 @@ import InputField from "../../components/inputField/inputField";
 import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest.js";
 import BackBtn from "../../components/backBtn/BackBtn"
+import { toast } from "react-hot-toast";
 
 const registerPage = () => {
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -23,7 +23,6 @@ const registerPage = () => {
     const password = formData.get("password");
 
     try {
-      setError(null);
       setLoading(true);
       const res = await apiRequest.post("/auth/register", {
         username,
@@ -34,8 +33,9 @@ const registerPage = () => {
         password,
       });
       navigate("/login");
+      toast.success("Registered successfully! Login to continue.");
     } catch (error) {
-      setError(error.response.data.message);
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -84,7 +84,6 @@ const registerPage = () => {
             <Link className="float-end mt-2" to={"/login"}>
               Already have an account?
             </Link>
-            {error && <span className="">{error}</span>}
             <button
               disabled={loading}
               className="btn btn-warning w-100 my-4 fs-5"

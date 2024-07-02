@@ -9,6 +9,7 @@ import apiRequest from "../../lib/apiRequest";
 import Card from "../../components/card/Card";
 import BackBtn from "../../components/backBtn/BackBtn";
 import Loader from "../../components/loader/Loader";
+import toast from "react-hot-toast"
 
 const profilePage = () => {
   const { currentUser, updateUser } = useContext(AuthContext);
@@ -54,10 +55,17 @@ const profilePage = () => {
       localStorage.removeItem("user");
       updateUser(null);
       navigate("/");
+      toast.success("Logout Successfull",{
+        id:"logout successfull"
+      });
     } catch (error) {
       console.log(error);
     }
   };
+
+  const handleToast = () => {
+    toast.success("hello")
+  }
 
   return (
     <div className="profile container navbarHeight">
@@ -75,6 +83,9 @@ const profilePage = () => {
             <button className="float-end btn btn-danger" onClick={handleLogout}>
               Logout
             </button>
+            {/* <button className="float-end btn btn-danger" onClick={handleToast}>
+              toast
+            </button> */}
           </h2>
           <div className="profile mt-4 row">
             <div className="profilePic  d-flex p-5 pb-3 pt-2 p-md-0 pb-md-0  flex-column col-12 col-md-4">

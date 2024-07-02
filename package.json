@@ -4,6 +4,8 @@
     "axios": "^1.7.2",
     "prisma": "^5.15.0",
     "react-awesome-reveal": "^4.2.12",
+    "react-hot-toast": "^2.4.1",
+    "react-toastify": "^10.0.5",
     "react-transition-group": "^4.4.5"
   }
 }

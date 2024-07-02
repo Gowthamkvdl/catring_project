@@ -1,9 +1,9 @@
 .footer {
   position: relative;
   width: 100%;
-  background: #3586ff;
+  background: #ffc823;
   min-height: 10px;
-  margin-top: 200px;
+  margin-top: 100px;
   padding: 20px 50px;
   display: flex;
   justify-content: center;
@@ -28,7 +28,7 @@
 
 .social-icon__link {
   font-size: 2rem;
-  color: #fff;
+  color: var(--dark);
   margin: 0 10px;
   display: inline-block;
   transition: 0.5s;
@@ -39,7 +39,7 @@
 
 .menu__link {
   font-size: 1.2rem;
-  color: #fff;
+  color: var(--dark);
   margin: 0 10px;
   display: inline-block;
   transition: 0.5s;
@@ -53,64 +53,9 @@
 }
 
 .footer p {
-  color: #fff;
+  color: var(--dark);
   margin: 15px 0 10px 0;
   font-size: 1rem;
   font-weight: 300;
 }
 
-.wave {
-  position: absolute;
-  top: -75px;
-  left: 0;
-  width: 100%;
-  height: 75px;
-  background: url("https://i.ibb.co/wQZVxxk/wave.png");
-  background-size: 1000px 75px;
-}
-
-.wave#wave1 {
-  z-index: 1000;
-  opacity: 1;
-  bottom: 0;
-  animation: animateWaves 4s linear infinite;
-}
-
-.wave#wave2 {
-  z-index: 999;
-  opacity: 0.5;
-  bottom: 10px;
-  animation: animate 4s linear infinite;
-}
-
-.wave#wave3 {
-  z-index: 1000;
-  opacity: 0.2;
-  bottom: 15px;
-  animation: animateWaves 3s linear infinite;
-}
-
-.wave#wave4 {
-  z-index: 999;
-  opacity: 0.7;
-  bottom: 20px;
-  animation: animate 3s linear infinite;
-}
-
-@keyframes animateWaves {
-  0% {
-    background-position-x: 1000px;
-  }
-  100% {
-    background-positon-x: 0px;
-  }
-}
-
-@keyframes animate {
-  0% {
-    background-position-x: -1000px;
-  }
-  100% {
-    background-positon-x: 0px;
-  }
-}

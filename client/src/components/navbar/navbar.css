@@ -9,7 +9,7 @@
 }
 
 .navbar .nav-link button a{
-    color: var(--dark) !important;
+    color: var(--light) !important;
 }
 
 .bg-darkcolor{
@@ -21,4 +21,9 @@
     width: 40px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.custom-dark-btn {
+  background-color: #aeb5bc !important;
+  font-size: 25px; 
 }

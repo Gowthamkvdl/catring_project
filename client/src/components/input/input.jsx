@@ -7,7 +7,7 @@ const input = () => {
 
   return (
     <div>
-      <form action="" className="d-flex gap-1 bg-glow align-items-center justify-content-center flex-row ">
+      <form action="" className="d-flex gap-1  align-items-center justify-content-center flex-row ">
         <input
           type="text"
           name="location"

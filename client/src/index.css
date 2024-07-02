@@ -2,13 +2,13 @@
   --orange: #FF4500;
   --yellow: #c5fe00;
   --light: #e8e8e8;
-  --dark: #141414;
+  --dark: #212529;
   --lightDark: #3d3d3d;
 }
 
 html, body {
   overflow: auto !important; /* Ensure this is set to auto or scroll */
-  background-color: #141414;
+  background-color: var(--dark);
 }
 
 .fit-content {
@@ -27,7 +27,7 @@ html, body {
 
 body{
   color: rgba(255, 255, 255, 0.938);
-  background-color: #141414;
+  background-color: var(--dark);
 }
 
 /* width */

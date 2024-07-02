@@ -2,6 +2,7 @@ import React from "react";
 import "./contactPage.css";
 import ArrowBtn from "../../components/arrowBtn/arrowBtn";
 import BackBtn from "../../components/backBtn/BackBtn";
+import { toast } from "react-hot-toast";
 
 
 const contactPage = () => {
@@ -22,11 +23,13 @@ const contactPage = () => {
     const data = await response.json();
 
     if (data.success) {
-      setResult("Form Submitted Successfully");
+      toast.success("Form Submitted Successfully");
       event.target.reset();
+      setResult("")
     } else {
       console.log("Error", data);
-      setResult(data.message);
+      toast.error("Oops! Something went wrong. Please try again later.");
+      setResult("");
     }
   };
 

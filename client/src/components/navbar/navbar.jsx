@@ -3,6 +3,7 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
+import { Toaster } from "react-hot-toast";
 
 const navbar = () => {
   const [bg, setBg] = useState("bg-transperant");
@@ -13,12 +14,26 @@ const navbar = () => {
     });
   }, [bg]);
 
-  const handleClick = () => {
-
-  }
+  const handleClick = () => {};
 
   return (
-    <nav className={`navbar navbar-expand-md ${bg} fixed-top`}>
+    <nav className={`navbar navbar-expand-md ${bg} navbar-dark fixed-top`}>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 4000,
+          // Default options for specific types
+          success: {
+            duration: 2000,
+            theme: {
+              primary: "green",
+              secondary: "black",
+            },
+          },
+        }}
+      />
       <div className="container">
         <a className="navbar-brand fw-bold fs-3" href="/">
           CATRING
@@ -35,7 +50,7 @@ const navbar = () => {
         </button>
         <div
           className="offcanvas w-75 offcanvas-start text-bg-dark"
-          tabindex="-1"
+          tabIndex="-1"
           id="offcanvasDarkNavbar"
           aria-labelledby="offcanvasDarkNavbarLabel"
         >
@@ -45,7 +60,7 @@ const navbar = () => {
             </h5>
             <button
               type="button"
-              className="btn-close btn-close-white shadow-none"
+              className="btn-close custom-dark-btn  shadow-none"
               data-bs-dismiss="offcanvas"
               aria-label="Close"
             ></button>
@@ -74,7 +89,7 @@ const navbar = () => {
                 </li>
               </Link>
               {currentUser ? (
-                <Link to={"/profile"} onClick={handleClick} >
+                <Link to={"/profile"} onClick={handleClick}>
                   <div className="ms-3 mt-2 userInfo mb-1 d-flex align-items-center gap-2">
                     <img
                       src={
@@ -95,7 +110,9 @@ const navbar = () => {
                   <Link to={"/login"}>
                     <li className="nav-item mb-1 w-100">
                       <a className="nav-link" href="#">
-                        <button className="btn btn-warning btn-sm">Login</button>
+                        <button className="btn btn-warning btn-sm">
+                          Login
+                        </button>
                       </a>
                     </li>
                   </Link>

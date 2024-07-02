@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./filter.css";
 import { useSearchParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Filter = ({ query, setQuery, loadMore }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -31,6 +32,16 @@ const Filter = ({ query, setQuery, loadMore }) => {
       limit: "5",
     });
     setSearchParams({});
+    toast.success("All filters have been reset!", {
+      id: "reset",
+    });
+  };
+
+  const resetDate = () => {
+    setQuery((prevQuery) => ({ ...prevQuery, date: "" }));
+    toast.success("Date have been reset!",{
+      id:"reset date"
+    })
   };
 
   return (
@@ -53,7 +64,7 @@ const Filter = ({ query, setQuery, loadMore }) => {
               className="form-control shadow-none outline-none"
             />
           </div>
-          <div className="col-6">
+          <div className="col-6 me-0">
             <label htmlFor="" className="">
               Min salary
             </label>
@@ -99,11 +110,9 @@ const Filter = ({ query, setQuery, loadMore }) => {
                   aria-label="Date"
                 />
                 <button
-                  className="btn btn-warning"
+                  className="btn btn-secondary"
                   type="button"
-                  onClick={() =>
-                    setQuery((prevQuery) => ({ ...prevQuery, date: "" }))
-                  }
+                  onClick={resetDate}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +145,7 @@ const Filter = ({ query, setQuery, loadMore }) => {
               </button>
               <button
                 type="button"
-                className="btn btn-warning fw-600 shadow-none"
+                className="btn btn-secondary fw-600 shadow-none"
                 onClick={handleReset}
               >
                 Reset

@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 const arrowBtn = ({text, handleClick, type}) => {
   return (
     <div>
-      <button class="cssbuttons-io-button float-end bg-glow" type={type} onClick={handleClick}>
+      <button class="cssbuttons-io-button float-end " type={type} onClick={handleClick}>
         {text}
-        <div class="icon">
+        <div class="icon ">
           <svg
             height="24"
             width="24"

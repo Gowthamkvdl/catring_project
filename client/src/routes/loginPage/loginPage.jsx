@@ -6,10 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
 import BackBtn from "../../components/backBtn/BackBtn";
+import toast from "react-hot-toast"
 
 
 const loginPage = () => {
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { updateUser } = useContext(AuthContext);
@@ -23,7 +23,6 @@ const loginPage = () => {
     const password = formData.get("password");
 
     try {
-      setError(null);
       setLoading(true);
       const res = await apiRequest.post("/auth/login", {
         username,
@@ -34,9 +33,14 @@ const loginPage = () => {
       console.log(res.data);
       updateUser(res.data);
       navigate("/");
+      toast.success("Login Successfull!",{
+        id:"login successfull"
+      })
     } catch (error) {
       console.log(error);
-      setError(error.response.data.message);
+      toast.error(error.response.data.message,{
+        id:"login error"
+      });
     } finally {
       setLoading(false);
     }
@@ -49,7 +53,7 @@ const loginPage = () => {
           <img src={jobHuntSvg} alt="" />
         </div>
         <div className="col-12 col-lg-6 p-4 pt-0 p-md-5 form">
-          <BackBtn />
+          <BackBtn link={"/"} />
           <h1 className="title">Login</h1>
           <form action="" onSubmit={handleSubmit}>
             <InputField
@@ -66,7 +70,6 @@ const loginPage = () => {
               Don't have an account?
             </Link>
             <div className="mt-2 opacity-95"></div>
-            {error && <span className="">{error}</span>}
             <button
               disabled={loading}
               className="btn btn-warning w-100 my-4 fs-5"
