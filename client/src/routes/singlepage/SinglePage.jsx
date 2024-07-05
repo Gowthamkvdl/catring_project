@@ -8,10 +8,12 @@ import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest.js";
 import BackBtn from "../../components/backBtn/BackBtn";
 import { toast } from "react-hot-toast";
+import { SocketContext } from "../../context/SocketContext";
 
 const SinglePage = () => {
   const post = useLoaderData();
   const navigate = useNavigate();
+  const {socket} = useContext(SocketContext);
   const [saved, setSaved] = useState(post.isSaved);
   const { currentUser } = useContext(AuthContext);
   const [deleting, setDeleting] = useState(false);
@@ -32,6 +34,25 @@ const SinglePage = () => {
       });
     }
   };
+
+ const handleAddChat = async () => {
+   try {
+     const addChat = await apiRequest.post("/chat/", {
+       receiverId: post.user.userId,
+     });
+     navigate("/profile");
+     socket.emit("newChat", {
+       receiverId: post.user.userId,
+       data: addChat.data,
+     });
+     toast(`${post.user.username} is added to your Chats`, { id: "addChat" });
+   } catch (error) {
+     console.error("Error adding chat:", error);
+     toast.error("Failed to add chat. Please try again.");
+   }
+ };
+
+
   
   
   const handleDelete = async () => {
@@ -160,13 +181,13 @@ const SinglePage = () => {
           </div>
           <div className="btns d-flex gap-2 mt-2">
             <div className="chat w-100">
-              <button className="btn w-100 btn-warning">
+              <button className="btn w-100 btn-warning" onClick={handleAddChat} >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
                   height="20"
                   fill="currentColor"
-                  class="bi bi-send me-1"
+                  className="bi bi-send me-1"
                   viewBox="0 0 16 16"
                 >
                   <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
@@ -185,7 +206,7 @@ const SinglePage = () => {
                     width="18"
                     height="18"
                     fill="currentColor"
-                    class="bi bi-bookmark-fill"
+                    className="bi bi-bookmark-fill"
                     viewBox="0 0 16 16"
                   >
                     <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2" />
@@ -196,7 +217,7 @@ const SinglePage = () => {
                     width="18"
                     height="18"
                     fill=""
-                    class="bi bi-bookmark me-1"
+                    className="bi bi-bookmark me-1"
                     viewBox="0 0 16 16"
                   >
                     <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z" />
@@ -209,30 +230,30 @@ const SinglePage = () => {
         </div>
       </div>
       <div
-        class="modal fade "
+        className="modal fade "
         id="staticBackdrop"
         tabindex="-1"
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content bg-light text-dark">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">
+        <div className="modal-dialog">
+          <div className="modal-content bg-light text-dark">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="staticBackdropLabel">
                 Are you sure?
               </h1>
               <button
                 type="button"
-                class="btn-close shadow-none"
+                className="btn-close shadow-none"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body h-100">Do you want to delete this post?</div>
-            <div class="modal-footer">
+            <div className="modal-body h-100">Do you want to delete this post?</div>
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-warning"
+                className="btn btn-warning"
                 data-bs-dismiss="modal"
               >
                 Close
@@ -241,7 +262,7 @@ const SinglePage = () => {
                 disabled={deleting}
                 type="button"
                 onClick={handleDelete}
-                class="btn btn-danger"
+                className="btn btn-danger"
                 data-bs-dismiss="modal"
               >
                 Delete Post

@@ -16,3 +16,9 @@ export const listPageLoader = async ({ request }) => {
   });
 };
 
+export const chatLoader = async () => {
+  const chatPromise = apiRequest.get("/chat");  
+  return defer({
+    chatResponse : chatPromise,
+  })
+}

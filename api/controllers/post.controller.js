@@ -115,7 +115,7 @@ export const addPost = async (req, res) => {
     res.status(401).json({ message: "Failed to Add Post" });
   }
 };
-
+   
 export const updatePost = async (req, res) => {
   const tokenUserId = req.userId;
   const paramPostId = req.params.id;

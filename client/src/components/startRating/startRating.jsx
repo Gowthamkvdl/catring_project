@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
 
-const RatingComponent = ({ editable, totalStars, size }) => {
+const RatingComponent = ({ editable = true, totalStars = 0, size = 24 }) => {
   const [newRating, setNewRating] = useState(totalStars);
 
   // const ratingChanged = (newRating) => {
@@ -20,7 +20,6 @@ const RatingComponent = ({ editable, totalStars, size }) => {
         edit={editable}
       />
       {/* <p className="content m-0 mt-0 mx-2">Rating: {newRating}</p> */}
-      
     </div>
   );
 };

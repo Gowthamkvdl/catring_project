@@ -3,19 +3,22 @@ import "./profilePage.css";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 import StarRating from "../../components/startRating/startRating";
 import Chat from "../../components/chat/chat";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
 import Card from "../../components/card/Card";
 import BackBtn from "../../components/backBtn/BackBtn";
 import Loader from "../../components/loader/Loader";
 import toast from "react-hot-toast"
+import { Suspense } from "react"; 
+import { Await } from "react-router-dom";
 
 const profilePage = () => {
   const { currentUser, updateUser } = useContext(AuthContext);
   const [events, setEvents] = useState(null);
   const [myEventsLoading, setMyEventsLoading] = useState(false);
   const [savedEventsLoading, setSavedEventsLoading] = useState(false);
+  const chat = useLoaderData()
 
   const navigate = useNavigate();
   const handleEdit = () => {
@@ -25,7 +28,7 @@ const profilePage = () => {
   const showMyEvents = async () => {
     try {
       setMyEventsLoading(true);
-      const events = await apiRequest.get("/user/profilePosts");
+      const events = await apiRequest.get("/user/profilePosts/"+currentUser.UserId);
       const myEvents = events.data.userPosts;
       setEvents(myEvents);
     } catch (error) {
@@ -38,7 +41,7 @@ const profilePage = () => {
   const showSavedPosts = async () => {
     try {
       setSavedEventsLoading(true);
-      const events = await apiRequest.get("/user/profilePosts");
+      const events = await apiRequest.get("/user/profilePosts/"+currentUser.UserId);
       const savedEvents = events.data.savedPost;
       setEvents(savedEvents);
     } catch (error) {
@@ -70,7 +73,7 @@ const profilePage = () => {
   return (
     <div className="profile container navbarHeight">
       <div className="row ">
-        <div className="col-12 col-md-7">
+        <div className="col-12 col-lg-7">
           <BackBtn color="white" />
           <h2 className="title">
             USER PROFILE
@@ -172,7 +175,10 @@ const profilePage = () => {
               {!(myEventsLoading || savedEventsLoading) &&
               events &&
               events.length > 0 ? (
-                events.slice().reverse().map((post) => <Card item={post} key={post.postId} />)
+                events
+                  .slice()
+                  .reverse()
+                  .map((post) => <Card item={post} key={post.postId} />)
               ) : (
                 <div className="text-center mt-4">
                   {!(myEventsLoading || savedEventsLoading) && events && (
@@ -183,8 +189,16 @@ const profilePage = () => {
             </div>
           </div>
         </div>
-        <div className="col-12 col-md-5">
-          <Chat />
+        <div className="col-12 col-lg-5">
+          <Suspense
+            fallback={
+              <div>{<Loader message={"Loading Chats..."}></Loader>}</div>
+            }
+          >
+            <Await resolve={chat.chatResponse} errorElement={<p></p>}>
+              {(chatResponse) => <Chat items={chatResponse.data} />}
+            </Await>
+          </Suspense>
         </div>
       </div>
     </div>

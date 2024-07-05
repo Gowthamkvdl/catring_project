@@ -14,7 +14,6 @@ const navbar = () => {
     });
   }, [bg]);
 
-  const handleClick = () => {};
 
   return (
     <nav className={`navbar navbar-expand-md ${bg} navbar-dark fixed-top`}>
@@ -89,8 +88,8 @@ const navbar = () => {
                 </li>
               </Link>
               {currentUser ? (
-                <Link to={"/profile"} onClick={handleClick}>
-                  <div className="ms-3 mt-2 userInfo mb-1 d-flex align-items-center gap-2">
+                <Link to={"/profile"} >
+                  <div className="ms-3 userInfo mb-1 d-flex align-items-center gap-2">
                     <img
                       src={
                         currentUser.avatar

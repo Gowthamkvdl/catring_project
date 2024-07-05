@@ -29,15 +29,16 @@ const profilePage = () => {
       }
     };
 
-    fetchUserData();
     showMyEvents();
+    fetchUserData();
   }, [userId]);
+
 
   const showMyEvents = async () => {
     try {
-      setMyEventsLoading(true);
-      const events = await apiRequest.get("/user/profilePosts");
-      const myEvents = events.data.userPosts;
+      setMyEventsLoading(true);                       
+      const events = await apiRequest.get(`/user/oneuser/${userId}`);
+      const myEvents = events.data.posts;
       setEvents(myEvents);
     } catch (error) {
       console.log(error);
@@ -45,6 +46,7 @@ const profilePage = () => {
       setMyEventsLoading(false);
     }
   };
+
 
   return (
     <div className="profile container navbarHeight">
@@ -101,6 +103,21 @@ const profilePage = () => {
                   {user.address ? user.address : "Not provided"}
                 </span>
               </div>
+            </div>
+            <div className="chat">
+              <button className="btn w-100 mt-3 btn-warning">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  className="bi bi-send me-1"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                </svg>
+                Send Message
+              </button>
             </div>
           </div>
         </div>

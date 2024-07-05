@@ -18,6 +18,9 @@ export const getUser = async (req, res) => {
       where: {
         userId: id,
       },
+      include: {
+        posts: true,
+      },
     });
     res.status(200).json(user);
   } catch (error) {
@@ -136,6 +139,7 @@ export const profilePosts = async (req, res) => {
             userId: true,
             phone: true,
             email: true,
+            starRating: true,
           },
         },
       },
@@ -155,6 +159,7 @@ export const profilePosts = async (req, res) => {
                 userId: true,
                 phone: true,
                 email: true,
+                starRating: true,
               },
             },
           },
@@ -173,4 +178,3 @@ export const profilePosts = async (req, res) => {
     res.status(500).json({ message: "Failed to get profile posts" });
   }
 };
-

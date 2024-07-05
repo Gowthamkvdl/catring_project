@@ -7,25 +7,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  userId     String   @id @default(auto()) @map("_id") @db.ObjectId
-  username   String   @unique
-  email      String   @unique
-  phone      String
-  password   String
-  age        String
-  city       String
-  avatar     String?
-  address    String?
-  starRating Int?
-  honorScore Int      @default(100)
-  createdAt  DateTime @default(now())
-  posts      Post[]
-  savedPosts SavedPosts[]
-}
-
 model Post {
-  postId              String   @id @default(auto()) @map("_id") @db.ObjectId
+  postId              String       @id @default(auto()) @map("_id") @db.ObjectId
   eventName           String
   startDate           String
   startTime           String
@@ -33,7 +16,7 @@ model Post {
   city                String
   workingDays         Int
   noOfStaffsReq       Int
-  noOfStaffsSatisfied Int?     @default(0)
+  noOfStaffsSatisfied Int?         @default(0)
   vegetableCutting    YesOrNo
   busFare             YesOrNo
   experience          YesOrNo
@@ -41,9 +24,9 @@ model Post {
   description         String
   latitude            Float
   longitude           Float
-  createdAt           DateTime @default(now())
-  user                User     @relation(fields: [userId], references: [userId])
-  userId              String   @db.ObjectId
+  createdAt           DateTime     @default(now())
+  user                User         @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  userId              String       @db.ObjectId
   savedPosts          SavedPosts[]
 }
 
@@ -59,7 +42,45 @@ model SavedPosts {
   userId    String   @db.ObjectId
   postId    String   @db.ObjectId
   createdAt DateTime @default(now())
-  
+
   @@unique([userId, postId])
 }
 
+model User {
+  userId     String       @id @default(auto()) @map("_id") @db.ObjectId
+  username   String       @unique
+  email      String       @unique
+  phone      String
+  password   String
+  age        String
+  city       String
+  avatar     String?
+  address    String?
+  starRating Int?
+  honorScore Int          @default(100)
+  createdAt  DateTime     @default(now())
+  posts      Post[]
+  savedPosts SavedPosts[]
+  chats      Chat[]       @relation(fields: [chatIDs], references: [chatId])
+  chatIDs    String[]     @db.ObjectId
+}
+
+model Chat {
+  chatId      String    @id @default(auto()) @map("_id") @db.ObjectId
+  user        User[]    @relation(fields: [userIDs], references: [userId])
+  userIDs     String[]  @db.ObjectId
+  seenBy      String[]  @db.ObjectId
+  messages    Message[]
+  lastMessage String?
+  updatedAt   DateTime  @default(now())
+  createdAt   DateTime  @default(now())
+}
+
+model Message {
+  messageId String   @id @default(auto()) @map("_id") @db.ObjectId
+  text      String
+  userId    String
+  chat      Chat     @relation(fields: [chatId], references: [chatId])
+  chatId    String   @db.ObjectId
+  createdAt DateTime @default(now())
+}

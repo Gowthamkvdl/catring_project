@@ -16,8 +16,8 @@ const input = () => {
           placeholder="Search job by location..."
         />
         <Link to={`\list?location=${location}&minSalary=${""}&date=${""}&maxDutyHours=${""}&limit=${"5"}`} className="link">
-          <button class="searchButton">
-            <span class="span">🔎</span>
+          <button className="searchButton">
+            <span className="span">🔎</span>
           </button>
         </Link>
       </form>
