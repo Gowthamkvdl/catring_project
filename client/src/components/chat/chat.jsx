@@ -18,15 +18,16 @@ const Chat = ({ items }) => {
   const { currentUser } = useContext(AuthContext);
   const { socket } = useContext(SocketContext);
   const msgEndRef = useRef();
+  const inputBox = useRef(null);
+
+  
 
   // Scroll to the end of the messages
   useEffect(() => {
-    if (showModal) {
-      if (msgEndRef.current) {
-        msgEndRef.current.scrollIntoView({ behavior: "smooth" });
-      }
+    if (showModal && msgEndRef.current) {
+      msgEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [chatMsg?.messages]);
+  }, [chatMsg?.messages, showModal]);
 
   // Handle sending a new message
   const handleSend = async (e) => {
@@ -49,6 +50,7 @@ const Chat = ({ items }) => {
             ? {
                 ...chat,
                 lastMessage: res.data.text,
+                seenBy: [res.data.userId]
               }
             : chat
         )
@@ -71,22 +73,23 @@ const Chat = ({ items }) => {
   const updatelastMessage = (data) => {
     setItemsArray((prevItemsArray) =>
       prevItemsArray.map((chat) =>
-        chat.chatId === data.chatId ? { ...chat, lastMessage: data.text } : chat
+        chat.chatId === data.chatId
+          ? { ...chat, lastMessage: data.text, seenBy: [currentUser.id] }
+          : chat
       )
     );
-    console.log(data);
+  };
+
+  const read = async () => {
+    try {
+      await apiRequest.put("/chat/read/" + chatMsg?.chatId);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Listen for incoming messages
   useEffect(() => {
-    const read = async () => {
-      try {
-        await apiRequest.put("/chat/read/" + chatMsg?.chatId);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     const handleMessage = (data) => {
       if (chatMsg && chatMsg.chatId === data.chatId) {
         setChatMsg((prev) => ({
@@ -98,28 +101,19 @@ const Chat = ({ items }) => {
       updatelastMessage(data);
     };
 
-    if (socket) {
-      socket.on("getMessage", handleMessage);
-
-      // Clean up the socket event listener on unmount or dependency change
-      return () => {
-        socket.off("getMessage", handleMessage);
-      };
-    }
-
     const handleNewChat = (data) => {
-      console.log(data);
       setItemsArray((prevItemsArray) => [data, ...prevItemsArray]);
     };
 
-    if (socket) {
-      socket.on("newChatFound", handleNewChat);
+    socket.on("getMessage", handleMessage);
+    socket.on("newChatFound", handleNewChat);
 
-      return () => {
-        socket.off("newChatFound", handleNewChat);
-      };
-    }
-  }, [socket, chatMsg, setChatMsg, itemsArray]);
+    // Clean up the socket event listener on unmount or dependency change
+    return () => {
+      socket.off("getMessage", handleMessage);
+      socket.off("newChatFound", handleNewChat);
+    };
+  }, [socket, chatMsg]);
 
   const handleClose = () => setShowModal(false);
 
@@ -127,20 +121,19 @@ const Chat = ({ items }) => {
     try {
       setChatLoading(true);
       const res = await apiRequest("/chat/" + id);
+      read();
       setChatMsg({ ...res.data, receiver });
       setItemsArray((prevItemsArray) =>
-        prevItemsArray.map((chat) =>
-          chat.chatId === id
-            ? { ...chat, seenBy: [...chat.seenBy, currentUser.userId] }
-            : chat
-        )
-      );
-      setItemsArray((prevItemsArray) =>
-        prevItemsArray.map((chat) =>
-          chat.chatId === id
-            ? { ...chat, lastMessage: res.data.lastMessage }
-            : chat
-        )
+        prevItemsArray.map((chat) => {
+          if (chat.chatId === id) {
+            return {
+              ...chat,
+              seenBy: [currentUser.userId],
+              lastMessage: res.data.lastMessage,
+            };
+          }
+          return chat;
+        })
       );
     } catch (error) {
       console.log(error);
@@ -182,10 +175,7 @@ const Chat = ({ items }) => {
           <div
             key={index}
             className={`chat chat-banner text-dark bg-${
-              chat.seenBy.includes(currentUser.userId) ||
-              chatMsg?.chatId === chat?.chatId
-                ? "light"
-                : "lightYellow"
+              chat.seenBy.includes(currentUser.userId) ? "light" : "lightYellow"
             } rounded mx-auto w-95`}
             onClick={() => {
               handleShow(chat.chatId, chat.receiver);
@@ -315,8 +305,9 @@ const Chat = ({ items }) => {
                 className="bottom w-100 d-flex align-items-end gap-1"
               >
                 <textarea
+                  ref={inputBox}
                   name="text"
-                  className="form-control shadow-none w-100"
+                  className="form-control chatInputBox shadow-none w-100"
                   placeholder="Write Message..."
                   rows={1}
                 ></textarea>

@@ -22,7 +22,7 @@
 }
 
 .modal-body {
-  height: 60vh;
+  height: 70vh;
   overflow: scroll;
   overflow-x: hidden;
   overflow-y: auto; 
@@ -87,4 +87,8 @@
   to {
     opacity: 1;
   }
+}
+
+.chatInputBox{
+  border-radius: 7px;
 }

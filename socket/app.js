@@ -41,6 +41,7 @@ io.on("connection", (socket) => {
     }
   });
 
+
   socket.on("newChat", ({ receiverId, data }) => {
     try {
       const receiver = getUser(receiverId);
@@ -57,7 +58,6 @@ io.on("connection", (socket) => {
       );
     }
   });
-
 
 
 

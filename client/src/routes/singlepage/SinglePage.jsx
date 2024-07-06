@@ -40,12 +40,10 @@ const SinglePage = () => {
      const addChat = await apiRequest.post("/chat/", {
        receiverId: post.user.userId,
      });
-     console.log(addChat.data)
      socket.emit("newChat", {
        receiverId: post.user.userId,
        data: addChat.data,
      });
-     console.log(addChat.data)
      navigate("/profile");
      toast(`${post.user.username} is added to your Chats`, { id: "addChat" });
    } catch (error) {
