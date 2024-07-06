@@ -126,8 +126,6 @@ export const addChat = async (req, res) => {
       return res.status(404).json({ message: "Receiver not found!" });
     }
 
-    console.log(receiver)
-
 
     // Attempt to find an existing chat between the two users
     const chat = await prisma.chat.findFirst({
@@ -162,10 +160,6 @@ export const addChat = async (req, res) => {
           },
         },
       },
-    });
-    console.log({
-      ...newChat,
-      receiver
     });
 
     res.status(201).json({

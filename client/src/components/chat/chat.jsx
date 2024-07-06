@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import Loader from "../../components/loader/Loader";
 
 const Chat = ({ items }) => {
-  const [itemsArray, setItemsArray] = useState(items)
+  const [itemsArray, setItemsArray] = useState(items);
   const [chatMsg, setChatMsg] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [chatloading, setChatLoading] = useState(false);
@@ -21,8 +21,10 @@ const Chat = ({ items }) => {
 
   // Scroll to the end of the messages
   useEffect(() => {
-    if (msgEndRef.current) {
-      msgEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (showModal) {
+      if (msgEndRef.current) {
+        msgEndRef.current.scrollIntoView({ behavior: "smooth" });
+      }
     }
   }, [chatMsg?.messages]);
 
@@ -35,7 +37,7 @@ const Chat = ({ items }) => {
     if (!text) return;
 
     try {
-      setSending(true)
+      setSending(true);
       const res = await apiRequest.post("/message/" + chatMsg.chatId, { text });
       setChatMsg((prev) => ({
         ...prev,
@@ -44,7 +46,10 @@ const Chat = ({ items }) => {
       setItemsArray((prevItemsArray) =>
         prevItemsArray.map((chat) =>
           chat.chatId === chatMsg.chatId
-            ? { ...chat, lastMessage: res.data.text }
+            ? {
+                ...chat,
+                lastMessage: res.data.text,
+              }
             : chat
         )
       );
@@ -54,13 +59,22 @@ const Chat = ({ items }) => {
         data: res.data,
       });
     } catch (error) {
-      console.log(error)
-      toast.error("Something went wrong! Try reloading.",{
-        id:"send error"
+      console.log(error);
+      toast.error("Something went wrong! Try reloading.", {
+        id: "send error",
       });
     } finally {
-      setSending(false)
+      setSending(false);
     }
+  };
+
+  const updatelastMessage = (data) => {
+    setItemsArray((prevItemsArray) =>
+      prevItemsArray.map((chat) =>
+        chat.chatId === data.chatId ? { ...chat, lastMessage: data.text } : chat
+      )
+    );
+    console.log(data);
   };
 
   // Listen for incoming messages
@@ -73,17 +87,18 @@ const Chat = ({ items }) => {
       }
     };
 
-    if (chatMsg && socket) {
-      const handleMessage = (data) => {
-        if (chatMsg.chatId === data.chatId) {
-          setChatMsg((prev) => ({
-            ...prev,
-            messages: [...prev.messages, data],
-          }));
-          read();
-        }
-      };
+    const handleMessage = (data) => {
+      if (chatMsg && chatMsg.chatId === data.chatId) {
+        setChatMsg((prev) => ({
+          ...prev,
+          messages: [...prev.messages, data],
+        }));
+        read();
+      }
+      updatelastMessage(data);
+    };
 
+    if (socket) {
       socket.on("getMessage", handleMessage);
 
       // Clean up the socket event listener on unmount or dependency change
@@ -93,13 +108,18 @@ const Chat = ({ items }) => {
     }
 
     const handleNewChat = (data) => {
-      console.log(data)
-      setItemsArray((prevItemsArray)=> [data, ...prevItemsArray])
+      console.log(data);
+      setItemsArray((prevItemsArray) => [data, ...prevItemsArray]);
+    };
+
+    if (socket) {
+      socket.on("newChatFound", handleNewChat);
+
+      return () => {
+        socket.off("newChatFound", handleNewChat);
+      };
     }
-
-    socket.on("newChatFound", handleNewChat);
-
-  }, [socket, chatMsg, setChatMsg]);
+  }, [socket, chatMsg, setChatMsg, itemsArray]);
 
   const handleClose = () => setShowModal(false);
 
@@ -108,14 +128,20 @@ const Chat = ({ items }) => {
       setChatLoading(true);
       const res = await apiRequest("/chat/" + id);
       setChatMsg({ ...res.data, receiver });
-      setItemsArray((prevItemsArray) => prevItemsArray.map((chat) => chat.chatId === id ? { ...chat, seenBy: [...chat.seenBy, currentUser.userId] } : chat) )
-    setItemsArray((prevItemsArray) =>
-      prevItemsArray.map((chat) =>
-        chat.chatId === id
-          ? { ...chat, lastMessage: res.data.lastMessage }
-          : chat
-      )
-    );
+      setItemsArray((prevItemsArray) =>
+        prevItemsArray.map((chat) =>
+          chat.chatId === id
+            ? { ...chat, seenBy: [...chat.seenBy, currentUser.userId] }
+            : chat
+        )
+      );
+      setItemsArray((prevItemsArray) =>
+        prevItemsArray.map((chat) =>
+          chat.chatId === id
+            ? { ...chat, lastMessage: res.data.lastMessage }
+            : chat
+        )
+      );
     } catch (error) {
       console.log(error);
     } finally {
@@ -130,7 +156,7 @@ const Chat = ({ items }) => {
 
   const handleDeleteChat = async () => {
     try {
-      setDeleting(true)
+      setDeleting(true);
       await apiRequest.delete("/chat/" + chatMsg.chatId);
       toast.success("Chat Deleted Successfully!");
       setShowModal(false);
@@ -139,14 +165,13 @@ const Chat = ({ items }) => {
       );
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong! Try reloading.",{
-        id:"delete error"
+      toast.error("Something went wrong! Try reloading.", {
+        id: "delete error",
       });
     } finally {
-      setDeleting(false)
+      setDeleting(false);
     }
   };
- 
 
   return (
     <div className="chats my-5 my-md-0">
@@ -186,7 +211,9 @@ const Chat = ({ items }) => {
                       ? format(chat.messages[0].createdAt)
                       : ""}
                   </span>
-                  <span className="chatUsername">{chat?.receiver?.username}</span>
+                  <span className="chatUsername">
+                    {chat?.receiver?.username}
+                  </span>
                 </p>
                 <p className=" fs-6 mb-0 opacity-75">
                   {chat?.lastMessage && truncateParagraph(chat.lastMessage)}
@@ -260,9 +287,9 @@ const Chat = ({ items }) => {
                   <Loader message="Loading chats..." textColor="light" />
                 ) : (
                   <div className="center d-flex flex-column">
-                    {chatMsg?.messages?.map((msg) => (
+                    {chatMsg?.messages?.map((msg, index) => (
                       <div
-                        key={msg.messageId} // Assuming `messageId` is a unique identifier for each message
+                        key={index}
                         className={`chatMessage mb-1 msg ${
                           msg.userId === currentUser.userId ? "ms-auto" : ""
                         }`}
@@ -293,7 +320,12 @@ const Chat = ({ items }) => {
                   placeholder="Write Message..."
                   rows={1}
                 ></textarea>
-                <button disabled={sending} type="submit" title="Send" className="float-end btn btn-warning">
+                <button
+                  disabled={sending}
+                  type="submit"
+                  title="Send"
+                  className="float-end btn btn-warning"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
