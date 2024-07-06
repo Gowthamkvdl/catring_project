@@ -11,7 +11,7 @@ import NoData from "../../components/noData/NoData";
 
 const ListPage = () => {
   const posts = useLoaderData();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [totalPost, setTotalPost] = useState(0);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
@@ -69,8 +69,28 @@ const ListPage = () => {
     };
   }, [query.limit, totalPost, isLoadingMore]);
 
+  const handlePostResponse = (postResponse) => {
+    const postData = postResponse.data.postData;
+    if (totalPost !== postData.length) {
+      setTotalPost(postData.length);
+      setIsLoadingMore(false);
+    }
+    if (postData.length > 0) {
+      return postData.map((post) => <Card item={post} key={post.postId} />);
+    } else {
+      setTotalPost(0);
+      setIsLoadingMore(false);
+      return (
+        <NoData
+          heading={"No jobs found"}
+          text={"No jobs found. Please use the filter to find suitable jobs."}
+        />
+      );
+    }
+  };
+
   return (
-    <div className="listPage  container">
+    <div className="listPage container">
       <div className="d-flex w-100 flex-row">
         <div className="filterAndCards">
           <BackBtn color={"#ffffff"} link={"/"} />
@@ -93,39 +113,20 @@ const ListPage = () => {
                   </div>
                 }
               >
-                {(postResponse) => {
-                  const postData = postResponse.data.postData;
-                  if (postData.length > 0) {
-                    if (totalPost !== postData.length) {
-                      setTotalPost(postData.length);
-                      setIsLoadingMore(false);
-                    }
-                    return postData.map((post) => (
-                      <Card item={post} key={post.postId} />
-                    ));
-                  } else {
-                    setTotalPost(0);
-                    setIsLoadingMore(false);
-                    return (
-                      <NoData
-                        heading={"No jobs found"}
-                        text={
-                          "No jobs found. Please use the filter to find suitable jobs."
-                        }
-                      />
-                    );
-                  }
-                }}
+                {handlePostResponse}
               </Await>
               <div
-                ref={loadMoreButtonRef} 
-                className={`btn text-light mt-3 d-flex fs-5 justify-content-center mx-1 `}
+                ref={loadMoreButtonRef}
+                className={`btn text-light mt-3 d-flex fs-5 justify-content-center mx-1`}
                 onClick={loadMore}
               >
-                {isLoadingMore && (
+                {isLoadingMore ? (
                   <span className="blink">Loading more jobs...</span>
+                ) : totalPost > 0 ? (
+                  "No more jobs!"
+                ) : (
+                  ""
                 )}
-                {!isLoadingMore && totalPost > 0 ? "No more jobs!" : ""}
               </div>
             </Suspense>
           </div>
@@ -137,9 +138,7 @@ const ListPage = () => {
             }
           >
             <Await resolve={posts.postResponse} errorElement={<p></p>}>
-              {(postResponse) => (
-                <Map items={postResponse.data.postData} />
-              )}
+              {(postResponse) => <Map items={postResponse.data.postData} />}
             </Await>
           </Suspense>
         </div>

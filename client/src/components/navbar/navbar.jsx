@@ -1,29 +1,39 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 import { Toaster } from "react-hot-toast";
 
-const navbar = () => {
-  const [bg, setBg] = useState("bg-transperant");
-  const { currentUser, updateUser } = useContext(AuthContext);
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      window.scrollY > 50 ? setBg("bg-darkcolor") : setBg("bg-transperant");
-    });
-  }, [bg]);
+const Navbar = () => {
+  const location = useLocation();
 
+  const [bg, setBg] = useState("bg-transperant");
+  const { currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      window.scrollY > 50 ? setBg("bg-darkcolor") : setBg("bg-transperant");
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const isActive = (path) => {
+    return location.pathname === path ? "active" : "";
+  };
 
   return (
     <nav className={`navbar navbar-expand-md ${bg} navbar-dark fixed-top`}>
       <Toaster
         position="top-center"
         toastOptions={{
-          // Define default options
           className: "",
           duration: 4000,
-          // Default options for specific types
           success: {
             duration: 2000,
             theme: {
@@ -53,43 +63,42 @@ const navbar = () => {
           id="offcanvasDarkNavbar"
           aria-labelledby="offcanvasDarkNavbarLabel"
         >
-          <div className="offcanvas-header ">
+          <div className="offcanvas-header">
             <h5 className="offcanvas-title fs-1" id="offcanvasDarkNavbarLabel">
               CATRING
             </h5>
             <button
               type="button"
-              className="btn-close custom-dark-btn  shadow-none"
+              className="btn-close custom-dark-btn shadow-none"
               data-bs-dismiss="offcanvas"
               aria-label="Close"
             ></button>
           </div>
           <div className="offcanvas-body d-flex justify-content-center align-items-center">
             <ul className="navbar-nav align-items-center justify-content-end flex-grow-1 pe-md-3">
-              <Link to={"/"}>
-                <li className="nav-item mb-1">
-                  <a className="nav-link active" aria-current="page" href="#">
+              <Link to="/">
+                <li className={`nav-item mb-1 `}>
+                  <div className={`nav-link ${isActive("/")} mb-1" aria-current="page`}>
                     Home
-                  </a>
+                  </div>
                 </li>
               </Link>
-              <Link to={"about"}>
-                <li className="nav-item mb-1">
-                  <a className="nav-link" href="#">
-                    About
-                  </a>
+              <Link to="about">
+                <li className={`nav-item mb-1 `}>
+                  <div className={`nav-link ${isActive("/about")}`}>About</div>
                 </li>
               </Link>
-              <Link to={"/contact"}>
-                <li className="nav-item mb-1">
-                  <a className="nav-link" href="#">
-                    Contact
-                  </a>
+              <Link to="/contact">
+                <li className={`nav-item mb-1 `}>
+                  <div className={`nav-link ${isActive("/contact")}`}>Contact</div>
                 </li>
               </Link>
               {currentUser ? (
-                <Link to={"/profile"} >
-                  <div className="ms-3 userInfo mb-1 d-flex align-items-center gap-2">
+                <Link to="/profile">
+                  <div
+                    title="Profile"
+                    className="ms-3 nav-item userInfo d-flex align-items-center gap-2"
+                  >
                     <img
                       src={
                         currentUser.avatar
@@ -99,64 +108,66 @@ const navbar = () => {
                       className="navProPic"
                       alt=""
                     />
-                    <span className="fs-6 text-uppercase">
+                    <span className="fs-5 text-uppercase">
                       {currentUser.username}
                     </span>
                   </div>
                 </Link>
               ) : (
                 <div className="d-flex flex-column flex-md-row align-items-center">
-                  <Link to={"/login"}>
+                  <Link to="/login">
                     <li className="nav-item mb-1 w-100">
-                      <a className="nav-link" href="#">
+                      <div className="nav-link">
                         <button className="btn btn-warning btn-sm">
                           Login
                         </button>
-                      </a>
+                      </div>
                     </li>
                   </Link>
                   <Link to="/register">
                     <li className="nav-item mb-1">
-                      <a className="nav-link" href="#">
+                      <div className="nav-link">
                         <button className="btn btn-warning btn-sm">
                           Register
                         </button>
-                      </a>
+                      </div>
                     </li>
                   </Link>
                 </div>
               )}
-              {/* <li className="nav-item mb-1 dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Dropdown
-                  </a>
-                  <ul className="dropdown-menu dropdown-menu-dark">
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider"></hr>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Something else here
-                      </a>
-                    </li>
-                  </ul>
-                </li> */}
+              {/* Uncomment and use the dropdown if needed
+              <li className="nav-item mb-1 dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Dropdown
+                </a>
+                <ul className="dropdown-menu dropdown-menu-dark">
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Action
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Another action
+                    </a>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Something else here
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              */}
             </ul>
           </div>
         </div>
@@ -165,4 +176,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;

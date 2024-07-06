@@ -17,51 +17,51 @@ export function Layout() {
       <div className="">
         <Outlet />
       </div>
-      <footer class="footer">
-        <ul class="social-icon p-0">
-          <li class="social-icon__item">
-            <a class="social-icon__link" href="#">
+      <footer className="footer">
+        <ul className="social-icon p-0">
+          <li className="social-icon__item">
+            <a className="social-icon__link" href="#">
               <ion-icon name="logo-facebook"></ion-icon>
             </a>
           </li>
-          <li class="social-icon__item">
-            <a class="social-icon__link" href="#">
+          <li className="social-icon__item">
+            <a className="social-icon__link" href="#">
               <ion-icon name="logo-twitter"></ion-icon>
             </a>
           </li>
-          <li class="social-icon__item">
-            <a class="social-icon__link" href="#">
+          <li className="social-icon__item">
+            <a className="social-icon__link" href="#">
               <ion-icon name="logo-linkedin"></ion-icon>
             </a>
           </li>
-          <li class="social-icon__item">
-            <a class="social-icon__link" href="#">
+          <li className="social-icon__item">
+            <a className="social-icon__link" href="#">
               <ion-icon name="logo-instagram"></ion-icon>
             </a>
           </li>
         </ul>
-        <ul class="menu p-0">
-          <li class="menu__item">
+        <ul className="menu p-0">
+          <li className="menu__item">
             <Link className="menu__link" to={"/"}>
               Home
             </Link>
           </li>
-          <li class="menu__item">
+          <li className="menu__item">
             <Link className="menu__link" to={"/about"}>
               About
             </Link>
           </li>
-          <li class="menu__item">
+          <li className="menu__item">
             <Link className="menu__link" to={"/"}>
               Services
             </Link>
           </li>
-          <li class="menu__item">
+          <li className="menu__item">
             <Link className="menu__link" to={"/"}>
               Team
             </Link>
           </li>
-          <li class="menu__item">
+          <li className="menu__item">
             <Link className="menu__link" to={"/contact"}>
               Contact
             </Link>
@@ -88,57 +88,57 @@ export function AuthLayout() {
       <div className="">
         <Outlet />
       </div>
-      <footer class="footer">
-        <div class="waves">
-          <div class="wave" id="wave1"></div>
-          <div class="wave" id="wave2"></div>
-          <div class="wave" id="wave3"></div>
-          <div class="wave" id="wave4"></div>
+      <footer className="footer">
+        <div className="waves">
+          <div className="wave" id="wave1"></div>
+          <div className="wave" id="wave2"></div>
+          <div className="wave" id="wave3"></div>
+          <div className="wave" id="wave4"></div>
         </div>
-        <ul class="social-icon">
-          <li class="social-icon__item">
-            <a class="social-icon__link" href="#">
+        <ul className="social-icon">
+          <li className="social-icon__item">
+            <a className="social-icon__link" href="#">
               <ion-icon name="logo-facebook"></ion-icon>
             </a>
           </li>
-          <li class="social-icon__item">
-            <a class="social-icon__link" href="#">
+          <li className="social-icon__item">
+            <a className="social-icon__link" href="#">
               <ion-icon name="logo-twitter"></ion-icon>
             </a>
           </li>
-          <li class="social-icon__item">
-            <a class="social-icon__link" href="#">
+          <li className="social-icon__item">
+            <a className="social-icon__link" href="#">
               <ion-icon name="logo-linkedin"></ion-icon>
             </a>
           </li>
-          <li class="social-icon__item">
-            <a class="social-icon__link" href="#">
+          <li className="social-icon__item">
+            <a className="social-icon__link" href="#">
               <ion-icon name="logo-instagram"></ion-icon>
             </a>
           </li>
         </ul>
-        <ul class="menu">
-          <li class="menu__item">
+        <ul className="menu">
+          <li className="menu__item">
             <Link className="menu__link" to={"/"}>
               Home
             </Link>
           </li>
-          <li class="menu__item">
+          <li className="menu__item">
             <Link className="menu__link" to={"/about"}>
               About
             </Link>
           </li>
-          <li class="menu__item">
+          <li className="menu__item">
             <Link className="menu__link" to={"/"}>
               Services
             </Link>
           </li>
-          <li class="menu__item">
+          <li className="menu__item">
             <Link className="menu__link" to={"/"}>
               Team
             </Link>
           </li>
-          <li class="menu__item">
+          <li className="menu__item">
             <Link className="menu__link" to={"/contact"}>
               Contact
             </Link>

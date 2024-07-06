@@ -63,10 +63,6 @@ export const getChats = async (req, res) => {
   }
 };
 
-
-
-
-
 export const getChat = async (req, res) => {
   const tokenUserId = req.userId;
   try {
@@ -108,10 +104,16 @@ export const addChat = async (req, res) => {
   const tokenUserId = req.userId;
   const receiverId = req.body.receiverId;
   try {
+    if (tokenUserId === receiverId) {
+      return res
+        .status(400)
+        .json({ message: "You cannot message yourself!" });
+    }
+
     // Fetch receiver details
     const receiver = await prisma.user.findUnique({
       where: {
-        userId: receiverId,
+        userId: tokenUserId,
       },
       select: {
         userId: true,
@@ -123,6 +125,9 @@ export const addChat = async (req, res) => {
     if (!receiver) {
       return res.status(404).json({ message: "Receiver not found!" });
     }
+
+    console.log(receiver)
+
 
     // Attempt to find an existing chat between the two users
     const chat = await prisma.chat.findFirst({
@@ -142,14 +147,7 @@ export const addChat = async (req, res) => {
     });
 
     if (chat) {
-      return res.status(200).json({
-        ...chat,
-        receiver: {
-          userId: receiver.userId,
-          username: receiver.username,
-          avatar: receiver.avatar,
-        },
-      });
+      return res.status(409).json({ message: "Chat already exists!" });
     }
 
     // If no chat exists, create a new one
@@ -165,14 +163,14 @@ export const addChat = async (req, res) => {
         },
       },
     });
+    console.log({
+      ...newChat,
+      receiver
+    });
 
     res.status(201).json({
       ...newChat,
-      receiver: {
-        userId: receiver.userId,
-        username: receiver.username,
-        avatar: receiver.avatar,
-      },
+      receiver
     });
   } catch (error) {
     console.error(error);
@@ -181,7 +179,6 @@ export const addChat = async (req, res) => {
       .json({ message: "Failed to add chat!", error: error.message });
   }
 };
-
 
 export const readChat = async (req, res) => {
   const tokenUserId = req.userId;
@@ -205,7 +202,6 @@ export const readChat = async (req, res) => {
     res.status(500).json({ message: "Failed to read chat!" });
   }
 };
-
 
 export const deleteChat = async (req, res) => {
   const chatId = req.params.id;
