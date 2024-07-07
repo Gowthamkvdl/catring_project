@@ -20,8 +20,6 @@ const Chat = ({ items }) => {
   const msgEndRef = useRef();
   const inputBox = useRef(null);
 
-  
-
   // Scroll to the end of the messages
   useEffect(() => {
     if (showModal && msgEndRef.current) {
@@ -50,7 +48,7 @@ const Chat = ({ items }) => {
             ? {
                 ...chat,
                 lastMessage: res.data.text,
-                seenBy: [res.data.userId]
+                seenBy: [res.data.userId],
               }
             : chat
         )
@@ -102,16 +100,27 @@ const Chat = ({ items }) => {
     };
 
     const handleNewChat = (data) => {
-      setItemsArray((prevItemsArray) => [data, ...prevItemsArray]);
+      if (!itemsArray.some((item) => item.chatId === data.chatId)) {
+        setItemsArray((prevItemsArray) => [data, ...prevItemsArray]);
+      }
     };
+
+    const handleChatDeleted = (chatId) => {
+      setItemsArray((prevItemsArray) =>
+        prevItemsArray.filter((item) => item.chatId !== chatId)
+      );
+    } 
 
     socket.on("getMessage", handleMessage);
     socket.on("newChatFound", handleNewChat);
+    socket.on("chatDeleted", handleChatDeleted);
+
 
     // Clean up the socket event listener on unmount or dependency change
     return () => {
       socket.off("getMessage", handleMessage);
       socket.off("newChatFound", handleNewChat);
+      socket.off("chatDeleted", handleChatDeleted);
     };
   }, [socket, chatMsg]);
 
@@ -156,6 +165,10 @@ const Chat = ({ items }) => {
       setItemsArray((prevItemsArray) =>
         prevItemsArray.filter((chat) => chat.chatId !== chatMsg.chatId)
       );
+      socket.emit("deleteChat", {
+        chatId: chatMsg.chatId,
+        receiverId: chatMsg.receiver.userId,
+      });
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong! Try reloading.", {

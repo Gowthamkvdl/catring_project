@@ -41,7 +41,6 @@ io.on("connection", (socket) => {
     }
   });
 
-
   socket.on("newChat", ({ receiverId, data }) => {
     try {
       const receiver = getUser(receiverId);
@@ -59,7 +58,15 @@ io.on("connection", (socket) => {
     }
   });
 
-
+  socket.on("deleteChat", ({ receiverId, chatId }) => {
+    const receiver = getUser(receiverId);
+    if (receiver) {
+      io.to(receiver.socketId).emit("chatDeleted", chatId);
+      console.log("Chat deleted from:", receiverId);
+    } else {
+      console.log("User not found:", receiverId);
+    }
+  });
 
   socket.on("disconnect", () => {
     console.log("A user disconnected:", socket.id);
