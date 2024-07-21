@@ -43,7 +43,7 @@ const profilePage = () => {
       setSavedEventsLoading(true);
       const events = await apiRequest.get("/user/profilePosts/"+currentUser.UserId);
       const savedEvents = events.data.savedPost;
-      setEvents(savedEvents);
+      setEvents(savedEvents.filter((post)=> post.disabled === false));
     } catch (error) {
       console.log(error);
     } finally {

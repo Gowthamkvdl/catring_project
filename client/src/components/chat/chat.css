@@ -25,7 +25,7 @@
   height: 70vh;
   overflow: scroll;
   overflow-x: hidden;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 .close {
@@ -62,12 +62,12 @@
 
 .msg {
   animation-name: msg;
-  animation-duration: .1s;
+  animation-duration: 0.1s;
 }
 
 @keyframes msg {
   from {
-    opacity: .5;
+    opacity: 0.5;
   }
   to {
     opacity: 1;
@@ -76,9 +76,8 @@
 
 .chat-banner {
   animation-name: banner;
-  animation-duration: .2s; 
+  animation-duration: 0.2s;
 }
-
 
 @keyframes banner {
   from {
@@ -89,6 +88,6 @@
   }
 }
 
-.chatInputBox{
+.chatInputBox {
   border-radius: 7px;
 }

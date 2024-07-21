@@ -9,6 +9,9 @@ import apiRequest from "../../lib/apiRequest";
 import Card from "../../components/card/Card";
 import BackBtn from "../../components/backBtn/BackBtn";
 import Loader from "../../components/loader/Loader";
+import toast from "react-hot-toast"
+import { SocketContext } from "../../context/SocketContext";
+
 
 const profilePage = () => {
   const [myEventsLoading, setMyEventsLoading] = useState(false);
@@ -16,6 +19,9 @@ const profilePage = () => {
   const [savedEventsLoading, setSavedEventsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [user, setUser] = useState({})
+  const navigate = useNavigate()
+  const { socket } = useContext(SocketContext);
+
 
   const userId = searchParams.get("id");
 
@@ -44,6 +50,25 @@ const profilePage = () => {
       console.log(error);
     } finally {
       setMyEventsLoading(false);
+    }
+  };
+
+  const handleAddChat = async () => {
+    try {
+      const addChat = await apiRequest.post("/chat/", {
+        receiverId: user.userId,
+      });
+      socket.emit("newChat", {
+        receiverId: user.userId,
+        data: addChat.data,
+      });
+      navigate("/profile");
+      toast(`Now ${user.username} is added to your Chats`, { id: "addChat" });
+    } catch (error) {
+      console.error("Error adding chat:", error);
+      toast.error(error.response.data.message, {
+        id: "add chat error",
+      });
     }
   };
 
@@ -105,7 +130,7 @@ const profilePage = () => {
               </div>
             </div>
             <div className="chat">
-              <button className="btn w-100 mt-3 btn-warning">
+              <button onClick={handleAddChat} className="btn w-100 mt-3 btn-warning">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"

@@ -57,6 +57,17 @@ io.on("connection", (socket) => {
       );
     }
   });
+  
+  socket.on("typing", ({ receiverId, chatId, status }) => {
+    const receiver = getUser(receiverId);
+    if (receiver) {
+      io.to(receiver.socketId).emit("userIsTyping", { chatId, status });
+      console.log("User is typing:", receiverId);
+    } else {
+      console.log("User not found:", receiverId);
+    }
+  });
+
 
   socket.on("deleteChat", ({ receiverId, chatId }) => {
     const receiver = getUser(receiverId);

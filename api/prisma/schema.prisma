@@ -17,6 +17,7 @@ model Post {
   workingDays         Int
   noOfStaffsReq       Int
   noOfStaffsSatisfied Int?         @default(0)
+  disabled            Boolean      @default(false)
   vegetableCutting    YesOrNo
   busFare             YesOrNo
   experience          YesOrNo

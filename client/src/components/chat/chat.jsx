@@ -11,6 +11,10 @@ import Loader from "../../components/loader/Loader";
 const Chat = ({ items }) => {
   const [itemsArray, setItemsArray] = useState(items);
   const [chatMsg, setChatMsg] = useState(null);
+  const [typing, setTyping] = useState({
+    status: false,
+    chatId: null,
+  });
   const [showModal, setShowModal] = useState(false);
   const [chatloading, setChatLoading] = useState(false);
   const [sending, setSending] = useState(false);
@@ -19,6 +23,36 @@ const Chat = ({ items }) => {
   const { socket } = useContext(SocketContext);
   const msgEndRef = useRef();
   const inputBox = useRef(null);
+
+  useEffect(() => {
+    const handleFocus = () => {
+      socket.emit("typing", {
+        receiverId: chatMsg?.receiver?.userId,
+        status: true,
+        chatId: chatMsg?.chatId,
+      });
+    };
+
+    const handleBlur = () => {
+      socket.emit("typing", {
+        receiverId: chatMsg?.receiver?.userId,
+        status: false,
+        chatId: chatMsg?.chatId,
+      });
+    };
+
+    if (inputBox.current) {
+      inputBox.current.addEventListener("focus", handleFocus);
+      inputBox.current.addEventListener("blur", handleBlur);
+    }
+
+    return () => {
+      if (inputBox.current) {
+        inputBox.current.removeEventListener("focus", handleFocus);
+        inputBox.current.removeEventListener("blur", handleBlur);
+      }
+    };
+  }, [showModal, chatMsg, socket]);
 
   // Scroll to the end of the messages
   useEffect(() => {
@@ -94,7 +128,6 @@ const Chat = ({ items }) => {
           ...prev,
           messages: [...prev.messages, data],
         }));
-        read();
       }
       updatelastMessage(data);
     };
@@ -109,17 +142,26 @@ const Chat = ({ items }) => {
       setItemsArray((prevItemsArray) =>
         prevItemsArray.filter((item) => item.chatId !== chatId)
       );
-    } 
+    };
+
+    const handleTyping = (data) => {
+      if (data.status) {
+        setTyping({ status: true, chatId: data.chatId });
+      } else {
+        setTyping({ status: false, chatId: null });
+      }
+    };
 
     socket.on("getMessage", handleMessage);
     socket.on("newChatFound", handleNewChat);
+    socket.on("userIsTyping", handleTyping);
     socket.on("chatDeleted", handleChatDeleted);
-
 
     // Clean up the socket event listener on unmount or dependency change
     return () => {
       socket.off("getMessage", handleMessage);
       socket.off("newChatFound", handleNewChat);
+      socket.off("userIsTyping", handleTyping);
       socket.off("chatDeleted", handleChatDeleted);
     };
   }, [socket, chatMsg]);
@@ -247,9 +289,10 @@ const Chat = ({ items }) => {
                   height="50px"
                   alt=""
                 />
-                <span className="name fs-5 mx-2 text-uppercase">
+                <div className="name fs-5 mx-2 text-uppercase">
                   {!chatloading && chatMsg?.receiver?.username}
-                </span>
+                </div>
+                {typing.status && <span className="fw-lighter">typing...</span>}
               </div>
               <button
                 className="btn btn-danger ms-auto me-3"

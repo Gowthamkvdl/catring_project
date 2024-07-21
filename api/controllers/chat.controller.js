@@ -181,7 +181,7 @@ export const readChat = async (req, res) => {
       where: {
         chatId: req.params.id,
         userIDs: {
-          hasSome: [tokenUserId],
+          hasSome: [tokenUserId],   
         },
       },
       data: {

@@ -13,6 +13,7 @@ export const getPosts = async (req, res) => {
           contains: query.location || undefined,
           mode: "insensitive",
         },
+        disabled: false,
         salary: {
           gte: parseInt(query.minSalary) || 0,
         },
@@ -148,6 +149,37 @@ export const updatePost = async (req, res) => {
   }
 };
 
+export const updatePostStatus = async (req, res) => {
+  const tokenUserId = req.userId
+  const paramPostId = req.params.id
+  
+  try {
+    const post = await prisma.post.findUnique({
+      where: {
+        postId: paramPostId,
+      },
+    });
+
+    if (post.userId !== tokenUserId) {
+      res.status(403).json({ message: "Not Authorized!" });
+    }
+
+    const updatedPostStatus = await prisma.post.update({
+      where: {
+        postId: paramPostId,
+      },
+      data: {
+        disabled: !post.disabled,
+      },
+    });
+
+    res.status(200).json(updatedPostStatus);
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({ message: `Failed to change Post status` });
+  }
+}
+
 export const deletePost = async (req, res) => {
   const tokenUserId = req.userId;
   const postId = req.params.id;
@@ -185,3 +217,4 @@ export const deletePosts = async (req, res) => {
     res.status(401).json({ message: "Failed to Delete Posts" });
   }
 };
+

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./singlePage.css";
 import dummyProfile from "../../assets/dummyProfilePic.jpg";
 import Progressbar from "../../components/progressBar/Progressbar";
@@ -13,10 +13,20 @@ import { SocketContext } from "../../context/SocketContext";
 const SinglePage = () => {
   const post = useLoaderData();
   const navigate = useNavigate();
-  const {socket} = useContext(SocketContext);
+  const { socket } = useContext(SocketContext);
   const [saved, setSaved] = useState(post.isSaved);
+  const [postStatus, setPostStatus] = useState(post.disabled);
   const { currentUser } = useContext(AuthContext);
   const [deleting, setDeleting] = useState(false);
+  const [disabling, setDisabling] = useState(false);
+  console.log(post)
+
+  useEffect(() => {
+    if (postStatus && post.userId !== currentUser?.userId) {
+      navigate("/profile");
+      toast("That post is not available", { id: "postStatus" });
+    }
+  }, [postStatus, post.userId, currentUser?.userId, navigate]);
 
   const handleSave = async () => {
     setSaved((prev) => !prev);
@@ -35,34 +45,51 @@ const SinglePage = () => {
     }
   };
 
- const handleAddChat = async () => {
-   try {
-     const addChat = await apiRequest.post("/chat/", {
-       receiverId: post.user.userId,
-     });
-     socket.emit("newChat", {
-       receiverId: post.user.userId,
-       data: addChat.data,
-     });
-     navigate("/profile");
-     toast(`${post.user.username} is added to your Chats`, { id: "addChat" });
-   } catch (error) {
-     console.error("Error adding chat:", error);
-     toast.error(error.response.data.message,{
-      id: "add chat error"
-     });
-   }
- };
+  const handleAddChat = async () => {
+    try {
+      const addChat = await apiRequest.post("/chat/", {
+        receiverId: post.user.userId,
+      });
+      socket.emit("newChat", {
+        receiverId: post.user.userId,
+        data: addChat.data,
+      });
+      navigate("/profile");
+      toast(`Now ${post.user.username} is added to your Chats`, { id: "addChat" });
+    } catch (error) {
+      console.error("Error adding chat:", error);
+      toast.error(error.response.data.message, {
+        id: "add chat error",
+      });
+    }
+  };
 
+  const handleDisablePost = async () => {
+    setDisabling(true)
+    setPostStatus((prev) => !prev);
+    console.log(post.postId)
+    try {
+      await apiRequest.put("post/status/" + post.postId);
+    } catch (error) {
+      console.log(error);
+      setPostStatus((prev) => !prev);
+      toast.error("Something went wrong!", {
+        id: "Error disabling post!",
+      });
+    } finally {
+      toast.success(postStatus ? "Post Enabled " : "Post Disabled", {
+        id: "postStatus",
+      });
+      setDisabling(false)
+    }
+  };
 
-  
-  
   const handleDelete = async () => {
     try {
       setDeleting(true);
       await apiRequest.delete(`post/${post.postId}`);
       navigate(-1);
-      toast.success("Your Post Deleted Successfully!")
+      toast.success("Your Post Deleted Successfully!");
     } catch (error) {
       console.log(error);
     } finally {
@@ -84,6 +111,16 @@ const SinglePage = () => {
             }`}
           >
             Delete Post
+          </button>
+          <button
+          disabled={disabling}
+            type="button"
+            onClick={handleDisablePost}
+            className={`btn btn-secondary me-2 float-end ${
+              currentUser && post.userId === currentUser.userId ? "" : "d-none"
+            }`}
+          >
+            {postStatus ? "Enable Post" : "Disable Post"}
           </button>
           <div className="row">
             <div className="col-12">
@@ -126,13 +163,16 @@ const SinglePage = () => {
             </div>
             <div className="col-2"></div>
           </div>
-          <div className="eventDesc content">
+          <div className="eventDesc fs-normal">
             {post.description}
-            <div className="fs-6 my-2">
+            <div className=" fs-normal my-2">
               <b>Address</b> : {post.address}
+              <br />
+              <b className="mt-2">Number of Staff Required</b> :{" "}
+              {post.noOfStaffsReq}
             </div>
           </div>
-          <div className="bar row d-flex align-items-center">
+          {/* <div className="bar row d-flex align-items-center">
             <div className="col-md-9 col-12">
               <div className="mb-0 mt-2 float-end">
                 Status of Recruitment:{" "}
@@ -147,7 +187,7 @@ const SinglePage = () => {
                 <button className="btn btn-warning w-100">Join Now</button>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="extra d-flex gap-md-4 gap-1 flex-wrap my-3">
             <div className="workingHrs bg-text small-text p-2 rounded">
               Date : <b>{post.startDate} </b>
@@ -173,7 +213,7 @@ const SinglePage = () => {
           <div className="single-page-contact">
             <h4>Contact</h4>
             <p className="m-0">Phone: {post.user.phone}</p>
-            <p className="m-0 mb-2 pb-5">Email: {post.user.email}</p>
+            <p className="m-0 mb-2 pb-md-5">Email: {post.user.email}</p>
           </div>
           <div className="spm">
             <SinglePointerMap
@@ -183,7 +223,7 @@ const SinglePage = () => {
           </div>
           <div className="btns d-flex gap-2 mt-2">
             <div className="chat w-100">
-              <button className="btn w-100 btn-warning" onClick={handleAddChat} >
+              <button className="btn w-100 btn-warning" onClick={handleAddChat}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -198,10 +238,7 @@ const SinglePage = () => {
               </button>
             </div>
             <div className="save w-100">
-              <button
-                className="btn w-100 btn-warning"
-                onClick={handleSave}
-              >
+              <button className="btn w-100 btn-warning" onClick={handleSave}>
                 {saved ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +288,9 @@ const SinglePage = () => {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body h-100">Do you want to delete this post?</div>
+            <div className="modal-body h-100">
+              Do you want to delete this post?
+            </div>
             <div className="modal-footer">
               <button
                 type="button"

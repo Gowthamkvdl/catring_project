@@ -15,18 +15,18 @@ const Card = ({ item }) => {
   const formattedDate = dateObj.toLocaleDateString("en-GB");
 
   return (
-    <div
-      className={`card bg-light mt-3 p-3 d-flex justify-content-between`}
-    >
+    <div className={`card bg-light mt-3 p-3 d-flex justify-content-between`}>
       <Link className="link" to={"/" + item.postId}>
-        {item.user && <div className="userInfo mb-2 fs-5 d-flex align-items-center gap-2">
-          <img
-            src={item.user.avatar ? item.user.avatar : dummyProfilePic}
-            className="cardProPic"
-            alt=""
-          />
-          <span className="text-uppercase fs-6">{item.user.username}</span>
-        </div>}
+        {item.user && (
+          <div className="userInfo mb-2 fs-5 d-flex align-items-center gap-2">
+            <img
+              src={item.user.avatar ? item.user.avatar : dummyProfilePic}
+              className="cardProPic"
+              alt=""
+            />
+            <span className="text-uppercase fs-6">{item.user.username}</span>
+          </div>
+        )}
         <div className="eventName text-dark">
           <h4 className="d-flex justify-content-between">
             <span className="event-name">
@@ -35,7 +35,7 @@ const Card = ({ item }) => {
             </span>
             <span className="float-end amount">₹{item.salary}</span>
           </h4>
-          <div className="location py-1">
+          <div className="location pb-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -50,8 +50,11 @@ const Card = ({ item }) => {
           </div>
         </div>
       </Link>
+      <div className="content fs-6 mt-1 m-0 mb-2">
+        <b className="">Number of Staff Required</b> : {item.noOfStaffsReq}
+      </div>
       <div className="eventDesc">{item.description}</div>
-      <div className="bar row d-flex justify-content-center align-items-center">
+      {/* <div className="bar row d-flex justify-content-center align-items-center">
         <div className="col-12">
           <div className="mb-0 mt-2 float-end">
             Status of Recruitment:{" "}
@@ -61,19 +64,21 @@ const Card = ({ item }) => {
           </div>
           <Progressbar width={item.noOfStaffsSatisfied} />
         </div>
-      </div>
+      </div> */}
       <div className="extras">
         <div className="spec d-flex align-items-center gap-2">
-          {item.user && <div className="stars d-flex align-items-center">
-            <StarRating
-              editable={false}
-              totalStars={item.user.starRating}
-              size={20}
-            />
-            <span className="stars-count ms-1">
-              {item.user.starRating < 1 ? "(New)" : item.user.starRating}
-            </span>
-          </div>}
+          {item.user && (
+            <div className="stars d-flex align-items-center">
+              <StarRating
+                editable={false}
+                totalStars={item.user.starRating}
+                size={20}
+              />
+              <span className="stars-count ms-1">
+                {item.user.starRating < 1 ? "(New)" : item.user.starRating}
+              </span>
+            </div>
+          )}
           <div className="veg-cutting d-flex align-items-center">
             <svg
               width="30px"

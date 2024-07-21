@@ -7,13 +7,12 @@ import userRoute from "./routes/user.route.js"
 import postRoute from "./routes/post.route.js"
 import chatRoute from "./routes/chat.route.js"
 import messageRoute from "./routes/message.route.js"
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-const app = express();   
+const app = express();
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
-app.use(cookieParser());  
-
+app.use(cookieParser());
 
 app.use("/api/auth", authRoute);
 app.use("/api/test", testRoute);

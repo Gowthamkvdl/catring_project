@@ -48,11 +48,6 @@ const App = () => {
           element: <ListPage />,
           loader: listPageLoader,
         },
-        {
-          path: "/:id",
-          element: <SinglePage />,
-          loader: singlePageLoader,
-        },
       ],
     },
     {
@@ -68,9 +63,14 @@ const App = () => {
           element: <UserProfile />,
         },
         {
+          path: "/:id",
+          element: <SinglePage />,
+          loader: singlePageLoader,
+        },
+        {
           path: "/profile",
           element: <ProfilePage />,
-          loader: chatLoader
+          loader: chatLoader,
         },
         {
           path: "/update-profile",
