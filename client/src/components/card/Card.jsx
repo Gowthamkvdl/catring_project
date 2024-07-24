@@ -9,13 +9,12 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Card = ({ item }) => {
   const [loaded, setLoaded] = useState(false);
-
   const date = item.startDate;
   const dateObj = new Date(date);
   const formattedDate = dateObj.toLocaleDateString("en-GB");
 
   return (
-    <div className={`card bg-light mt-3 p-3 d-flex justify-content-between`}>
+    <div className={`card bg-light rounded-4 mt-3 p-3 d-flex justify-content-between`}>
       <Link className="link" to={"/" + item.postId}>
         {item.user && (
           <div className="userInfo mb-2 fs-5 d-flex align-items-center gap-2">

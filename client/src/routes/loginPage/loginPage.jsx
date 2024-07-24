@@ -47,14 +47,14 @@ const loginPage = () => {
   };
 
   return (
-    <div className="container navbarHeight">
-      <div className="row bg-light rounded-3 mx-1 mb-lg-0 mb-5">
+    <div className="container  navbarHeight">
+      <div className="row box-shadow bg-light rounded-4 mx-1 mb-lg-0 mb-5">
         <div className="col-12 col-lg-6  p-0 p-md-5">
           <img src={jobHuntSvg} alt="" />
         </div>
         <div className="col-12 col-lg-6 p-4 pt-0 p-md-5 form">
-          <BackBtn link={"/"} />
-          <h1 className="title">Login</h1>
+          <BackBtn color="black" link={"/"} />
+          <h1 className="title-bg-white">Login</h1>
           <form action="" onSubmit={handleSubmit}>
             <InputField
               label={"UserName"}

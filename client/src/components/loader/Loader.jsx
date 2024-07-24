@@ -26,7 +26,7 @@ const Loader = ({message="Loading...", textColor = "light"}) => {
         </div>
         <div className="spoke"></div>
       </div>
-        <div className={`content text-center text-${textColor} mt-2`}>{message}</div>
+        <div className={`content loading-message text-center mt-2`}>{message}</div>
     </div>
   );
 }

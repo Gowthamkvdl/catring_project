@@ -237,7 +237,7 @@ const Chat = ({ items }) => {
               setShowModal(true);
             }}
           >
-            <div className="chatBanner ps-0 p-2 mt-2 flex-row d-flex  align-items-center">
+            <div className="chatBanner ps-0 p-2 mt-2 flex-row d-flex align-items-center">
               <div className="">
                 <img
                   src={

@@ -8,7 +8,7 @@ const aboutPage = () => {
   return (
     <div className="about container navbarHeight">
       <div className="wrapper">
-        <BackBtn color="white" />
+        <BackBtn color="light" />
         <h1 className="title">About</h1>
         <div className="container ">
           <div className="row d-flex justify-content-center align-items-center">
@@ -19,7 +19,7 @@ const aboutPage = () => {
               <div className="text-center fs-3 mt-3 mb-4">
                 The Challenges We Address
               </div>
-              <Fade triggerOnce duration={1500}>
+              <Fade triggerOnce duration={500}>
                 <div className="mt-4">
                   <h1 className="fs-1 mb-3">Our Story</h1>
                   <p className="content text-indend">
@@ -40,7 +40,7 @@ const aboutPage = () => {
               What problem we are solving?
             </div>
             <div className="col-12 col-lg-5 mx-auto p-3 ">
-              <Fade triggerOnce duration={1500}>
+              <Fade triggerOnce duration={500}>
                 <div className="">
                   <h3 className="text-center title fs-1 mb-3">
                     For Server Staff
@@ -56,7 +56,7 @@ const aboutPage = () => {
               </Fade>
             </div>
             <div className="col-12 col-lg-5 mx-auto p-3">
-              <Fade triggerOnce duration={1500}>
+              <Fade triggerOnce duration={500}>
                 <div className="">
                   <h3 className="text-center title fs-1 mb-3">
                     For Contractors

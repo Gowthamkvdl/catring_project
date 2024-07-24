@@ -123,7 +123,7 @@ const ListPage = () => {
                 {isLoadingMore ? (
                   <span className="blink">Loading more jobs...</span>
                 ) : totalPost > 0 ? (
-                  "No more jobs!"
+                  <span className="no-more-jobs">No more jobs!</span>
                 ) : (
                   ""
                 )}
@@ -131,7 +131,7 @@ const ListPage = () => {
             </Suspense>
           </div>
         </div>
-        <div className="listPageMap d-none d-md-block">
+        <div className="listPageMap d-none d-md-block rounded-4">
           <Suspense
             fallback={
               <div>{/* <Loader message={"Loading Map..."}></Loader> */}</div>

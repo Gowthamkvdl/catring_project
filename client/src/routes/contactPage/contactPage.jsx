@@ -7,6 +7,8 @@ import { toast } from "react-hot-toast";
 
 const contactPage = () => {
   const [result, setResult] = React.useState("");
+  const [theme, setTheme] = React.useState(localStorage.getItem("selectedTheme"));
+
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -38,7 +40,7 @@ const contactPage = () => {
       <BackBtn color="white" />
       <div className="wrapper">
         <h1 className="title">Contact</h1>
-        <div className="row mt-4">
+        <div className="row  mt-4">
           <div className="col-xl-6 mx-auto col-12">
             <p className="text-start mb-4 content">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -50,7 +52,7 @@ const contactPage = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
-                fill="#e8e8e8"
+                fill="#ffca2c"
                 className="bi bi-envelope-fill mb-2"
                 viewBox="0 0 16 16"
               >
@@ -63,7 +65,7 @@ const contactPage = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
-                fill="#e8e8e8"
+                fill="#ffca2c"
                 className="bi bi-telephone-fill mb-2"
                 viewBox="0 0 16 16"
               >
@@ -79,7 +81,7 @@ const contactPage = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
-                fill="#e8e8e8"
+                fill="#ffca2c"
                 className="bi bi-geo-alt-fill mb-3"
                 viewBox="0 0 16 16"
               >
@@ -99,7 +101,7 @@ const contactPage = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   height="30"
-                  fill="#e8e8e8"
+                  fill="#ffca2c"
                   className="bi bi-send-fill mx-2"
                   viewBox="0 0 16 16"
                 >

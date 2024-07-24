@@ -67,7 +67,7 @@ export function Layout() {
             </Link>
           </li>
         </ul>
-        <p>&copy;2024 Catring | All Rights Reserved</p>
+        <p className="text-dark" >&copy;2024 Catring Boys | All Rights Reserved</p>
       </footer>
     </div>
   );

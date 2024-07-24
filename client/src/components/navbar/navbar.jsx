@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 import { Toaster } from "react-hot-toast";
+import Theme from "../theme/Theme";
 
 const Navbar = () => {
   const location = useLocation();
@@ -58,7 +59,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="offcanvas w-75 offcanvas-start text-bg-dark"
+          className="offcanvas w-75 offcanvas-start"
           tabIndex="-1"
           id="offcanvasDarkNavbar"
           aria-labelledby="offcanvasDarkNavbarLabel"
@@ -93,6 +94,9 @@ const Navbar = () => {
                   <div className={`nav-link ${isActive("/contact")}`}>Contact</div>
                 </li>
               </Link>
+              <li className="mx-2 ">
+                <Theme />
+              </li>
               {currentUser ? (
                 <Link to="/profile">
                   <div

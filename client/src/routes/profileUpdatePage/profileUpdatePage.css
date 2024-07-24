@@ -13,3 +13,7 @@
         transform: translateY(0px);
     }
 } */
+
+.title{
+    color: var(--light);
+}

@@ -45,8 +45,8 @@ const homePage = () => {
     <div className="homePage ">
       <div className="container ">
         <div className="row h-100lvh ">
-          <div className="col-12 col-xl-7 d-flex ">
-            <div className="hero-section mt-lg-5 mt-3 flex-column text-light d-flex justify-content-center align-item-center">
+          <div className="col-12 col-xl-7">
+            <div className="hero-section mt-lg-5 mt-3 flex-column d-flex justify-content-center align-item-center">
               <div className="hero-text">
                 <span className="">Effortless</span>
                 <span ref={typingText}></span>

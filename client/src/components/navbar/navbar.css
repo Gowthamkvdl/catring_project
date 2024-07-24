@@ -8,9 +8,15 @@
     font-size: 1.2rem;
 }
 
-.navbar .nav-link button a{
+.navbar .nav-link {
     color: var(--light) !important;
+    transition: .3s;
 }
+.navbar .active {
+    color: var(--light) !important;
+    text-decoration: underline;
+}
+
 
 .bg-darkcolor{
     background-color: var(--dark) !important;

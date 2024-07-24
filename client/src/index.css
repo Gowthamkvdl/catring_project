@@ -1,14 +1,24 @@
 :root {
   --orange: #FF4500;
   --yellow: #c5fe00;
-  --light: #e8e8e8;
-  --dark: #212529;
+  --light: #212529;
+  --dark: #e8e8e8;
   --lightDark: #3d3d3d;
 }
 
+[data-theme="dark"] {
+  --light: #e8e8e8;
+  --dark: #212529;
+}
+
+
 html, body {
   overflow: auto !important; /* Ensure this is set to auto or scroll */
-  background-color: var(--dark);
+  background-color: var(--light);
+}
+
+*{
+  transition: .1s ease-in-out;
 }
 
 .fit-content {
@@ -75,4 +85,20 @@ body{
 }
 
 
+.box-shadow{
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
 
+button{
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+button:active{
+  transition: .2s;
+  transform: scale(.9);
+}
+
+.title-bg-white{
+  color: #212529;
+  text-decoration: underline;
+}

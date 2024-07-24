@@ -15,3 +15,7 @@ label{
 input{
     background-color: #e8e8e8;
 }
+
+.contact{
+    color: var(--light);
+}

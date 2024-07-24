@@ -68,11 +68,13 @@ const NewPostPage = () => {
   return (
     <div className="container newPostPage navbarHeight mb-5">
       <form action="" onSubmit={handleSubmit}>
-        <div className="row bg-light text-dark newPostPage rounded-3 mx-1">
+        <div className="row box-shadow rounded-4 bg-light newPostPage  mx-1">
           <div className="col-12 p-4 col-lg-7">
-            <BackBtn />
+            <div className="back-bg-white">
+            <BackBtn color="black" />
+            </div>
             <div className="mb-3">
-              <h3 className="title">New Event Post</h3>
+              <h3 className="title-bg-white">New Event Post</h3>
             </div>
             <div className="mb-3 d-flex gap-3">
               <div className="name flex-fill">

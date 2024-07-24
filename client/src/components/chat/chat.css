@@ -19,6 +19,7 @@
 
 .chat {
   cursor: pointer;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 
 .modal-body {
@@ -77,6 +78,7 @@
 .chat-banner {
   animation-name: banner;
   animation-duration: 0.2s;
+  border-radius: 12px !important;
 }
 
 @keyframes banner {

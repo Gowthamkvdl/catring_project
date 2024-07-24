@@ -2,3 +2,7 @@
 .title{
     text-decoration: underline;
 }
+
+.about{
+    color: var(--light);
+}

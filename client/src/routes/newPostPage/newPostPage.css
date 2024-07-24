@@ -2,6 +2,11 @@
      height: 70vh;
 }
 
+.newPostPage{
+color: #212529 !important;
+}
+
+
 .coor{
      font-size: xx-small;
 }
@@ -12,44 +17,44 @@
 
 
 .newPostPage input{
-     background-color: var(--light);
+     background-color: antiquewhite;
      outline: none;
 }
 .newPostPage input:focus{
-     background-color: var(--light);
+     background-color: antiquewhite;
      border: none;
      outline: none;
 }
 .newPostPage input:active{
-     background-color: var(--light);
+     background-color: antiquewhite;
      border: none;
      outline: none;
 }
 .newPostPage textarea{
-     background-color: var(--light);
+     background-color: antiquewhite;
      outline: none;
 }
 .newPostPage textarea:focus{
-     background-color: var(--light);
+     background-color: antiquewhite;
      border: none;
      outline: none;
 }
 .newPostPage textarea:active{
-     background-color: var(--light);
+     background-color: antiquewhite;
      border: none;
      outline: none;
 }
 .newPostPage select{
-     background-color: var(--light);
+     background-color: antiquewhite;
      outline: none;
 }
 .newPostPage select:focus{
-     background-color: var(--light);
+     background-color: antiquewhite;
      border: none;
      outline: none;
 }
 .newPostPage select:active{
-     background-color: var(--light);
+     background-color: antiquewhite;
      border: none;
      outline: none;
 }

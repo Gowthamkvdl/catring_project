@@ -43,13 +43,13 @@ const registerPage = () => {
 
   return (
     <div className="container navbarHeight">
-      <div className="row  bg-light rounded-3 mx-1 mb-lg-5 mb-5">
+      <div className="row box-shadow bg-light rounded-4 mx-1 mb-lg-5 mb-5">
         <div className="col-12 col-lg-6  p-0 p-md-5 d-flex justify-content-center align-items-center">
           <img src={jobHuntSvg} alt="" />
         </div>
         <div className="col-12 col-lg-6 p-4 pt-0 p-md-5 form">
-          <BackBtn />
-          <h1 className="title">Register</h1>
+          <BackBtn color="black"/>
+          <h1 className="title-bg-white">Register</h1>
           <form action="" onSubmit={handleSubmit}>
             <InputField
               label={"Enter Your UserName"}
