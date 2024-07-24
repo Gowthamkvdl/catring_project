@@ -2,12 +2,12 @@
   --orange: #FF4500;
   --yellow: #c5fe00;
   --light: #212529;
-  --dark: #e8e8e8;
+  --dark: #faf9f6;
   --lightDark: #3d3d3d;
 }
 
 [data-theme="dark"] {
-  --light: #e8e8e8;
+  --light: #faf9f6;
   --dark: #212529;
 }
 

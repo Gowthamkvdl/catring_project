@@ -223,7 +223,6 @@ const Chat = ({ items }) => {
 
   return (
     <div className="chats my-5 my-md-0">
-      <h2 className="title">CHATS</h2>
       {itemsArray.length === 0 && <h4 className="mt-3">No chats Found</h4>}
       <div className="chatList">
         {itemsArray.map((chat, index) => (
@@ -267,6 +266,7 @@ const Chat = ({ items }) => {
             </div>
           </div>
         ))}
+        <div className="mb-1"></div>
       </div>
 
       <div

@@ -190,6 +190,9 @@ const profilePage = () => {
           </div>
         </div>
         <div className="col-12 col-lg-5">
+          <h2 className="title">
+            CHATS
+          </h2>
           <Suspense
             fallback={
               <div>{<Loader message={"Loading Chats..."}></Loader>}</div>
@@ -199,6 +202,7 @@ const profilePage = () => {
               {(chatResponse) => <Chat items={chatResponse.data} />}
             </Await>
           </Suspense>
+          
         </div>
       </div>
     </div>

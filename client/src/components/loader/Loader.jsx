@@ -3,30 +3,11 @@ import "./loader.css"
 
 const Loader = ({message="Loading...", textColor = "light"}) => {
   return (
-    <div>
-      <div
-        aria-label="Orange and tan hamster running in a metal wheel"
-        role="img"
-        className="wheel-and-hamster mx-auto mt-5"
-      >
-        <div className="wheel"></div>
-        <div className="hamster">
-          <div className="hamster__body">
-            <div className="hamster__head">
-              <div className="hamster__ear"></div>
-              <div className="hamster__eye"></div>
-              <div className="hamster__nose"></div>
-            </div>
-            <div className="hamster__limb hamster__limb--fr"></div>
-            <div className="hamster__limb hamster__limb--fl"></div>
-            <div className="hamster__limb hamster__limb--br"></div>
-            <div className="hamster__limb hamster__limb--bl"></div>
-            <div className="hamster__tail"></div>
-          </div>
-        </div>
-        <div className="spoke"></div>
+    <div className='mt-5 '>
+      <div class=" w-50 mx-auto line-wobble"></div>
+      <div className={`content fs-5 loading-message text-center mt-2`}>
+        {message}
       </div>
-        <div className={`content loading-message text-center mt-2`}>{message}</div>
     </div>
   );
 }
