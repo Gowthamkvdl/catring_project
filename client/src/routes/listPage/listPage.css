@@ -28,11 +28,8 @@
   0% {
     color: var(--light);
   }
-  50% {
-    color: transparent;
-  }
   100% {
-    color: var(--light);
+    color: var(--dark);
   }
 }
 

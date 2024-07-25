@@ -46,7 +46,7 @@ const homePage = () => {
       <div className="container ">
         <div className="row h-100lvh ">
           <div className="col-12 col-xl-7">
-            <div className="hero-section mt-lg-5 mt-3 flex-column d-flex justify-content-center align-item-center">
+            <div className="hero-section mt-lg-0 mt-3 flex-column d-flex justify-content-center align-item-center">
               <div className="hero-text">
                 <span className="">Effortless</span>
                 <span ref={typingText}></span>
@@ -59,12 +59,12 @@ const homePage = () => {
                 </p>
               </Fade>
               <Fade delay={500} triggerOnce>
-                <div className="row mx-2 mx-md-0 gap-4 mt-2 ">
-                  <div className="col-12 col-md-6 glass p-3 ">
+                <div className="row mx-2 mx-md-0  gap-4 mt-2 ">
+                  <div className="col-12 box-shadow col-md-6 glass p-3 ">
                     <h3 className="mb-3">For Server Staff:</h3>
                     <Input />
                   </div>
-                  <div className="col-12 col-md-5 glass p-3">
+                  <div className="col-12 box-shadow col-md-5 glass p-3">
                     <h3 className="mb-3">For Contractors:</h3>
                     <ArrowBtn text="Post Event" handleClick={handleClick} />
                   </div>

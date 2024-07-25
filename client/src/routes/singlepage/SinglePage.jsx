@@ -99,7 +99,7 @@ const SinglePage = () => {
 
   return (
     <div className="singlePage navbarHeight container">
-      <div className="row text-dark mx-1 p-3 rounded-3 bg-light">
+      <div className="row text-dark box-shadow py-3 p-md-3 mx-1 rounded-3 bg-light">
         <div className="col-md-7 col-12 h-auto">
           <BackBtn color={"black"} />
           <button

@@ -222,7 +222,7 @@ const Chat = ({ items }) => {
   };
 
   return (
-    <div className="chats my-5 my-md-0">
+    <div className="chats  my-md-0">
       {itemsArray.length === 0 && <h4 className="mt-3">No chats Found</h4>}
       <div className="chatList">
         {itemsArray.map((chat, index) => (
@@ -327,7 +327,7 @@ const Chat = ({ items }) => {
                 </span>
               </span>
             </div>
-            <div className="modal-body bg-dark text-white">
+            <div className="modal-body">
               <div className="chatBox h-100">
                 {chatloading ? (
                   <Loader message="Loading chats..." textColor="light" />

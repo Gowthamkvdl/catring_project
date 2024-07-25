@@ -13,6 +13,10 @@
  transform: translate3d(0, 0, 0);
 }
 
+.loading-message{
+    color: var(--light);
+}
+
 .line-wobble::before {
  content: '';
  position: absolute;

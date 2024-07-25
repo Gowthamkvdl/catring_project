@@ -14,7 +14,9 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      window.scrollY > 50 ? setBg("bg-darkcolor") : setBg("bg-transperant");
+      window.scrollY > 50
+        ? setBg("box-shadow")
+        : setBg("");
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -49,7 +51,7 @@ const Navbar = () => {
           CATRING
         </a>
         <button
-          className="navbar-toggler shadow-none"
+          className={`navbar-toggler shadow-none bg-dark`}
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasDarkNavbar"
@@ -59,7 +61,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="offcanvas w-75 offcanvas-start"
+          className={`offcanvas h-50 offcanvas-top`}
           tabIndex="-1"
           id="offcanvasDarkNavbar"
           aria-labelledby="offcanvasDarkNavbarLabel"
@@ -75,11 +77,17 @@ const Navbar = () => {
               aria-label="Close"
             ></button>
           </div>
-          <div className="offcanvas-body d-flex justify-content-center align-items-center">
+          <div
+            className={`offcanvas-body d-flex justify-content-center align-items-center`}
+          >
             <ul className="navbar-nav align-items-center justify-content-end flex-grow-1 pe-md-3">
               <Link to="/">
                 <li className={`nav-item mb-1 `}>
-                  <div className={`nav-link ${isActive("/")} mb-1" aria-current="page`}>
+                  <div
+                    className={`nav-link ${isActive(
+                      "/"
+                    )} mb-1" aria-current="page`}
+                  >
                     Home
                   </div>
                 </li>
@@ -91,10 +99,12 @@ const Navbar = () => {
               </Link>
               <Link to="/contact">
                 <li className={`nav-item mb-1 `}>
-                  <div className={`nav-link ${isActive("/contact")}`}>Contact</div>
+                  <div className={`nav-link ${isActive("/contact")}`}>
+                    Contact
+                  </div>
                 </li>
               </Link>
-              <li className="mx-2 ">
+              <li className="m-2">
                 <Theme />
               </li>
               {currentUser ? (
