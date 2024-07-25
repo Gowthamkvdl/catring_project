@@ -17,3 +17,7 @@
 .title{
     color: var(--light);
 }
+
+.modal-body{
+    color: var(--light);
+}

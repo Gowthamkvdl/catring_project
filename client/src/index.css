@@ -95,7 +95,7 @@ button{
 
 button:active{
   transition: .2s;
-  transform: scale(.9);
+  transform: scale(.95);
 }
 
 .title-bg-white{

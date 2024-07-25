@@ -1,11 +1,11 @@
 .inputBox {
   width: 100%;
   background-color: var(--dark);
-  border: none;
   padding: 10px;
   border-radius: 10px;
   outline: none;
   color: white;
+  border: none; 
 }
 
 .inputBox:focus {

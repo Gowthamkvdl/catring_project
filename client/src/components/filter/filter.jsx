@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./filter.css";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
@@ -39,9 +39,9 @@ const Filter = ({ query, setQuery, loadMore }) => {
 
   const resetDate = () => {
     setQuery((prevQuery) => ({ ...prevQuery, date: "" }));
-    toast.success("Date have been reset!",{
-      id:"reset date"
-    })
+    toast.success("Date have been reset!", {
+      id: "reset date",
+    });
   };
 
   return (
@@ -62,6 +62,7 @@ const Filter = ({ query, setQuery, loadMore }) => {
               type="text"
               name="location"
               className="form-control shadow-none outline-none"
+              
             />
           </div>
           <div className="col-6 me-0">
