@@ -35,9 +35,9 @@ io.on("connection", (socket) => {
     const receiver = getUser(receiverId);
     if (receiver) {
       io.to(receiver.socketId).emit("getMessage", data);
-      console.log("Message sent to:", receiverId);
+      console.log(`Message "${data.text}" sent to:`, receiverId);
     } else {
-      console.log("User not found:", receiverId);
+      console.log("User is not online", receiverId);
     }
   });
 
