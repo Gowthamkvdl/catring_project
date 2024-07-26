@@ -25,7 +25,7 @@ const contactPage = () => {
     const data = await response.json();
 
     if (data.success) {
-      toast.success("Form Submitted Successfully");
+      toast.success("Message sent successfully");
       event.target.reset();
       setResult("")
     } else {
