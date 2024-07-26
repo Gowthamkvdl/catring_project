@@ -74,8 +74,8 @@ export const login = async (req, res) => {
     const token = jwt.sign(
       {
         id: user.userId,
-        // secure: true,
-        // sameSite: 'None',
+        httpOnly: true,
+        secure: true,
       },
       process.env.JWT_SECRET_KEY,
       {
@@ -86,8 +86,7 @@ export const login = async (req, res) => {
 
     res
       .cookie("token", token, {
-        httpOnly: true,
-        secure : true,
+        
         maxAge: age,
       })
       .json(userInfo);
