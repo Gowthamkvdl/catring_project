@@ -31,6 +31,7 @@ const aboutPage = () => {
                   </p>
                 </div>
               </Fade>
+              <hr className="w-75 text-center mx-auto" />
             </div>
           </div>
           <div className="row">
