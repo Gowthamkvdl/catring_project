@@ -16,7 +16,7 @@ const aboutPage = () => {
               <img src={problemSolving} className="img-fluid " alt="" />
             </div>
             <div className="col-12 col-md-6">
-              <div className="text-center fs-3 mt-3 mb-4">
+              <div className=" fs-3 mt-3 mb-4">
                 The Challenges We Address
               </div>
               <Fade triggerOnce duration={500}>
@@ -42,7 +42,7 @@ const aboutPage = () => {
             <div className="col-12 col-lg-5 mx-auto p-3 ">
               <Fade triggerOnce duration={500}>
                 <div className="">
-                  <h3 className="text-center title fs-1 mb-3">
+                  <h3 className=" title fs-1 mb-3">
                     For Server Staff
                   </h3>
                   <p className="content fs-5 text-indend">
@@ -58,7 +58,7 @@ const aboutPage = () => {
             <div className="col-12 col-lg-5 mx-auto p-3">
               <Fade triggerOnce duration={500}>
                 <div className="">
-                  <h3 className="text-center title fs-1 mb-3">
+                  <h3 className=" title fs-1 mb-3">
                     For Contractors
                   </h3>
                   <p className="content fs-5 text-indend">
@@ -74,7 +74,7 @@ const aboutPage = () => {
           </div>
 
           <section>
-            <h4 className="fs-3 text-center">A Win-Win for All</h4>
+            <h4 className="fs-3">A Win-Win for All</h4>
             <p className="text-center content">
               We make event staffing effortless and efficient, empowering
               servers and helping contractors achieve event success.
