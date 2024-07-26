@@ -108,7 +108,7 @@ const input = () => {
           className="link"
         >
           <button className="searchButton">
-            <span className="span mt-1">
+            <span className="span mt-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
