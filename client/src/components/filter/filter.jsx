@@ -14,7 +14,7 @@ const Filter = ({ query, setQuery, loadMore }) => {
     const { name, value } = e.target;
     setQuery((prevQuery) => ({
       ...prevQuery,
-      [name]: value,
+      [name]: value.trim(),
     }));
   };
 

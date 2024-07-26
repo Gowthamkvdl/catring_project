@@ -1,7 +1,7 @@
 import React from "react";
 import "./inputField.css";
 
-const InputField = ({ label, inputType, inputName }) => {
+const InputField = ({ label, inputType, inputName, max, min }) => {
   return (
     <div className="inputField mt-4">
       <div className="wave-group">
