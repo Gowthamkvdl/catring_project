@@ -68,7 +68,7 @@ const Navbar = () => {
         >
           <div className="offcanvas-header">
             <h5 className="offcanvas-title fs-1" id="offcanvasDarkNavbarLabel">
-              CATRING
+              CATRING BOYS
             </h5>
             <button
               type="button"
