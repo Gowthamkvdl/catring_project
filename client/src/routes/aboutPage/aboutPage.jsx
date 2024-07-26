@@ -71,8 +71,6 @@ const aboutPage = () => {
                 </div>
               </Fade>
             </div>
-          </div>
-
           <section>
             <h4 className="fs-3">A Win-Win for All</h4>
             <p className="text-center content">
@@ -80,6 +78,8 @@ const aboutPage = () => {
               servers and helping contractors achieve event success.
             </p>
           </section>
+          </div>
+
         </div>
       </div>
     </div>
