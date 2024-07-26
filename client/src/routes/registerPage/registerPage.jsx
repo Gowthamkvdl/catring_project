@@ -22,6 +22,13 @@ const registerPage = () => {
     const city = formData.get("city");
     const password = formData.get("password");
 
+    console.log(username)
+    console.log(email)
+    console.log(phone)
+    console.log(age)
+    console.log(city)
+    console.log(password)
+
     try {
       setLoading(true);
       const res = await apiRequest.post("/auth/register", {
