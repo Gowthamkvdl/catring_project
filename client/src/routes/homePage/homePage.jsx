@@ -23,7 +23,7 @@ const homePage = () => {
         <div className="row h-100lvh ">
           <div className="col-12 col-xl-7">
             <div className="hero-section mt-lg-0 mt-3 flex-column d-flex justify-content-center align-item-center">
-              <div className="hero-text mb-2">
+              <div className="hero-text mb-3">
                 <span className="">
                   Effortless Connections for Exceptional Events.
                 </span>
