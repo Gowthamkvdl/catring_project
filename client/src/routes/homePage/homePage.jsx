@@ -9,7 +9,7 @@ import { Fade } from "react-awesome-reveal";
 
 const homePage = () => {
   const statements = [
-    "Effortlessly Bringing Caterers and Servers Together",
+    "Effortlessly connecting Caterers and Servers.",
     "Effortless Connections for Exceptional Events",
   ];
 
@@ -18,7 +18,7 @@ const homePage = () => {
   React.useEffect(() => {
     const typed = new Typed(typingText.current, {
       strings: [
-        "ly Bringing Caterers and Servers Together.",
+        "ly connecting Caterers and Servers.",
         "&nbsp;Connections for Exceptional Events.",
       ],
       typeSpeed: 65,
