@@ -55,13 +55,19 @@ const registerPage = () => {
           <img src={jobHuntSvg} alt="" />
         </div>
         <div className="col-12 col-lg-6 p-4 pt-0 p-md-5 form">
-          <BackBtn color="black"/>
+          <BackBtn color="black" />
           <h1 className="title-bg-white">Register</h1>
           <form action="" onSubmit={handleSubmit}>
             <InputField
               label={"Enter Your UserName"}
               inputType={"text"}
               inputName={"username"}
+              minLength={3}
+              maxLength={15}
+              pattern={"^[a-z0-9_]+$"}
+              title={
+                "Username should be 3-15 characters long and can only contain letters, numbers, and underscores. No spaces or special symbols are allowed."
+              }
             />
             <InputField
               label={"Enter Your Email"}

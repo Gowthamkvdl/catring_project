@@ -1,7 +1,7 @@
 import React from "react";
 import "./inputField.css";
 
-const InputField = ({ label, inputType, inputName, maxLength, minLength, min }) => {
+const InputField = ({ label, inputType, inputName, maxLength, minLength, min, pattern }) => {
   return (
     <div className="inputField mt-4">
       <div className="wave-group">
@@ -12,6 +12,7 @@ const InputField = ({ label, inputType, inputName, maxLength, minLength, min }) 
           minLength={minLength}
           maxLength={maxLength}
           min={min}
+          pattern={pattern}
           className="input bg-light"
         />
         <span className="bar"></span>
