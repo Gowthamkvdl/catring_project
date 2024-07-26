@@ -76,7 +76,7 @@ export const login = async (req, res) => {
         id: user.userId,
         httpOnly: true,
         secure: true,
-        SameSite:"None"
+        
       },
       process.env.JWT_SECRET_KEY,
       {
@@ -87,7 +87,7 @@ export const login = async (req, res) => {
 
     res
       .cookie("token", token, {
-        
+        SameSite:"None",
         maxAge: age,
       })
       .json(userInfo);
