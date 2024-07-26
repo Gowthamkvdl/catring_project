@@ -113,7 +113,7 @@ const SinglePage = () => {
             Delete Post
           </button>
           <button
-          disabled={disabling}
+            disabled={disabling}
             type="button"
             onClick={handleDisablePost}
             className={`btn btn-secondary me-2 float-end ${
@@ -222,7 +222,7 @@ const SinglePage = () => {
             />
           </div>
           <div className="btns d-flex gap-2 mt-2">
-            <div className="chat w-100">
+            <div className="chat rounded-2 w-100">
               <button className="btn w-100 btn-warning" onClick={handleAddChat}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -237,7 +237,7 @@ const SinglePage = () => {
                 Chat
               </button>
             </div>
-            <div className="save w-100">
+            <div className="save rounded-2 w-100">
               <button className="btn w-100 btn-warning" onClick={handleSave}>
                 {saved ? (
                   <svg
