@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import "./chat.css";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 import { format } from "timeago.js";
@@ -278,22 +279,29 @@ const Chat = ({ items }) => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header d-flex justify-content-between ">
-              <div className="user w-100 d-flex align-items-center ">
-                <img
-                  src={
-                    chatloading
-                      ? dummyProfilePic
-                      : chatMsg?.receiver?.avatar || dummyProfilePic
-                  }
-                  className="navProPic"
-                  height="50px"
-                  alt=""
-                />
-                <div className="name fs-5 mx-2 text-uppercase">
-                  {!chatloading && chatMsg?.receiver?.username}
+              <Link
+                className="link"
+                to={"/user-profile/?id=" + chatMsg?.receiver?.userId}
+              >
+                <div className="user w-100 d-flex align-items-center ">
+                  <img
+                    src={
+                      chatloading
+                        ? dummyProfilePic
+                        : chatMsg?.receiver?.avatar || dummyProfilePic
+                    }
+                    className="navProPic"
+                    height="50px"
+                    alt=""
+                  />
+                  <div className="name fs-5 mx-2 text-uppercase">
+                    {!chatloading && chatMsg?.receiver?.username}
+                  </div>
+                  {typing.status && (
+                    <span className="fw-lighter">typing...</span>
+                  )}
                 </div>
-                {typing.status && <span className="fw-lighter">typing...</span>}
-              </div>
+              </Link>
               <button
                 className="btn btn-danger ms-auto me-3"
                 title="Delete Chat"

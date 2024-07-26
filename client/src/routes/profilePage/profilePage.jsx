@@ -90,12 +90,12 @@ const profilePage = () => {
               toast
             </button> */}
           </h2>
-          <div className="profile mt-4 row">
-            <div className="profilePic  d-flex p-5 pb-3 pt-2 p-md-0 pb-md-0  flex-column col-12 col-md-4">
+          <div className="profile bg-light text-dark mx-2 mx-md-0 py-4 rounded-4 box-shadow mt-4 row">
+            <div className="profilePic  d-flex pb-3  pt-2 p-md-0 pb-md-0  flex-column col-12 col-md-4">
               <img
                 src={currentUser.avatar || dummyProfilePic}
                 alt=""
-                className="img-fluid mb-2 rounded"
+                className="img-fluid mb-2 px-md-2 rounded-4"
               />
               <div className=" starRating d-flex flex-column align-items-center justify-content-center">
                 <StarRating
@@ -190,9 +190,7 @@ const profilePage = () => {
           </div>
         </div>
         <div className="col-12 col-lg-5">
-          <h2 className="title">
-            CHATS
-          </h2>
+          <h2 className="title">CHATS</h2>
           <Suspense
             fallback={
               <div>{<Loader message={"Loading Chats..."}></Loader>}</div>
@@ -202,7 +200,6 @@ const profilePage = () => {
               {(chatResponse) => <Chat items={chatResponse.data} />}
             </Await>
           </Suspense>
-          
         </div>
       </div>
     </div>

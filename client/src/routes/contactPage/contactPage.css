@@ -12,7 +12,7 @@ label{
     font-size: inherit;
 }
 
-input, textarea{
+input, textarea, select{
     background-color: white !important;
 }
 

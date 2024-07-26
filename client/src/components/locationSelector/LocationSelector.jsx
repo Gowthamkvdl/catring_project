@@ -18,7 +18,7 @@ const LocationSelector = ({ onPositionChange }) => {
 
   return (
     <MapContainer
-      className="locationSelector"
+      className="locationSelector rounded-3"
       center={center}
       zoom={7}
       scrollWheelZoom={false}
