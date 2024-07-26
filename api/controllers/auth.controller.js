@@ -4,11 +4,14 @@ import prisma from "../lib/prisma.js";
 
 export const register = async (req, res) => {
   //  Get values from req.body
-  const { username, email, age, phone, city, password } = req.body;
+  let { username, email, age, phone, city, password } = req.body;
 
-  username = username.toLowerCase()
-  email = email.toLowerCase()
-  city = city.toLowerCase()
+  username = username.trim().toLowerCase();
+  email = email.trim().toLowerCase();
+  city = city.trim().toLowerCase();
+  phone = phone.trim();
+  age = age.trim();
+  password = password.trim();
 
   try {
     // hash password
@@ -56,9 +59,9 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const { username, password } = req.body;
+  let { username, password } = req.body;
 
-  username = username.toLowerCase()
+  username = username.trim().toLowerCase()
   password = password.toLowerCase()
 
   try {
@@ -99,7 +102,7 @@ export const login = async (req, res) => {
       .json(userInfo);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Failed to login! " + error });
+    res.status(500).json({ message: "Failed to login! " + error.message });
   }
 };
 
