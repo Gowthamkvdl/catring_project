@@ -1,11 +1,19 @@
 import React from "react";
 import "./inputField.css";
 
-const InputField = ({ label, inputType, inputName, max, min }) => {
+const InputField = ({ label, inputType, inputName, maxLength, minLength, min }) => {
   return (
     <div className="inputField mt-4">
       <div className="wave-group">
-        <input required type={inputType} name={inputName} className="input bg-light" />
+        <input
+          required
+          type={inputType}
+          name={inputName}
+          minLength={minLength}
+          maxLength={maxLength}
+          min={min}
+          className="input bg-light"
+        />
         <span className="bar"></span>
         <label className="label">
           {label.split(" ").map((char, index) => (

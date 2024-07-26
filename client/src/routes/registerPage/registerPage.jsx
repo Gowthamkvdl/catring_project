@@ -65,18 +65,20 @@ const registerPage = () => {
             />
             <InputField
               label={"Enter Your Email"}
-              inputType={"text"}
+              inputType={"email"}
               inputName={"email"}
             />
             <InputField
               label={"Enter Your Phone"}
               inputType={"text"}
               inputName={"phone"}
+              minLength={10}
             />
             <InputField
               label={"Enter Your Age"}
               inputType={"number"}
               inputName={"age"}
+              min={18}
             />
             <InputField
               label={"Enter Your City"}
@@ -87,6 +89,7 @@ const registerPage = () => {
               label={"Enter Password"}
               inputType={"password"}
               inputName={"password"}
+              minLength={8}
             />
             <Link className="float-end mt-2" to={"/login"}>
               Already have an account?
