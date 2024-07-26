@@ -19,8 +19,8 @@ const loginPage = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
 
-    const username = formData.get("username");
-    const password = formData.get("password");
+    const username = formData.get("username").trim();
+    const password = formData.get("password").trim();
 
     try {
       setLoading(true);
