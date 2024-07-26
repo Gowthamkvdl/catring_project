@@ -15,12 +15,12 @@ const registerPage = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
 
-    const username = formData.get("username");
-    const email = formData.get("email");
-    const phone = formData.get("phone");
-    const age = formData.get("age");
-    const city = formData.get("city");
-    const password = formData.get("password");
+    const username = formData.get("username").trim();
+    const email = formData.get("email").trim();
+    const phone = formData.get("phone").trim();
+    const age = formData.get("age").trim();
+    const city = formData.get("city").trim();
+    const password = formData.get("password").trim();
 
     try {
       setLoading(true);
