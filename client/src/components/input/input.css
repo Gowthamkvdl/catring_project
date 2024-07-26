@@ -56,8 +56,6 @@
 }
 
 .searchButton .span {
-  margin-bottom: 3px;
-  margin-left: 2px;
   position: relative;
   font-size: 25px;
   z-index: 2;
