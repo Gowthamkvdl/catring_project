@@ -84,7 +84,7 @@ const profileUpdatePage = () => {
         <div className="row">
           <div className="col-12 col-md-7">
             <h2 className="title">
-              EDIT USER PROFILE
+              EDIT PROFILE
               <button
                 type="button"
                 data-bs-toggle="modal"
