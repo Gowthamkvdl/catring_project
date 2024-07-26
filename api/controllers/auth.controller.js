@@ -13,7 +13,7 @@ export const register = async (req, res) => {
     //Check if the user already exisits by username, email address and phone
     const existUsername = await prisma.user.findFirst({
       where: {
-        username: username,
+        username: username.toLowerCase(),
       },
     });
     if (existUsername) {
