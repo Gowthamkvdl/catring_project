@@ -133,7 +133,7 @@ const profilePage = () => {
           <div className="row my-3">
             <div className="col-6"><button
               onClick={handleAddChat}
-              className="btn mt-3 w-100 btn-warning"
+              className="btn w-100 btn-warning"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
