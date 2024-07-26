@@ -1,39 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
 import "./homePage.css";
 import Input from "../../components/input/input";
-import Typed from "typed.js";
 import ArrowBtn from "../../components/arrowBtn/arrowBtn";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import profiling from "../../assets/profiling.svg";
 import { Fade } from "react-awesome-reveal";
 
 const homePage = () => {
   const statements = [
-    "Effortlessly connecting Caterers and Servers.",
+    "Effortlessly bringing Caterers and Servers together.",
     "Effortless Connections for Exceptional Events",
   ];
-
-  const typingText = React.useRef(null);
-
-  React.useEffect(() => {
-    const typed = new Typed(typingText.current, {
-      strings: [
-        "ly connecting Caterers and Servers.",
-        "&nbsp;Connections for Exceptional Events.",
-      ],
-      typeSpeed: 65,
-      backSpeed: 30,
-      loop: true,
-      smartBackspace: true,
-      backDelay: 3000,
-      showCursor: false,
-    });
-
-    return () => {
-      // Destroy Typed instance during cleanup to stop animation
-      typed.destroy();
-    };
-  }, []);
 
   const navigate = useNavigate();
   const handleClick = (e) => {
@@ -48,8 +24,9 @@ const homePage = () => {
           <div className="col-12 col-xl-7">
             <div className="hero-section mt-lg-0 mt-3 flex-column d-flex justify-content-center align-item-center">
               <div className="hero-text">
-                <span className="">Effortless</span>
-                <span ref={typingText}></span>
+                <span className="">
+                  Effortless Connections for Exceptional Events
+                </span>
               </div>
               <Fade delay={100} triggerOnce>
                 <p className=" fs-5 d-none d-md-block">
