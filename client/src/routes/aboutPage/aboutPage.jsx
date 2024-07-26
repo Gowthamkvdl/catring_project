@@ -72,14 +72,13 @@ const aboutPage = () => {
               </Fade>
             </div>
           <section>
-            <h4 className="fs-3">A Win-Win for All</h4>
+            <h4 className="fs-3 text-center">A Win-Win for All</h4>
             <p className="text-center content">
               We make event staffing effortless and efficient, empowering
               servers and helping contractors achieve event success.
             </p>
           </section>
           </div>
-
         </div>
       </div>
     </div>
