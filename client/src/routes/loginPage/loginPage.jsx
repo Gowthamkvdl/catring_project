@@ -21,7 +21,8 @@ const loginPage = () => {
 
     const username = formData.get("username");
     const password = formData.get("password");
-    console.log(username,password)
+    console.log(username)
+    console.log(password)
 
     try {
       setLoading(true);
