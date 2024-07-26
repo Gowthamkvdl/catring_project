@@ -53,7 +53,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   const { username, password } = req.body;
-  
+
   try {
     // CHECK IF THE USER EXISTS
     const user = await prisma.user.findUnique({
@@ -62,21 +62,18 @@ export const login = async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: "Invalid Credentials!" });
     }
-    //CHECK IF THE PASSOWRD IS CORRECT
+    // CHECK IF THE PASSWORD IS CORRECT
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       return res.status(401).json({ message: "Incorrect Password!" });
     }
-    
-    //GENERATE COOKIE TOKEN AND SEND IT TO THE USER
+
+    // GENERATE COOKIE TOKEN AND SEND IT TO THE USER
     const age = 1000 * 60 * 60 * 24 * 7;
-    
+
     const token = jwt.sign(
       {
         id: user.userId,
-        httpOnly: true,
-        secure: true,
-        
       },
       process.env.JWT_SECRET_KEY,
       {
@@ -87,17 +84,18 @@ export const login = async (req, res) => {
 
     res
       .cookie("token", token, {
-        SameSite:"None",
+        httpOnly: true,
+        secure: true,
+        sameSite: "None", 
         maxAge: age,
       })
       .json(userInfo);
-
-      console.log(res.data)
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Failed to login! " + error });
   }
 };
+
 
 export const logout = (req, res) => {
   res.clearCookie("token").status(200).json({ message: "Logout Successful" });
