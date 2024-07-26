@@ -75,6 +75,8 @@ export const login = async (req, res) => {
       {
         id: user.userId,
         // isAdmin: true,
+        secure: true,
+        sameSite: 'None',
       },
       process.env.JWT_SECRET_KEY,
       {
