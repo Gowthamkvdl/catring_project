@@ -32,8 +32,8 @@ const aboutPage = () => {
                 </div>
               </Fade>
             </div>
-          </div>
               <hr className="w-75 text-center mx-auto" />
+          </div>
           <div className="row">
             <div className="text-center fs-3 mt-3 mb-4">
               What problem we are solving?

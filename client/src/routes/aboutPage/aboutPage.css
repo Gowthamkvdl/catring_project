@@ -6,3 +6,9 @@
 .about{
     color: var(--light);
 }
+
+hr{
+    height: 3px;
+    color: var(--dark);
+    border-radius: 2px;
+}
