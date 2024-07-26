@@ -7,8 +7,3 @@
     color: var(--light);
 }
 
-hr{
-    height: 3px;
-    color: var(--light);
-    border-radius: 2px;
-}
