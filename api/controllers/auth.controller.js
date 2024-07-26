@@ -6,6 +6,10 @@ export const register = async (req, res) => {
   //  Get values from req.body
   const { username, email, age, phone, city, password } = req.body;
 
+  username = username.toLowerCase()
+  email = email.toLowerCase()
+  city = city.toLowerCase()
+
   try {
     // hash password
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -13,7 +17,7 @@ export const register = async (req, res) => {
     //Check if the user already exisits by username, email address and phone
     const existUsername = await prisma.user.findFirst({
       where: {
-        username: username.toLowerCase(),
+        username: username,
       },
     });
     if (existUsername) {
@@ -53,6 +57,10 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   const { username, password } = req.body;
+
+  username = username.toLowerCase()
+  password = password.toLowerCase()
+
   try {
     // CHECK IF THE USER EXISTS
     const user = await prisma.user.findUnique({
