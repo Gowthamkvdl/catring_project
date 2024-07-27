@@ -71,7 +71,7 @@ const NewPostPage = () => {
         <div className="row box-shadow rounded-4 bg-light newPostPage  mx-1">
           <div className="col-12 p-4 col-lg-7">
             <div className="back-bg-white">
-            <BackBtn color="black" />
+              <BackBtn color="black" />
             </div>
             <div className="mb-3">
               <h3 className="title-bg-white">New Event Post</h3>
@@ -175,7 +175,7 @@ const NewPostPage = () => {
                   Vegetable Cutting
                 </label>
                 <select
-                  required
+                  defaultValue={"no"}
                   id="vegetableCutting"
                   name="vegetableCutting"
                   className="form-select shadow-none"
@@ -192,7 +192,7 @@ const NewPostPage = () => {
                   Bus Fare
                 </label>
                 <select
-                  required
+                  defaultValue={"no"}
                   id="busFare"
                   name="busFare"
                   className="form-select shadow-none"
@@ -207,7 +207,7 @@ const NewPostPage = () => {
                   Experience
                 </label>
                 <select
-                  required
+                  defaultValue={"no"}
                   id="experience"
                   name="experience"
                   className="form-select shadow-none"
