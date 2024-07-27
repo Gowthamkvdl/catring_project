@@ -59,7 +59,7 @@ const aboutPage = () => {
                   <p className="content fs-5 text-indend">
                     Struggling to find reliable and skilled staff for your
                     catering events? Our platform connects you with experienced
-                    servers and staff who are ready to work. Easily Hire the perfect team to
+                    servers and staff who are ready to work. Easily hire the perfect team to
                     ensure your events run smoothly. Simplify your hiring
                     process and focus on delivering exceptional service.
                   </p>
