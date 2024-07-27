@@ -110,8 +110,8 @@ const Navbar = () => {
               {currentUser ? (
                 <Link to="/profile">
                   <div
-                    title="Profile"
-                    className="ms-3 nav-item userInfo d-flex align-items-center gap-2"
+                    title="Profile "
+                    className="ms-3 nav-item p-2 box-shadow userInfo d-flex align-items-center gap-2"
                   >
                     <img
                       src={
