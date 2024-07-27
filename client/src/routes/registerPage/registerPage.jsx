@@ -59,7 +59,7 @@ const registerPage = () => {
           <h1 className="title-bg-white">Register</h1>
           <form action="" onSubmit={handleSubmit}>
             <InputField
-              label={"Enter Your UserName"}
+              label={"UserName"}
               inputType={"text"}
               inputName={"username"}
               minLength={3}
@@ -71,30 +71,30 @@ const registerPage = () => {
             />
 
             <InputField
-              label={"Enter Your Email"}
+              label={"Email"}
               inputType={"email"}
               inputName={"email"}
             />
             <InputField
-              label={"Enter Your Phone"}
+              label={"Phone"}
               inputType={"text"}
               inputName={"phone"}
               minLength={10}
               maxLength={10}
             />
             <InputField
-              label={"Enter Your Age"}
+              label={"Age"}
               inputType={"number"}
               inputName={"age"}
               min={18}
             />
             <InputField
-              label={"Enter Your City"}
+              label={"City"}
               inputType={"text"}
               inputName={"city"}
             />
             <InputField
-              label={"Enter Password"}
+              label={"Password"}
               inputType={"password"}
               inputName={"password"}
               minLength={8}
