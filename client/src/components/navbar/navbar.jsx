@@ -111,7 +111,7 @@ const Navbar = () => {
                 <Link to="/profile">
                   <div
                     title="Profile "
-                    className="ms-3 nav-item p-2 box-shadow userInfo d-flex align-items-center gap-2"
+                    className="ms-3 nav-item p-3 rounded-3 box-shadow userInfo d-flex align-items-center gap-2"
                   >
                     <img
                       src={
