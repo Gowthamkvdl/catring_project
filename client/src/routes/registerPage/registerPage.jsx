@@ -79,6 +79,7 @@ const registerPage = () => {
               inputType={"text"}
               inputName={"phone"}
               minLength={10}
+              maxLength={10}
             />
             <InputField
               label={"Enter Your Age"}
