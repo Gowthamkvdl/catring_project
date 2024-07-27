@@ -33,7 +33,8 @@
   margin-right: 3.5px;
 }
 
-.inputField .wave-group .input:focus ~ .label .label-char {
+.inputField .wave-group .input:not(:placeholder-shown):focus ~ .label .label-char,
+.inputField .wave-group .input:not(:placeholder-shown) ~ .label .label-char {
   transform: translateY(-20px);
   font-size: 14px;
   color: #5264AE;
