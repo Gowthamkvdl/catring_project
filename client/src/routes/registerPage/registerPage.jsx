@@ -64,7 +64,7 @@ const registerPage = () => {
               inputName={"username"}
               minLength={3}
               maxLength={15}
-              pattern={"^\s*[a-zA-Z0-9_]+\s*$"}
+              pattern={"^[a-zA-Z0-9_]+$"}
               title={
                 "Username should be 3-15 characters long and can only contain letters, numbers, and underscores. No spaces or special symbols are allowed."
               }
