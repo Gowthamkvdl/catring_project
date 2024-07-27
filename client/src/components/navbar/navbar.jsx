@@ -61,7 +61,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className={`offcanvas offcanvas-top`}
+          className={`offcanvas h-75 offcanvas-top`}
           tabIndex="-1"
           id="offcanvasDarkNavbar"
           aria-labelledby="offcanvasDarkNavbarLabel"
