@@ -14,6 +14,7 @@ const InputField = ({ label, inputType, inputName, maxLength, minLength, min, pa
           min={min}
           pattern={pattern}
           title={title}
+          placeholder=" "
           className="input bg-light"
         />
         <span className="bar"></span>
