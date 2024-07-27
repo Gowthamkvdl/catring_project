@@ -47,8 +47,8 @@ const Navbar = () => {
         }}
       />
       <div className="container">
-        <a className="navbar-brand fw-bold fs-3" href="/">
-          CATRING
+        <a className="navbar-brand fs-3" href="/">
+          CATRING BOYS
         </a>
         <button
           className={`navbar-toggler shadow-none bg-dark`}
