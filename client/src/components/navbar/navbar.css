@@ -1,5 +1,7 @@
 .navbar{
     background-color: var(--dark);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 
