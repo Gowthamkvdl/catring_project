@@ -48,6 +48,10 @@
   margin-right: 0;
 }
 
+.inputField .wave-group .input::placeholder {
+  color: #111111;
+}
+
 .inputField .wave-group .bar {
   position: relative;
   display: block;
