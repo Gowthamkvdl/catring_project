@@ -4,7 +4,8 @@
     border-bottom-right-radius: 20px;
 }
 
-.offcanvas-body{
+.offcanvas{
+    height: 400px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
