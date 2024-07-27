@@ -32,7 +32,7 @@ const aboutPage = () => {
                 </div>
               </Fade>
             </div>
-              <hr className="text-center mx-auto" />
+            <hr className="text-center mx-auto" />
           </div>
           <div className="row">
             <div className="text-center fs-3 mt-3 mb-4">
@@ -57,11 +57,11 @@ const aboutPage = () => {
                 <div className="">
                   <h3 className=" title fs-1 mb-3">For Contractors</h3>
                   <p className="content fs-5 text-indend">
-                    Finding it hard to discover exciting job opportunities in
-                    the catering industry? Our platform allows you to connect
-                    with top contractors, showcase your skills, and find work
-                    that fits your schedule. Streamline your job search and
-                    secure the perfect gig with ease.
+                    Struggling to find reliable and skilled staff for your
+                    catering events? Our platform connects you with experienced
+                    servers and staff who are ready to work. Easily Hire the perfect team to
+                    ensure your events run smoothly. Simplify your hiring
+                    process and focus on delivering exceptional service.
                   </p>
                 </div>
               </Fade>
