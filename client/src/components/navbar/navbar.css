@@ -5,9 +5,12 @@
 }
 
 .offcanvas{
-    min-height:500px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+}
+
+.offcanvas-body{
+    max-height:600px;
 }
 
 
