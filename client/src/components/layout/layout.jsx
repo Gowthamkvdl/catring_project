@@ -71,7 +71,7 @@ export function Layout() {
           &copy;2024 Catring Boys | All Rights Reserved
         </p>
         <p className="text-dark text-center">
-          <a href="https://storyset.com/">
+          <a className="text-dark" href="https://storyset.com/">
             Illustrations by Storyset
           </a>
         </p>
