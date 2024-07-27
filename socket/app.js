@@ -7,7 +7,6 @@ const io = new Server({
 });
 
 let onlineUsers = [];
-
 const addUser = (userId, socketId) => {
   const userExists = onlineUsers.find((user) => user.userId === userId);
   if (!userExists) {
