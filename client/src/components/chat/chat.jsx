@@ -72,47 +72,11 @@ const Chat = ({ items }) => {
 
     try {
       setSending(true);
-
-      // Create a temporary message object
-      const tempMessage = {
-        userId: { $oid: Date.now().toString() }, // Temporary ID using current timestamp
-        text,
-        userId: currentUser.id, // Assuming you have currentUser available
-        chatId: chatMsg.chatId, // Ensure chatId is in the same format
-        createdAt: { $date: { $numberLong: Date.now().toString() } }, // Current timestamp
-      };
-
-      // Optimistically update the chat state
+      const res = await apiRequest.post("/message/" + chatMsg.chatId, { text });
       setChatMsg((prev) => ({
         ...prev,
-        messages: [...prev.messages, tempMessage],
+        messages: [...prev.messages, res.data],
       }));
-
-      setItemsArray((prevItemsArray) =>
-        prevItemsArray.map((chat) =>
-          chat.chatId === chatMsg.chatId
-            ? {
-                ...chat,
-                lastMessage: tempMessage.text,
-                seenBy: [tempMessage.userId],
-              }
-            : chat
-        )
-      );
-
-      // Send the message to the database
-      const res = await apiRequest.post("/message/" + chatMsg.chatId.$oid, {
-        text,
-      });
-
-      // Update the temporary message with the response data
-      setChatMsg((prev) => ({
-        ...prev,
-        messages: prev.messages.map((msg) =>
-          msg._id.$oid === tempMessage._id.$oid ? res.data : msg
-        ),
-      }));
-
       setItemsArray((prevItemsArray) =>
         prevItemsArray.map((chat) =>
           chat.chatId === chatMsg.chatId
@@ -124,43 +88,12 @@ const Chat = ({ items }) => {
             : chat
         )
       );
-
-      // Clear the input field
       e.target.reset();
-
-      // Emit the message via socket
       socket.emit("sendMessage", {
         receiverId: chatMsg.receiver.userId,
         data: res.data,
       });
     } catch (error) {
-      toast.error("Something went wrong! while sending message", {
-        id: "message sending error",
-      });
-      // Remove the temporary message in case of an error
-      setChatMsg((prev) => ({
-        ...prev,
-        messages: prev.messages.filter(
-          (msg) => msg._id.$oid !== tempMessage._id.$oid
-        ),
-      }));
-
-      setItemsArray((prevItemsArray) =>
-        prevItemsArray.map((chat) =>
-          chat.chatId === chatMsg.chatId
-            ? {
-                ...chat,
-                lastMessage: chat.messages.length
-                  ? chat.messages[chat.messages.length - 1].text
-                  : "",
-                seenBy: chat.messages.length
-                  ? chat.messages[chat.messages.length - 1].seenBy
-                  : [],
-              }
-            : chat
-        )
-      );
-
       console.log(error);
       toast.error("Something went wrong! Try reloading.", {
         id: "send error",
@@ -168,7 +101,6 @@ const Chat = ({ items }) => {
     } finally {
       setSending(false);
     }
-
   };
 
   const updatelastMessage = (data) => {
