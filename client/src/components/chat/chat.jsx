@@ -74,7 +74,7 @@ const Chat = ({ items }) => {
     const tempMessage = {
       _id: Date.now().toString(), // Temporary ID using current timestamp
       text,
-      userId: currentUser.id, // Assuming you have currentUser available
+      userId: chatMsg.receiver.userId, // Assuming you have currentUser available
       chatId: chatMsg.chatId,
       createdAt: new Date().toISOString(), // Current timestamp in ISO format
     };
