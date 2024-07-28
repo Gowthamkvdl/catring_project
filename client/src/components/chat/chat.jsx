@@ -297,10 +297,10 @@ const Chat = ({ items }) => {
                   <div className="name fs-5 mx-2 text-uppercase">
                     {!chatloading && chatMsg?.receiver?.username}
                   </div>
+                </div>
                   {typing.status && typing.chatId === chatMsg?.chatId  && (
                     <i className="fw-lighter">typing...</i>
                   )}
-                </div>
               </Link>
               <button
                 className="btn btn-danger ms-auto me-3"
