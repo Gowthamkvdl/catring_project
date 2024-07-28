@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CallButton = () => {
+const CallButton = ({phoneNumber}) => {
   const openPhoneApp = (phoneNumber) => {
     window.location.href = `tel:${phoneNumber}`;
   };
