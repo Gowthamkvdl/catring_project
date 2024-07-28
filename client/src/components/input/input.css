@@ -64,7 +64,7 @@
 }
 
 .searchButton:hover .span{
- color: yellow;
+ color: #ffc823;
 }
 
 .searchButton::before {
