@@ -10,7 +10,7 @@ const GmailButton = ({ email, subject, body }) => {
 
   return (
     <button
-      className="btn btn-sm btn-danger"
+      className="btn btn-sm btn-danger mb-1"
       onClick={() => openGmail(email, subject, body)}
     >
       <ion-icon
