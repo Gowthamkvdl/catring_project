@@ -5,11 +5,11 @@ import { AuthContext } from "../../context/AuthContext";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 import { Toaster } from "react-hot-toast";
 import Theme from "../theme/Theme";
-import { Offcanvas } from "bootstrap";
 
 const Navbar = () => {
   const location = useLocation();
   const offcanvasRef = useRef(null); // Create a ref for the offcanvas element
+  const closeButtonRef = useRef(null); // Create a ref for the close button
 
   const [bg, setBg] = useState("bg-transperant");
   const { currentUser } = useContext(AuthContext);
@@ -31,10 +31,9 @@ const Navbar = () => {
   };
 
   const handleNavLinkClick = () => {
-    // Programmatically hide the offcanvas when a link is clicked
-    if (offcanvasRef.current) {
-      const offcanvasElement = new Offcanvas(offcanvasRef.current);
-      offcanvasElement.hide();
+    // Programmatically click the close button when a link is clicked
+    if (closeButtonRef.current) {
+      closeButtonRef.current.click();
     }
   };
 
@@ -84,6 +83,7 @@ const Navbar = () => {
               className="btn-close custom-dark-btn shadow-none"
               data-bs-dismiss="offcanvas"
               aria-label="Close"
+              ref={closeButtonRef} // Attach the ref to the close button
             ></button>
           </div>
           <div
