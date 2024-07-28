@@ -255,24 +255,22 @@ const SinglePage = () => {
             <h4>Contact</h4>
             <p className="m-0 fs-normal">
               <b>Phone :</b> {post.user.phone}{" "}
-              <div className="float-end">
-                <WhatsappButton
-                  phoneNumber={post.user.phone}
-                  message={"Vanakam"}
-                />{" "}
-                <CallButton phoneNumber={post.user.phone} />{" "}
-              </div>
             </p>
             <p className="m-0 mb-2 pb-md-5 fs-normal">
-              <b>Email :</b> {post.user.email}{" "}
-              <div className="float-end">
-                <GmailButton
-                  email={post.user.email}
-                  subject={"Job Enquiry"}
-                  body={"Hi, I am interested in your job. Please contact me."}
-                />
-              </div>
+              <b>Email :</b> {post.user.email}
             </p>
+            <div className="d-flex gap-3 w-100">
+              <WhatsappButton
+                phoneNumber={post.user.phone}
+                message={"Vanakam"}
+              />{" "}
+              <CallButton phoneNumber={post.user.phone} />{" "}
+              <GmailButton
+                email={post.user.email}
+                subject={"Job Enquiry"}
+                body={"Hi, I am interested in your job. Please contact me."}
+              />
+            </div>
           </div>
           <div className="spm">
             <SinglePointerMap
