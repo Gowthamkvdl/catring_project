@@ -110,12 +110,12 @@ const SinglePage = () => {
       .then(() => {
         console.log("URL copied to clipboard successfully!");
         // Optionally, you can show a success message to the user
-        toast.success("URL copied to clipboard!");
+        toast.success("Post link copied to clipboard!");
       })
       .catch((err) => {
         console.error("Failed to copy URL: ", err);
         // Optionally, you can show an error message to the user
-        toast.error("Failed to copy URL.");
+        toast.error("Failed to copy post link.");
       });
   };
 
