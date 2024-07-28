@@ -207,9 +207,9 @@ const SinglePage = () => {
           <div className="eventDesc fs-normal">
             {post.description}
             <div className=" fs-normal my-2">
-              <b>Address</b>: {post.address}
+              <b>Address</b> : {post.address}
               <br />
-              <b className="mt-2">Number of Staff Required</b>:{" "}
+              <b className="mt-2">Number of Staff Required</b> :{" "}
               {post.noOfStaffsReq}
             </div>
           </div>
@@ -231,38 +231,38 @@ const SinglePage = () => {
           </div> */}
           <div className="extra d-flex gap-md-4 gap-1 flex-wrap my-3">
             <div className="workingHrs bg-text small-text p-2 rounded">
-              Date: <b>{post.startDate} </b>
+              Date : <b>{post.startDate} </b>
             </div>
             <div className="workingHrs bg-text small-text p-2 rounded">
-              TIme: <b>{post.startTime} </b>
+              TIme : <b>{post.startTime} </b>
             </div>
             <div className="workingHrs bg-text small-text p-2 rounded">
-              Total Working Days: <b>{post.workingDays}</b>
+              Total Working Days : <b>{post.workingDays}</b>
             </div>
             <div className="transport bg-text small-text p-2 rounded">
-              Travel Amount: <b>{post.busFare}</b>
+              Travel Amount : <b>{post.busFare}</b>
             </div>
             <div className="vegetables-cutting bg-text small-text p-2 rounded">
-              Vegetables Cutting: <b>{post.vegetableCutting}</b>
+              Vegetables Cutting : <b>{post.vegetableCutting}</b>
             </div>
             <div className="experence bg-text small-text p-2 rounded">
-              Experience: <b>{post.experience}</b>
+              Experience : <b>{post.experience}</b>
             </div>
           </div>
         </div>
         <div className="col-md-5 col-12 h-auto">
           <div className="single-page-contact">
             <h4>Contact</h4>
-            <p className="m-0">
-              <b>Phone:</b> {post.user.phone}{" "}
+            <p className="m-0 fs-normal">
+              <b>Phone :</b> {post.user.phone}{" "}
               <WhatsappButton
                 phoneNumber={post.user.phone}
                 message={"Vanakam"}
               />{" "}
               <CallButton phoneNumber={post.user.phone} />{" "}
             </p>
-            <p className="m-0 mb-2 pb-md-5">
-              <b>Email:</b> {post.user.email}
+            <p className="m-0 mb-2 pb-md-5 fs-normal">
+              <b>Email :</b> {post.user.email}
             </p>
           </div>
           <div className="spm">
