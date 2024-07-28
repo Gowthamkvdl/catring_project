@@ -11,6 +11,7 @@ import { toast } from "react-hot-toast";
 import { SocketContext } from "../../context/SocketContext";
 import shareIcon from "../../assets/share.svg";
 import WhatsappButton from "../../components/contactButtons/WhatsappButton";
+import CallButton from "../../components/contactButtons/CallButton";
 
 const SinglePage = () => {
   const post = useLoaderData();
@@ -252,7 +253,7 @@ const SinglePage = () => {
         <div className="col-md-5 col-12 h-auto">
           <div className="single-page-contact">
             <h4>Contact</h4>
-            <p className="m-0">Phone: {post.user.phone} <WhatsappButton phoneNumber={post.user.phone} message={"Vanakam"} /> </p>
+            <p className="m-0">Phone: {post.user.phone} <WhatsappButton phoneNumber={post.user.phone} message={"Vanakam"} /> <CallButton phoneNumber={post.user.phone} /> </p>
             <p className="m-0 mb-2 pb-md-5">Email: {post.user.email}</p>
           </div>
           <div className="spm">
