@@ -190,7 +190,6 @@ const NewPostPage = () => {
                   name="vegetableCutting"
                   className="form-select shadow-none"
                 >
-                  <option></option>
                   <option value="no">No</option>
                   <option value="yes">Yes</option>
                 </select>
@@ -207,7 +206,6 @@ const NewPostPage = () => {
                   name="busFare"
                   className="form-select shadow-none"
                 >
-                  <option></option>
                   <option value="no">No</option>
                   <option value="yes">Yes</option>
                 </select>
@@ -222,7 +220,6 @@ const NewPostPage = () => {
                   name="experience"
                   className="form-select shadow-none"
                 >
-                  <option></option>
                   <option value="no">No</option>
                   <option value="yes">Yes</option>
                 </select>
