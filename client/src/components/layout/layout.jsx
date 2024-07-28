@@ -70,7 +70,7 @@ export function Layout() {
         <p className="text-dark text-center">
           &copy;2024 Catring Boys | All Rights Reserved
         </p>
-        <p className="text-dark text-center">
+        <p className="text-dark attribution text-center">
           <a className="text-dark" href="https://storyset.com/">
             Illustrations by Storyset
           </a>
@@ -96,13 +96,7 @@ export function AuthLayout() {
         <Outlet />
       </div>
       <footer className="footer">
-        <div className="waves">
-          <div className="wave" id="wave1"></div>
-          <div className="wave" id="wave2"></div>
-          <div className="wave" id="wave3"></div>
-          <div className="wave" id="wave4"></div>
-        </div>
-        <ul className="social-icon">
+        <ul className="social-icon p-0">
           <li className="social-icon__item">
             <a className="social-icon__link" href="#">
               <ion-icon name="logo-facebook"></ion-icon>
@@ -124,7 +118,7 @@ export function AuthLayout() {
             </a>
           </li>
         </ul>
-        <ul className="menu">
+        <ul className="menu p-0">
           <li className="menu__item">
             <Link className="menu__link" to={"/"}>
               Home
@@ -151,7 +145,14 @@ export function AuthLayout() {
             </Link>
           </li>
         </ul>
-        <p>&copy;2024 Catring | All Rights Reserved</p>
+        <p className="text-dark text-center">
+          &copy;2024 Catring Boys | All Rights Reserved
+        </p>
+        <p className="text-dark attribution text-center">
+          <a className="text-dark" href="https://storyset.com/">
+            Illustrations by Storyset
+          </a>
+        </p>
       </footer>
     </div>
   ); 
