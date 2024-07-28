@@ -7,7 +7,7 @@ const CallButton = ({phoneNumber}) => {
 
   return (
     <button
-      className="btn btn-sm btn-primary mb-1 float-end"
+      className="btn btn-sm btn-primary mb-1 "
       onClick={() => openPhoneApp(phoneNumber)}
     >
       <ion-icon

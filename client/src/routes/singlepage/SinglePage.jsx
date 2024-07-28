@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./singlePage.css";
 import dummyProfile from "../../assets/dummyProfilePic.jpg";
-import Progressbar from "../../components/progressBar/Progressbar";
 import SinglePointerMap from "../../components/singlePointerMap/SinglePointerMap";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -12,6 +11,7 @@ import { SocketContext } from "../../context/SocketContext";
 import shareIcon from "../../assets/share.svg";
 import WhatsappButton from "../../components/contactButtons/WhatsappButton";
 import CallButton from "../../components/contactButtons/CallButton";
+import GmailButton from "../../components/contactButtons/GmailButton";
 
 const SinglePage = () => {
   const post = useLoaderData();
@@ -262,7 +262,12 @@ const SinglePage = () => {
               <CallButton phoneNumber={post.user.phone} />{" "}
             </p>
             <p className="m-0 mb-2 pb-md-5 fs-normal">
-              <b>Email :</b> {post.user.email}
+              <b>Email :</b> {post.user.email}{" "}
+              <GmailButton
+                email={post.user.email}
+                subject={"Job Enquiry"}
+                body={"Hi, I am interested in your job. Please contact me."}
+              />
             </p>
           </div>
           <div className="spm">

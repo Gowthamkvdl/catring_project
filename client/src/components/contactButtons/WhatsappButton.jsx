@@ -10,7 +10,7 @@ const WhatsappButton = ({ phoneNumber, message }) => {
 
   return (
     <button
-      className="btn btn-sm btn-primary mb-1 float-end"
+      className="btn btn-sm btn-success mb-1 "
       onClick={() => openWhatsApp(phoneNumber, message)}
     >
       <ion-icon name="logo-whatsapp" style={{ marginTop: "3px" , fontSize: "18px" }}></ion-icon>
