@@ -1,22 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 import { Toaster } from "react-hot-toast";
 import Theme from "../theme/Theme";
+import { Offcanvas } from "bootstrap";
 
 const Navbar = () => {
   const location = useLocation();
+  const offcanvasRef = useRef(null); // Create a ref for the offcanvas element
 
   const [bg, setBg] = useState("bg-transperant");
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     const handleScroll = () => {
-      window.scrollY > 50
-        ? setBg("box-shadow")
-        : setBg("");
+      window.scrollY > 50 ? setBg("box-shadow") : setBg("");
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -28,6 +28,14 @@ const Navbar = () => {
 
   const isActive = (path) => {
     return location.pathname === path ? "active" : "";
+  };
+
+  const handleNavLinkClick = () => {
+    // Programmatically hide the offcanvas when a link is clicked
+    if (offcanvasRef.current) {
+      const offcanvasElement = new Offcanvas(offcanvasRef.current);
+      offcanvasElement.hide();
+    }
   };
 
   return (
@@ -65,6 +73,7 @@ const Navbar = () => {
           tabIndex="-1"
           id="offcanvasDarkNavbar"
           aria-labelledby="offcanvasDarkNavbarLabel"
+          ref={offcanvasRef} // Attach the ref to the offcanvas element
         >
           <div className="offcanvas-header">
             <h5 className="offcanvas-title fs-1" id="offcanvasDarkNavbarLabel">
@@ -81,7 +90,7 @@ const Navbar = () => {
             className={`offcanvas-body d-flex justify-content-center align-items-center`}
           >
             <ul className="navbar-nav align-items-center justify-content-end flex-grow-1 pe-md-3">
-              <Link to="/">
+              <Link to="/" onClick={handleNavLinkClick}>
                 <li className={`nav-item mb-1 `}>
                   <div
                     className={`nav-link ${isActive(
@@ -92,12 +101,12 @@ const Navbar = () => {
                   </div>
                 </li>
               </Link>
-              <Link to="about">
+              <Link to="/about" onClick={handleNavLinkClick}>
                 <li className={`nav-item mb-1 `}>
                   <div className={`nav-link ${isActive("/about")}`}>About</div>
                 </li>
               </Link>
-              <Link to="/contact">
+              <Link to="/contact" onClick={handleNavLinkClick}>
                 <li className={`nav-item mb-1 `}>
                   <div className={`nav-link ${isActive("/contact")}`}>
                     Contact
@@ -129,7 +138,7 @@ const Navbar = () => {
                 </Link>
               ) : (
                 <div className="d-flex flex-column flex-md-row align-items-center">
-                  <Link to="/login">
+                  <Link to="/login" onClick={handleNavLinkClick}>
                     <li className="nav-item mb-1 w-100">
                       <div className="nav-link">
                         <button className="btn btn-warning btn-sm">
@@ -138,7 +147,7 @@ const Navbar = () => {
                       </div>
                     </li>
                   </Link>
-                  <Link to="/register">
+                  <Link to="/register" onClick={handleNavLinkClick}>
                     <li className="nav-item mb-1">
                       <div className="nav-link">
                         <button className="btn btn-warning btn-sm">
