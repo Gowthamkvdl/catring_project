@@ -295,11 +295,11 @@ const Chat = ({ items }) => {
                     alt=""
                   />
                   <div className="div">
-                    <div className="name fs-5 mx-2 text-uppercase">
+                    <div className="name fs-5 ms-2 text-uppercase">
                       {!chatloading && chatMsg?.receiver?.username}
                     </div>
                     {typing.status && typing.chatId === chatMsg?.chatId && (
-                      <div className="fw-lighter">typing...</div>
+                      <div className="fw-lighter mx-2">typing...</div>
                     )}
                   </div>
                 </div>
