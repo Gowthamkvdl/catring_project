@@ -130,16 +130,11 @@ const SinglePage = () => {
           <BackBtn color={"black"} />
           <div className="float-end d-flex gap-2">
             <button
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-              className={`btn btn-danger float-end ${
-                currentUser && post.userId === currentUser.userId
-                  ? ""
-                  : "d-none"
-              }`}
+              className="btn btn-warning flex-fill d-flex justify-content-center align-items-center float-end"
+              onClick={handleShare}
+              title="Share post"
             >
-              Delete Post
+              <img src={shareIcon} alt="" />
             </button>
             <button
               disabled={disabling}
@@ -154,11 +149,16 @@ const SinglePage = () => {
               {postStatus ? "Enable Post" : "Disable Post"}
             </button>
             <button
-              className="btn btn-warning flex-fill d-flex justify-content-center align-items-center float-end"
-              onClick={handleShare}
-              title="Share post"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              className={`btn btn-danger float-end ${
+                currentUser && post.userId === currentUser.userId
+                  ? ""
+                  : "d-none"
+              }`}
             >
-              <img src={shareIcon} alt="" />
+              Delete Post
             </button>
           </div>
           <div className="row">
