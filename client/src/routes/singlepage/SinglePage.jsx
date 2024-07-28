@@ -9,6 +9,7 @@ import apiRequest from "../../lib/apiRequest.js";
 import BackBtn from "../../components/backBtn/BackBtn";
 import { toast } from "react-hot-toast";
 import { SocketContext } from "../../context/SocketContext";
+import shareIcon from "../../assets/share.svg";
 
 const SinglePage = () => {
   const post = useLoaderData();
@@ -102,6 +103,7 @@ const SinglePage = () => {
       <div className="row text-dark box-shadow py-3 p-md-3 mx-1 rounded-3 bg-light">
         <div className="col-md-7 col-12 h-auto">
           <BackBtn color={"black"} />
+          <button className="btn-warning"><img src={shareIcon} alt="" /></button>
           <button
             type="button"
             data-bs-toggle="modal"
