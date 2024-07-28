@@ -130,7 +130,7 @@ const SinglePage = () => {
       <div className="row text-dark box-shadow py-3 p-md-3 mx-1 rounded-3 bg-light">
         <div className="col-md-7 col-12 h-auto">
           <BackBtn color={"black"} />
-          <div className="float-end d-flex gap-2">
+          <div className="float-end d-flex gap-1">
             <button
               className="btn btn-warning flex-fill d-flex justify-content-center align-items-center float-end"
               onClick={handleShare}

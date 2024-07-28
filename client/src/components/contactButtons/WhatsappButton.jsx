@@ -13,7 +13,7 @@ const WhatsappButton = ({ phoneNumber, message }) => {
       className="btn btn-sm btn-success"
       onClick={() => openWhatsApp(phoneNumber, message)}
     >
-      <ion-icon name="logo-whatsapp"></ion-icon>
+      <ion-icon name="logo-whatsapp fs-2" ></ion-icon>
     </button>
   );
 };
