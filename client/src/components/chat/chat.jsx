@@ -294,13 +294,15 @@ const Chat = ({ items }) => {
                     height="50px"
                     alt=""
                   />
-                  <div className="name fs-5 mx-2 text-uppercase">
-                    {!chatloading && chatMsg?.receiver?.username}
+                  <div className="div">
+                    <div className="name fs-5 mx-2 text-uppercase">
+                      {!chatloading && chatMsg?.receiver?.username}
+                    </div>
+                    {typing.status && typing.chatId === chatMsg?.chatId && (
+                      <div className="fw-lighter">typing...</div>
+                    )}
                   </div>
                 </div>
-                  {typing.status && typing.chatId === chatMsg?.chatId  && (
-                    <span className="fw-lighter">typing...</span>
-                  )}
               </Link>
               <button
                 className="btn btn-danger ms-auto me-3"
