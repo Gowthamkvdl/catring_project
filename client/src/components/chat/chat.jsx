@@ -384,7 +384,7 @@ const Chat = ({ items }) => {
                   title="Send"
                   className="float-end btn btn-warning"
                 >
-                  {sending && rollingLoading}
+                  {sending && <img src={rollingLoading}></img>}
                   {!sending && (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
