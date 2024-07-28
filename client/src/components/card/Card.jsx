@@ -51,10 +51,10 @@ const Card = ({ item }) => {
           </div>
         </div>
 
-        <div className="content fs-6 mt-1 m-0 mb-2">
+        <div className="content text-dark fs-6 mt-1 m-0 mb-2">
           <b className="">Number of Staff Required</b> : {item.noOfStaffsReq}
         </div>
-        <div className="eventDesc">{item.description}</div>
+        <div className="eventDesc text-dark">{item.description}</div>
         {/* <div className="bar row d-flex justify-content-center align-items-center">
         <div className="col-12">
           <div className="mb-0 mt-2 float-end">
@@ -66,7 +66,7 @@ const Card = ({ item }) => {
           <Progressbar width={item.noOfStaffsSatisfied} />
         </div>
       </div> */}
-        <div className="extras">
+        <div className="extras text-dark">
           <div className="spec d-flex align-items-center gap-2">
             {item.user && (
               <div className="stars d-flex align-items-center">
