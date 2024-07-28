@@ -98,12 +98,32 @@ const SinglePage = () => {
     }
   };
 
+  const handleShare = () => {
+    // Get the current page URL
+    const url = window.location.href;
+
+    // Copy the URL to the clipboard
+    navigator.clipboard
+      .writeText(url)
+      .then(() => {
+        console.log("URL copied to clipboard successfully!");
+        // Optionally, you can show a success message to the user
+        toast.success("URL copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy URL: ", err);
+        // Optionally, you can show an error message to the user
+        toast.error("Failed to copy URL.");
+      });
+  };
+
+
   return (
     <div className="singlePage navbarHeight container">
       <div className="row text-dark box-shadow py-3 p-md-3 mx-1 rounded-3 bg-light">
         <div className="col-md-7 col-12 h-auto">
           <BackBtn color={"black"} />
-          <button className="btn btn-warning"><img src={shareIcon} alt="" /></button>
+          <button className="btn btn-warning float-end" onClick={handleShare} title="Share post" ><img src={shareIcon} alt="" /></button>
           <button
             type="button"
             data-bs-toggle="modal"
