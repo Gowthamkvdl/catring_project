@@ -256,7 +256,7 @@ const SinglePage = () => {
             <p className="m-0 fs-normal">
               <b>Phone :</b> {post.user.phone}{" "}
             </p>
-            <p className="m-0 fs-normal">
+            <p className="m-0 mb-1 fs-normal">
               <b>Email :</b> {post.user.email}
             </p>
             <div className="d-flex gap-2 mb-2 w-100">
