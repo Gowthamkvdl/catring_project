@@ -252,11 +252,11 @@ const SinglePage = () => {
         </div>
         <div className="col-md-5 col-12 h-auto">
           <div className="single-page-contact">
-            <h2>Contact</h2>
+            <h2 className="fs-3" >Contact</h2>
             <p className="m-0 fs-normal">
               <b>Phone :</b> {post.user.phone}{" "}
             </p>
-            <p className="m-0 mb-2 pb-md-5 fs-normal">
+            <p className="m-0 fs-normal">
               <b>Email :</b> {post.user.email}
             </p>
             <div className="d-flex gap-2 mb-2 w-100">
