@@ -82,7 +82,7 @@ const Navbar = () => {
           >
             <ul className="navbar-nav align-items-center justify-content-end flex-grow-1 pe-md-3">
               <Link to="/">
-                <li className={`nav-item mb-1 `}>
+                <div className={`nav-item mb-1 `}>
                   <div
                     className={`nav-link ${isActive(
                       "/"
@@ -90,12 +90,12 @@ const Navbar = () => {
                   >
                     Home
                   </div>
-                </li>
+                </div>
               </Link>
               <Link to="about">
-                <li className={`nav-item mb-1 `}>
+                <div className={`nav-item mb-1 `}>
                   <div className={`nav-link ${isActive("/about")}`}>About</div>
-                </li>
+                </div>
               </Link>
               <Link to="/contact">
                 <li className={`nav-item mb-1 `}>
