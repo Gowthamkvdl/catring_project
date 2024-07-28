@@ -10,7 +10,10 @@ const CallButton = ({phoneNumber}) => {
       className="btn btn-sm btn-primary mb-1"
       onClick={() => openPhoneApp(phoneNumber)}
     >
-      <ion-icon name="call"></ion-icon>
+      <ion-icon
+        name="call"
+        style={{ marginTop: "3px", fontSize: "20px" }}
+      ></ion-icon>
     </button>
   );
 }
