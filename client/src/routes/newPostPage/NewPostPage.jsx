@@ -11,10 +11,10 @@ const NewPostPage = () => {
     lat: 11.1271225,
     lng: 78.6568942,
   });
-  const [days, setDays] = useState(0);
   const [error, setError] = useState("");
   const [isLodading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const today = new Date().toISOString().split("T")[0];
 
   const handlePositionChange = (newPosition) => {
     setCoordinates(newPosition);
@@ -23,22 +23,28 @@ const NewPostPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const eventName = formData.get("eventName");
-    const salary = formData.get("salary");
-    const city = formData.get("city");
-    const workingDays = formData.get("workingDays");
-    const startDate = formData.get("startDate");
-    const startTime = formData.get("startTime");
-    const noOfStaffs = formData.get("noOfStaff");
-    const experience = formData.get("experience");
-    const vegetableCutting = formData.get("vegetableCutting");
-    const busFare = formData.get("busFare");
-    const address = formData.get("address");
-    const description = formData.get("description");
+    const eventName = formData.get("eventName").trim();
+    const salary = formData.get("salary").trim();
+    const city = formData.get("city").trim();
+    const workingDays = formData.get("workingDays").trim();
+    const startDate = formData.get("startDate").trim();
+    const startTime = formData.get("startTime").trim();
+    const noOfStaffs = formData.get("noOfStaff").trim();
+    const experience = formData.get("experience").trim();
+    const vegetableCutting = formData.get("vegetableCutting").trim();
+    const busFare = formData.get("busFare").trim();
+    const address = formData.get("address").trim();
+    const description = formData.get("description").trim();
 
     try {
       setError("");
       setIsLoading(true);
+      if (coordinates.lat === 11.1271225 || coordinates.log === 78.6568942) {
+        toast.error("Please select your location on the map", {
+          id: "select location",
+        });
+      }
+
       const post = await apiRequest.post("/post", {
         eventName,
         salary: parseInt(salary),
@@ -115,6 +121,7 @@ const NewPostPage = () => {
                   type="text"
                   name="city"
                   className="form-control shadow-none"
+                  min={today}
                 />
               </div>
               <div className="workingHour flex-fill">
@@ -127,9 +134,7 @@ const NewPostPage = () => {
                   type="number"
                   className="form-control shadow-none"
                   name="workingDays"
-                  defaultValue={days}
-                  onChange={(e) => setDays(e.target.value - 1)}
-                  min={0}
+                  min={1}
                 />
               </div>
             </div>
@@ -168,6 +173,7 @@ const NewPostPage = () => {
                   type="number"
                   name="noOfStaff"
                   className="form-control shadow-none"
+                  min={1}
                 />
               </div>
               <div className="w-50 flex-fill">
@@ -227,6 +233,7 @@ const NewPostPage = () => {
                 id="eventLocation"
                 name="address"
                 className="form-control shadow-none"
+                minLength={10}
               ></textarea>
             </div>
             <div className="mb-3">
