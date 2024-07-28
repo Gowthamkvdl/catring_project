@@ -65,7 +65,7 @@ const Filter = ({ query, setQuery, loadMore }) => {
               
             />
           </div>
-          <div className="col-6 me-0">
+          <div className="col-6 me-0 pe-0">
             <label htmlFor="" className="">
               Min salary
             </label>
@@ -96,7 +96,7 @@ const Filter = ({ query, setQuery, loadMore }) => {
             </div>
           </div>
           <div className="row mx-auto p-0 d-flex justify-content-center align-items-end">
-            <div className="col-6">
+            <div className="col-6 pe-0">
               <label htmlFor="" className="">
                 Date
               </label>
