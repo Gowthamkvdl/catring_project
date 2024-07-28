@@ -12,7 +12,7 @@ const CallButton = ({phoneNumber}) => {
     >
       <ion-icon
         name="call"
-        style={{ marginTop: "3px", fontSize: "20px" }}
+        style={{ marginTop: "3px", fontSize: "18px" }}
       ></ion-icon>
     </button>
   );
