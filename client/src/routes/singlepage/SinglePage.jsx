@@ -20,7 +20,7 @@ const SinglePage = () => {
   const { currentUser } = useContext(AuthContext);
   const [deleting, setDeleting] = useState(false);
   const [disabling, setDisabling] = useState(false);
-  console.log(post)
+  console.log(post);
 
   useEffect(() => {
     if (postStatus && post.userId !== currentUser?.userId) {
@@ -56,7 +56,9 @@ const SinglePage = () => {
         data: addChat.data,
       });
       navigate("/profile");
-      toast(`Now ${post.user.username} is added to your Chats`, { id: "addChat" });
+      toast(`Now ${post.user.username} is added to your Chats`, {
+        id: "addChat",
+      });
     } catch (error) {
       console.error("Error adding chat:", error);
       toast.error(error.response.data.message, {
@@ -66,9 +68,9 @@ const SinglePage = () => {
   };
 
   const handleDisablePost = async () => {
-    setDisabling(true)
+    setDisabling(true);
     setPostStatus((prev) => !prev);
-    console.log(post.postId)
+    console.log(post.postId);
     try {
       await apiRequest.put("post/status/" + post.postId);
     } catch (error) {
@@ -81,7 +83,7 @@ const SinglePage = () => {
       toast.success(postStatus ? "Post Enabled " : "Post Disabled", {
         id: "postStatus",
       });
-      setDisabling(false)
+      setDisabling(false);
     }
   };
 
@@ -117,13 +119,12 @@ const SinglePage = () => {
       });
   };
 
-
   return (
     <div className="singlePage navbarHeight container">
       <div className="row text-dark box-shadow py-3 p-md-3 mx-1 rounded-3 bg-light">
         <div className="col-md-7 col-12 h-auto">
           <BackBtn color={"black"} />
-          <button className="btn btn-warning float-end" onClick={handleShare} title="Share post" ><img src={shareIcon} alt="" /></button>
+
           <button
             type="button"
             data-bs-toggle="modal"
@@ -143,6 +144,13 @@ const SinglePage = () => {
             }`}
           >
             {postStatus ? "Enable Post" : "Disable Post"}
+          </button>
+          <button
+            className="btn btn-warning me-2 float-end"
+            onClick={handleShare}
+            title="Share post"
+          >
+            <img src={shareIcon} alt="" />
           </button>
           <div className="row">
             <div className="col-12">
