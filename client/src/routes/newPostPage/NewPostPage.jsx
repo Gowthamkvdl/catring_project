@@ -152,6 +152,7 @@ const NewPostPage = () => {
                   className="form-control shadow-none"
                   id="startDate"
                   name="startDate"
+                  min={today}
                 ></input>
               </div>
               <label for="startTime" className="col-sm-2 col-form-label">
