@@ -146,7 +146,7 @@ const SinglePage = () => {
             {postStatus ? "Enable Post" : "Disable Post"}
           </button>
           <button
-            className="btn btn-warning me-2 float-end"
+            className="btn btn-warning d-flex justify-content-center align-items-center me-2 float-end"
             onClick={handleShare}
             title="Share post"
           >
