@@ -25,4 +25,4 @@ const CallButton = ({ phoneNumber }) => {
 
 
 
-export default {CallButton};
+export default CallButton;
