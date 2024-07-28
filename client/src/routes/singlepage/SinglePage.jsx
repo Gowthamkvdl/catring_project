@@ -110,12 +110,16 @@ const SinglePage = () => {
       .then(() => {
         console.log("URL copied to clipboard successfully!");
         // Optionally, you can show a success message to the user
-        toast.success("Post link copied to clipboard!");
+        toast.success("Post link copied to clipboard!", {
+          id: "copied",
+        });
       })
       .catch((err) => {
         console.error("Failed to copy URL: ", err);
         // Optionally, you can show an error message to the user
-        toast.error("Failed to copy post link.");
+        toast.error("Failed to copy post link.", {
+          id: "copy error",
+        });
       });
   };
 
@@ -124,34 +128,39 @@ const SinglePage = () => {
       <div className="row text-dark box-shadow py-3 p-md-3 mx-1 rounded-3 bg-light">
         <div className="col-md-7 col-12 h-auto">
           <BackBtn color={"black"} />
-
-          <button
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
-            className={`btn btn-danger float-end ${
-              currentUser && post.userId === currentUser.userId ? "" : "d-none"
-            }`}
-          >
-            Delete Post
-          </button>
-          <button
-            disabled={disabling}
-            type="button"
-            onClick={handleDisablePost}
-            className={`btn btn-secondary me-2 float-end ${
-              currentUser && post.userId === currentUser.userId ? "" : "d-none"
-            }`}
-          >
-            {postStatus ? "Enable Post" : "Disable Post"}
-          </button>
-          <button
-            className="btn btn-warning d-flex justify-content-center align-items-center me-2 float-end"
-            onClick={handleShare}
-            title="Share post"
-          >
-            <img src={shareIcon} alt="" />
-          </button>
+          <div className="float-end d-flex gap-2">
+            <button
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              className={`btn btn-danger float-end ${
+                currentUser && post.userId === currentUser.userId
+                  ? ""
+                  : "d-none"
+              }`}
+            >
+              Delete Post
+            </button>
+            <button
+              disabled={disabling}
+              type="button"
+              onClick={handleDisablePost}
+              className={`btn btn-secondary  float-end ${
+                currentUser && post.userId === currentUser.userId
+                  ? ""
+                  : "d-none"
+              }`}
+            >
+              {postStatus ? "Enable Post" : "Disable Post"}
+            </button>
+            <button
+              className="btn btn-warning flex-fill d-flex justify-content-center align-items-center float-end"
+              onClick={handleShare}
+              title="Share post"
+            >
+              <img src={shareIcon} alt="" />
+            </button>
+          </div>
           <div className="row">
             <div className="col-12">
               <div className="fit-content">
