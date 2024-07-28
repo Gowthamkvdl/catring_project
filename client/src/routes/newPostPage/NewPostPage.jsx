@@ -43,6 +43,7 @@ const NewPostPage = () => {
         toast.error("Please select your location on the map", {
           id: "select location",
         });
+        return
       }
 
       const post = await apiRequest.post("/post", {
