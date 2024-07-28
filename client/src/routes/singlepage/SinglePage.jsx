@@ -10,7 +10,8 @@ import BackBtn from "../../components/backBtn/BackBtn";
 import { toast } from "react-hot-toast";
 import { SocketContext } from "../../context/SocketContext";
 import shareIcon from "../../assets/share.svg";
-import CallButton from "../../components/callButton/CallButton";
+import CallButton from "../../components/contactButton/CallButton";
+import WhatsappButton from "../../components/contactButton/CallButton";
 
 const SinglePage = () => {
   const post = useLoaderData();
@@ -252,7 +253,7 @@ const SinglePage = () => {
         <div className="col-md-5 col-12 h-auto">
           <div className="single-page-contact">
             <h4>Contact</h4>
-            <p className="m-0">Phone: {post.user.phone} <CallButton phoneNumber={post.user.phone} /> </p>
+            <p className="m-0">Phone: {post.user.phone} <CallButton phoneNumber={post.user.phone} /> <WhatsappButton message={"Vanakam"} phoneNumber={post.user.phone}  /> </p>
             <p className="m-0 mb-2 pb-md-5">Email: {post.user.email}</p>
           </div>
           <div className="spm">
