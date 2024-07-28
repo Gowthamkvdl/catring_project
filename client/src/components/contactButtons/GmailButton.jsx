@@ -15,7 +15,7 @@ const GmailButton = ({ email, subject, body }) => {
     >
       <ion-icon
         name="mail"
-        style={{ fontSize: "18px", marginTop: "-3px" }}
+        style={{ fontSize: "18px", marginTop: "3px" }}
       ></ion-icon>
     </button>
   );
