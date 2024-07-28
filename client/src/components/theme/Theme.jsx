@@ -28,10 +28,10 @@ const Theme = () => {
 
   return (
     <div>
-      <label class="ui-switch mt-1">
+      <label className="ui-switch mt-1">
         <input type="checkbox" onChange={toogleTheme} defaultChecked={selectedTheme==="dark"}  ></input>
-        <div class="slider">
-          <div class="circle"></div>
+        <div className="slider">
+          <div className="circle"></div>
         </div>
       </label>
     </div>
