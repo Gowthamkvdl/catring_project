@@ -70,33 +70,13 @@ const Chat = ({ items }) => {
 
     if (!text) return;
 
-    // Create a temporary message
-    const tempMessage = {
-      _id: Date.now().toString(), // Temporary ID using current timestamp
-      text,
-      userId: chatMsg.receiver.userId, // Assuming you have currentUser available
-      chatId: chatMsg.chatId,
-      createdAt: new Date().toISOString(), // Current timestamp in ISO format
-    };
-
-    // Optimistically update the chat state
-    setChatMsg((prev) => ({
-      ...prev,
-      messages: [...prev.messages, tempMessage],
-    }));
-
     try {
       setSending(true);
-      const res = await apiRequest.post(`/message/${chatMsg.chatId}`, { text });
-
-      // Replace the temporary message with the response from the server
+      const res = await apiRequest.post("/message/" + chatMsg.chatId, { text });
       setChatMsg((prev) => ({
         ...prev,
-        messages: prev.messages.map((msg) =>
-          msg._id === tempMessage._id ? res.data : msg
-        ),
+        messages: [...prev.messages, res.data],
       }));
-
       setItemsArray((prevItemsArray) =>
         prevItemsArray.map((chat) =>
           chat.chatId === chatMsg.chatId
@@ -108,18 +88,12 @@ const Chat = ({ items }) => {
             : chat
         )
       );
-
       e.target.reset();
       socket.emit("sendMessage", {
         receiverId: chatMsg.receiver.userId,
         data: res.data,
       });
     } catch (error) {
-      // Remove the temporary message in case of an error
-      setChatMsg((prev) => ({
-        ...prev,
-        messages: prev.messages.filter((msg) => msg._id !== tempMessage._id),
-      }));
       console.log(error);
       toast.error("Something went wrong! Try reloading.", {
         id: "send error",
@@ -128,7 +102,6 @@ const Chat = ({ items }) => {
       setSending(false);
     }
   };
-
 
   const updatelastMessage = (data) => {
     setItemsArray((prevItemsArray) =>
