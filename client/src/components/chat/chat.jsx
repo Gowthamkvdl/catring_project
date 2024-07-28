@@ -299,7 +299,7 @@ const Chat = ({ items }) => {
                   </div>
                 </div>
                   {typing.status && typing.chatId === chatMsg?.chatId  && (
-                    <i className="fw-lighter">typing...</i>
+                    <span className="fw-lighter">typing...</span>
                   )}
               </Link>
               <button
