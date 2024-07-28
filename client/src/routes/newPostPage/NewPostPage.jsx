@@ -39,21 +39,22 @@ const NewPostPage = () => {
     try {
       setError("");
       setIsLoading(true);
-      if (coordinates.lat === 11.1271225 || coordinates.log === 78.6568942) {
+
+      if (coordinates.lat === 11.1271225 || coordinates.lng === 78.6568942) {
         toast.error("Please select your location on the map", {
           id: "select location",
         });
-        return
+        return;
       }
 
       const post = await apiRequest.post("/post", {
         eventName,
-        salary: parseInt(salary),
+        salary: parseInt(salary, 10),
         city,
-        workingDays: parseInt(workingDays),
+        workingDays: parseInt(workingDays, 10),
         startDate,
         startTime,
-        noOfStaffsReq: parseInt(noOfStaffs),
+        noOfStaffsReq: parseInt(noOfStaffs, 10),
         experience,
         vegetableCutting,
         busFare,
@@ -62,15 +63,17 @@ const NewPostPage = () => {
         latitude: parseFloat(coordinates.lat),
         longitude: parseFloat(coordinates.lng),
       });
+
       navigate(`/${post.data.postId}`);
       toast.success("Your post is now live!");
     } catch (error) {
-      console.log(error);
-      toast.success("Some Error Occurred. Please try again later.");
+      console.error(error);
+      toast.error("An error occurred. Please try again later.");
     } finally {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className="container newPostPage navbarHeight mb-5">
