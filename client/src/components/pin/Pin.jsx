@@ -8,7 +8,7 @@ import pin from "../../assets/pin.png";
 // Define a custom icon
 const customIcon = L.icon({
   iconUrl: pin, // Path to your marker icon
-  iconSize: [25, 41], // size of the icon
+  iconSize: [30, 41], // size of the icon
   // shadowUrl: require("./path/to/your/marker-shadow.png"), // Path to your marker shadow
   // shadowSize: [41, 41], // size of the shadow
   iconAnchor: [12, 41], // point of the icon which will correspond to marker's location
