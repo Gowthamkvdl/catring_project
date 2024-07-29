@@ -78,7 +78,7 @@ const profilePage = () => {
       <div className="row ">
         <div className="col-12 col-md-6">
           <BackBtn color="white" />
-          <h2 className="title text-uppercase">{user.username}'S PROFILE</h2>
+          <h2 className="title text-uppercase">{user.username? user.username : "USER"}'S PROFILE</h2>
           <div className="profile bg-light text-dark mx-2 mx-md-0 py-4 rounded-4 box-shadow mt-4 row">
             <div className="profilePic  d-flex p-5 pb-3 pt-2 p-md-0 pb-md-0  flex-column col-12 col-md-5">
               <img
@@ -163,7 +163,7 @@ const profilePage = () => {
           </div>
         </div>
         <div className="col-12 col-md-6 mb-4 mx-0 mt-5 mt-md-0">
-          <h4 className="text-uppercase">{user.username}'s Events</h4>
+          <h4 className="text-uppercase">{user.username? user.username : "USER"}'s Events</h4>
           {(myEventsLoading || savedEventsLoading) && (
             <Loader message={"Loading..."} />
           )}
