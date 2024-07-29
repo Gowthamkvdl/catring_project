@@ -3,10 +3,11 @@ import { Marker, Popup } from "react-leaflet";
 import { Link } from "react-router-dom";
 import L from "leaflet";
 import "./pin.css";
+import pin from "../../assets/pin.png";
 
 // Define a custom icon
 const customIcon = L.icon({
-  iconUrl: require("../../assets/pin.png"), // Path to your marker icon
+  iconUrl: pin, // Path to your marker icon
   iconSize: [25, 41], // size of the icon
   // shadowUrl: require("./path/to/your/marker-shadow.png"), // Path to your marker shadow
   // shadowSize: [41, 41], // size of the shadow
