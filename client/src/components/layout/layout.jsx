@@ -74,6 +74,12 @@ export function Layout() {
           <a className="text-dark" href="https://storyset.com/">
             Illustrations by Storyset
           </a>
+          {/* <a
+            href="https://www.flaticon.com/free-icons/location"
+            title="location icons"
+          >
+            Location icons created by Freepik - Flaticon
+          </a> */}
         </p>
       </footer>
     </div>
