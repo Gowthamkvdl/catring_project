@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./card.css";
 import StarRating from "../../components/startRating/startRating";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
@@ -8,16 +8,26 @@ import { format } from "timeago.js";
 import { AuthContext } from "../../context/AuthContext";
 
 const Card = ({ item }) => {
-  const [loaded, setLoaded] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const date = item.startDate;
   const dateObj = new Date(date);
   const formattedDate = dateObj.toLocaleDateString("en-GB");
+
+  const handleNavigation = (postId) => {
+    setLoading(true);
+    navigate(`/${postId}`);
+  };
 
   return (
     <div
       className={`card box-shadow bg-light rounded-4 mt-3 p-3 d-flex justify-content-between`}
     >
-      <Link className="link" to={"/" + item.postId}>
+      <div
+        className="link"
+        onClick={() => handleNavigation(item.postId)}
+        style={{ cursor: "pointer" }}
+      >
         {item.user && (
           <div className="userInfo mb-2 fs-5 d-flex align-items-center gap-2">
             <img
@@ -55,17 +65,6 @@ const Card = ({ item }) => {
           <b className="">Number of Staff Required</b> : {item.noOfStaffsReq}
         </div>
         <div className="eventDesc text-dark">{item.description}</div>
-        {/* <div className="bar row d-flex justify-content-center align-items-center">
-        <div className="col-12">
-          <div className="mb-0 mt-2 float-end">
-            Status of Recruitment:{" "}
-            <b>
-              {item.noOfStaffsSatisfied}/{item.noOfStaffsReq}
-            </b>
-          </div>
-          <Progressbar width={item.noOfStaffsSatisfied} />
-        </div>
-      </div> */}
         <div className="extras text-dark">
           <div className="spec d-flex align-items-center gap-2">
             {item.user && (
@@ -130,7 +129,8 @@ const Card = ({ item }) => {
             <span className="post-time">{format(item.createdAt)}</span>
           </div>
         </div>
-      </Link>
+      </div>
+      {loading && <div className="loading-indicator">Loading...</div>}
     </div>
   );
 };
