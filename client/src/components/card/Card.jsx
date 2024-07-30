@@ -35,6 +35,11 @@ const Card = ({ item }) => {
               alt=""
             />
             <span className="text-uppercase fs-6">{item.user.username}</span>
+            {loading && (
+              <div className="loading-indicator float-end">
+                <img src={rollingLoading}></img>
+              </div>
+            )}
           </div>
         )}
         <div className="eventName text-dark">
@@ -129,11 +134,6 @@ const Card = ({ item }) => {
           </div>
         </div>
       </div>
-      {loading && (
-        <div className="loading-indicator">
-          <img src={rollingLoading}></img>
-        </div>
-      )}
     </div>
   );
 };
