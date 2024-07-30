@@ -130,7 +130,11 @@ const Card = ({ item }) => {
           </div>
         </div>
       </div>
-      {loading && <div className="loading-indicator">Loading...</div>}
+      {loading && (
+        <div className="loading-indicator">
+          <img src={rollingLoading}></img>
+        </div>
+      )}
     </div>
   );
 };
