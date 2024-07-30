@@ -34,7 +34,7 @@ const loginPage = () => {
       localStorage.setItem("user", JSON.stringify(res.data));
       console.log(res.data);
       updateUser(res.data);
-      navigate("/");
+      navigate(-1);
       toast.success("Login Successfull!",{
         id:"login successfull"
       })
