@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import "./card.css";
 import StarRating from "../../components/startRating/startRating";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
-import Progressbar from "../progressBar/Progressbar";
 import { Link, useNavigate } from "react-router-dom";
 import { format } from "timeago.js";
-import { AuthContext } from "../../context/AuthContext";
+import rollingLoading from "../../assets/rollingLoading.svg";
 
 const Card = ({ item }) => {
   const [loading, setLoading] = useState(false);
