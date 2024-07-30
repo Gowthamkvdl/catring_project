@@ -252,7 +252,7 @@ const SinglePage = () => {
         </div>
         <div className="col-md-5 col-12 h-auto">
           <div className="single-page-contact">
-            <h2 className="fs-3" >Contact</h2>
+            <h2 className="fs-3">Contact</h2>
             <p className="m-0 fs-normal">
               <b>Phone :</b> {post.user.phone}{" "}
             </p>
@@ -262,7 +262,7 @@ const SinglePage = () => {
             <div className="d-flex gap-2 mb-2 w-100">
               <WhatsappButton
                 phoneNumber={post.user.phone}
-                message={"Vanakam"}
+                message={"Hi, I am interested in your job. Please contact me."}
               />{" "}
               <CallButton phoneNumber={post.user.phone} />{" "}
               <GmailButton
