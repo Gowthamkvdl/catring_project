@@ -28,15 +28,13 @@ const Card = ({ item }) => {
         style={{ cursor: "pointer" }}
       >
         {item.user && (
-          <div className="">
-            <div className="userInfo mb-2 fs-5 d-flex align-items-center gap-2">
-              <img
-                src={item.user.avatar ? item.user.avatar : dummyProfilePic}
-                className="cardProPic"
-                alt=""
-              />
-              <span className="text-uppercase fs-6">{item.user.username}</span>
-            </div>
+          <div className="userInfo mb-2 fs-5 d-flex align-items-center gap-2">
+            <img
+              src={item.user.avatar ? item.user.avatar : dummyProfilePic}
+              className="cardProPic"
+              alt=""
+            />
+            <span className="text-uppercase fs-6">{item.user.username}</span>
             {loading && (
               <div className="loading-indicator float-end mb-2">
                 <img src={rollingLoading}></img>
