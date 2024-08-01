@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "./loginPage.css";
 import jobHuntSvg from "../../assets/jobImg.svg";
 import InputField from "../../components/inputField/inputField";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
 import BackBtn from "../../components/backBtn/BackBtn";
@@ -12,6 +12,7 @@ import toast from "react-hot-toast"
 const loginPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { updateUser } = useContext(AuthContext);
   
   const handleSubmit = async (e) => {
@@ -33,7 +34,7 @@ const loginPage = () => {
       // Set user info in local storage
       localStorage.setItem("user", JSON.stringify(res.data));
       updateUser(res.data);
-      
+
       // Check if the previous page is not the register page
       if (location.state?.from !== "/register") {
         navigate(-1);
