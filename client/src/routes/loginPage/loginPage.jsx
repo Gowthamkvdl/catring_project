@@ -35,11 +35,12 @@ const loginPage = () => {
       updateUser(res.data);
 
       // Check if the previous page is not the register page
-      if (location.state?.from !== "/register") {
-        navigate(-1);
+      if (location.state?.from && location.state.from !== "/register") {
+        navigate(location.state.from);
       } else {
-        navigate("/"); // Navigate to a different page, e.g., home
+        navigate("/"); // Navigate to the home page or another page
       }
+      
       toast.success("Login Successfull!", {
         id: "login successfull",
       });
