@@ -38,7 +38,7 @@ const loginPage = () => {
       if (location.state?.from !== "/register") {
         navigate(-1);
       } else {
-        navigate("/home"); // Navigate to a different page, e.g., home
+        navigate("/"); // Navigate to a different page, e.g., home
       }
       toast.success("Login Successfull!", {
         id: "login successfull",
