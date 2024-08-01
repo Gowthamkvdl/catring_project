@@ -32,12 +32,17 @@ const loginPage = () => {
       });
       // Set user info in local storage
       localStorage.setItem("user", JSON.stringify(res.data));
-      console.log(res.data);
       updateUser(res.data);
-      navigate(-1);
-      toast.success("Login Successfull!",{
-        id:"login successfull"
-      })
+      
+      // Check if the previous page is not the register page
+      if (location.state?.from !== "/register") {
+        navigate(-1);
+      } else {
+        navigate("/home"); // Navigate to a different page, e.g., home
+      }
+      toast.success("Login Successfull!", {
+        id: "login successfull",
+      });
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message,{
