@@ -183,6 +183,16 @@ export const addUserRating = async (req, res) => {
   const tokenUserId = req.userId;
   const { profileId, starCount } = req.body;
 
+
+  if (
+    !profileId ||
+    !Number.isInteger(starCount) ||
+    starCount < 1 ||
+    starCount > 5
+  ) {
+    return res.status(400).json({ message: "Invalid profileId or starCount." });
+  }
+
   try {
     // Check if a rating from this user to the profile already exists
     const existingRating = await prisma.starRating.findFirst({
