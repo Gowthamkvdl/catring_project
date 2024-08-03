@@ -179,10 +179,11 @@ export const profilePosts = async (req, res) => {
   }
 };
 
+
 export const addUserRating = async (req, res) => {
   const tokenUserId = req.userId;
-  const { profileId, starCount } = req.body;
-
+  const profileId = req.body.profileId;
+  const starCount  = req.body.starCount;
 
   if (
     !profileId ||
@@ -266,6 +267,7 @@ export const addUserRating = async (req, res) => {
     res.status(500).json({ message: "Failed to add or update rating" });
   }
 };
+
 
 
 export const getUserRating = async (req, res) => {
