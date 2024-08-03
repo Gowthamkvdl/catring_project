@@ -5,7 +5,6 @@ import apiRequest from "../../lib/apiRequest.js";
 import { Link, useNavigate } from "react-router-dom";
 import BackBtn from "../../components/backBtn/BackBtn";
 import toast from "react-hot-toast";
-import rollingLoading from "../../assets/rollingLoading.svg";
 
 const NewPostPage = () => {
   const [coordinates, setCoordinates] = useState({
@@ -42,7 +41,7 @@ const NewPostPage = () => {
       setIsLoading(true);
 
       if (coordinates.lat === 11.1271225 || coordinates.lng === 78.6568942) {
-        toast.error("Please select event location on the map", {
+        toast.error("Please select your location on the map", {
           id: "select location",
         });
         return;
@@ -264,7 +263,7 @@ const NewPostPage = () => {
               type="submit"
               className="btn w-100 fs-4 float-end btn-warning my-2"
             >
-              {isLodading && <img src={rollingLoading}></img>} Post Event
+              Post Event
             </button>
             {error && <span className="content text-dark">{error}</span>}
           </div>

@@ -12,17 +12,6 @@ const Card = ({ item }) => {
   const date = item.startDate;
   const dateObj = new Date(date);
   const formattedDate = dateObj.toLocaleDateString("en-GB");
-  const ratings = item.user?.starRating;
-  const totalRatings = ratings?.length;
-  const averageRating =
-    totalRatings > 0
-      ? Math.round(
-          (ratings.reduce((sum, rating) => sum + rating.starCount, 0) /
-            totalRatings) *
-            2
-        ) / 2
-      : 0;
-
 
   const handleNavigation = (postId) => {
     setLoading(true);
@@ -31,7 +20,7 @@ const Card = ({ item }) => {
 
   return (
     <div
-      className={`card  box-shadow bg-light rounded-4 mt-3 p-3 d-flex justify-content-between`}
+      className={`card box-shadow bg-light rounded-4 mt-3 p-3 d-flex justify-content-between`}
     >
       <div
         className="link"
@@ -86,11 +75,11 @@ const Card = ({ item }) => {
               <div className="stars d-flex align-items-center">
                 <StarRating
                   editable={false}
-                  totalStars={averageRating}
+                  totalStars={item.user.starRating}
                   size={20}
                 />
                 <span className="stars-count ms-1">
-                  {totalRatings < 1 ? "(New)" : `(${totalRatings})`}
+                  {item.user.starRating < 1 ? "(New)" : item.user.starRating}
                 </span>
               </div>
             )}
