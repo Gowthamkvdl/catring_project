@@ -80,7 +80,7 @@ const profilePage = () => {
   const submitRating = async () => {
     try {
       const addRating = await apiRequest.post("/user/rating", {
-        profileId: userId,
+        profileId: user.userId,
         starCount: rating,
       });
       toast.success(
