@@ -29,6 +29,8 @@ const Card = ({ item }) => {
     navigate(`/${postId}`);
   };
 
+  console.log(item)
+
   return (
     <div
       className={`card  box-shadow bg-light rounded-4 mt-3 p-3 d-flex justify-content-between`}
