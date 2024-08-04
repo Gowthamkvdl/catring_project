@@ -20,6 +20,9 @@ export const getUser = async (req, res) => {
       },
       include: {
         posts: true,
+        starRating: true, // Include related models if needed
+        savedPosts: true,
+        chats: true,
       },
     });
     res.status(200).json(user);
