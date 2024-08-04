@@ -9,25 +9,21 @@ import apiRequest from "../../lib/apiRequest";
 import Card from "../../components/card/Card";
 import BackBtn from "../../components/backBtn/BackBtn";
 import Loader from "../../components/loader/Loader";
-import toast from "react-hot-toast";
+import toast from "react-hot-toast"
 import { SocketContext } from "../../context/SocketContext";
+
 
 const profilePage = () => {
   const [myEventsLoading, setMyEventsLoading] = useState(false);
   const [events, setEvents] = useState([]);
   const [savedEventsLoading, setSavedEventsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [user, setUser] = useState({});
-  const navigate = useNavigate();
+  const [user, setUser] = useState({})
+  const navigate = useNavigate()
   const { socket } = useContext(SocketContext);
-  const [loading, setLoading] = useState(true)
+
+
   const userId = searchParams.get("id");
-  const [rating, setRating] = useState(0);
-
-  const handleRatingChange = (newRating) => {
-    setRating(newRating);
-  };
-
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -36,27 +32,26 @@ const profilePage = () => {
         setUser(fetchUser.data);
       } catch (error) {
         console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const showMyEvents = async () => {
-      try {
-        setMyEventsLoading(true);
-        const events = await apiRequest.get(`/user/oneuser/${userId}`);
-        const myEvents = events.data.posts;
-        setEvents(myEvents);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setMyEventsLoading(false);
       }
     };
 
     showMyEvents();
     fetchUserData();
   }, [userId]);
+
+
+  const showMyEvents = async () => {
+    try {
+      setMyEventsLoading(true);                       
+      const events = await apiRequest.get(`/user/oneuser/${userId}`);
+      const myEvents = events.data.posts;
+      setEvents(myEvents);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setMyEventsLoading(false);
+    }
+  };
 
   const handleAddChat = async () => {
     try {
@@ -77,61 +72,38 @@ const profilePage = () => {
     }
   };
 
-  const submitRating = async () => {
-    try {
-      const addRating = await apiRequest.post("/user/rating", {
-        profileId: userId,
-        starCount: rating,
-      });
-      toast.success(
-        "Rating submitted successfully. Please refresh to see the update.",
-        { id: "rating" }
-      );
-    } catch (error) {
-      console.log(error);
-      toast.error("Failed to submit rating", { id: "rating" });
-    }
-  };
 
   return (
     <div className="profile container navbarHeight">
       <div className="row ">
         <div className="col-12 col-md-6">
           <BackBtn color="white" />
-          <h2 className="title text-uppercase">
-            {user.username ? user.username : "USER"}'S PROFILE
-          </h2>
-          <div
-            className={`profile ${
-              loading ? "fadeLoading" : ""
-            } bg-light text-dark mx-1 mx-md-0 py-4 rounded-4 box-shadow mt-4 row`}
-          >
+          <h2 className="title text-uppercase">{user.username? user.username : "USER"}'S PROFILE</h2>
+          <div className="profile bg-light text-dark mx-2 mx-md-0 py-4 rounded-4 box-shadow mt-4 row">
             <div className="profilePic  d-flex p-5 pb-3 pt-2 p-md-0 pb-md-0  flex-column col-12 col-md-5">
               <img
                 src={user.avatar || dummyProfilePic}
                 alt=""
                 className="img-fluid px-md-2 mb-2 rounded-4"
               />
-              {!loading && (
-                <div className=" starRating d-flex flex-column align-items-center justify-content-center">
-                  <StarRating
-                    className="stars"
-                    editable={false}
-                    size={25}
-                    totalStars={user.averageRating}
-                  />
-                  <p className=" m-0 mt-0 mx-2">
-                    Total Rating :{" "}
-                    <span>
-                      {user.totalRatings <= 0 ? "No rating" : user.totalRatings}
-                    </span>
-                  </p>
-                  <span className=" honorScore">
-                    Honor Score:{" "}
-                    <span className="fw-bold">{user.honorScore}</span>
+              <div className=" starRating d-flex flex-column align-items-center justify-content-center">
+                <StarRating
+                  className="stars"
+                  editable={false}
+                  size={25}
+                  totalStars={user.starRating}
+                />
+                <p className="content m-0 mt-0 mx-2">
+                  Rating :{" "}
+                  <span>
+                    {user.starRating <= 0 ? "No rating" : user.starRating}
                   </span>
-                </div>
-              )}
+                </p>
+                <span className=" honorScore">
+                  Honor Score:{" "}
+                  <span className="fw-bold">{user.honorScore}</span>
+                </span>
+              </div>
             </div>
             <div className="profileInfo col-12 col-md-7 ">
               <div className=" content mb-2">
@@ -159,46 +131,39 @@ const profilePage = () => {
             </div>
           </div>
           <div className="row my-3">
-            <div className="col-6">
-              <button onClick={handleAddChat} className="btn w-100 btn-warning">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  className="bi bi-send me-2"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
-                </svg>
-                Add user to chat
-              </button>
-            </div>
-            <div className="col-6">
-              <button
-                className="btn btn-warning w-100"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
+            <div className="col-6"><button
+              onClick={handleAddChat}
+              className="btn w-100 btn-warning"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                className="bi bi-send me-2"
+                viewBox="0 0 16 16"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="bi bi-star-half mb-1 me-1"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z" />
-                </svg>
-                Provide feedback
-              </button>
-            </div>
+                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+              </svg>
+              Add user to chat
+            </button></div>
+            <div className="col-6"><button className="btn btn-warning w-100">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-star-half mb-1 me-1"
+                viewBox="0 0 16 16"
+              >
+                <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z" />
+              </svg>
+              Provide feedback
+            </button></div>
           </div>
         </div>
         <div className="col-12 col-md-6 mb-4 mx-0 mt-5 mt-md-0">
-          <h4 className="text-uppercase">
-            {user.username ? user.username : "USER"}'s Events
-          </h4>
+          <h4 className="text-uppercase">{user.username? user.username : "USER"}'s Events</h4>
           {(myEventsLoading || savedEventsLoading) && (
             <Loader message={"Loading..."} />
           )}
@@ -216,61 +181,6 @@ const profilePage = () => {
               )}
             </div>
           )}
-        </div>
-      </div>
-      <div
-        className="modal fade"
-        id="staticBackdrop"
-        tabIndex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content bg-light text-dark">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                Thank You for Providing Feedback
-              </h1>
-              <button
-                type="button"
-                className="btn-close shadow-none"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body h-100">
-              <div className="d-flex justify-content-center align-items-center flex-column">
-                <p>
-                  Your feedback is valuable to us. Please provide your rating
-                  below:
-                </p>
-                <StarRating
-                  className="stars"
-                  editable={true}
-                  size={25}
-                  totalStars={user.averageRating}
-                  onRatingChange={handleRatingChange}
-                />
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-danger"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                className="btn btn-warning"
-                data-bs-dismiss="modal"
-                onClick={submitRating}
-              >
-                Submit Rating
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>

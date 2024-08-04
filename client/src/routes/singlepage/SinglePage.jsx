@@ -12,8 +12,6 @@ import shareIcon from "../../assets/share.svg";
 import WhatsappButton from "../../components/contactButtons/WhatsappButton";
 import CallButton from "../../components/contactButtons/CallButton";
 import GmailButton from "../../components/contactButtons/GmailButton";
-import rollingLoading from "../../assets/rollingLoading.svg"
-import ScrollToTop from "../../components/scrollToTop/ScrollToTop";
 
 const SinglePage = () => {
   const post = useLoaderData();
@@ -129,7 +127,6 @@ const SinglePage = () => {
 
   return (
     <div className="singlePage navbarHeight container">
-      <ScrollToTop></ScrollToTop>
       <div className="row text-dark box-shadow py-3 p-md-3 mx-1 rounded-3 bg-light">
         <div className="col-md-7 col-12 h-auto">
           <BackBtn color={"black"} />
@@ -151,7 +148,6 @@ const SinglePage = () => {
                   : "d-none"
               }`}
             >
-              {disabling && <img className="mb-1" src={rollingLoading}></img>}
               {postStatus ? "Enable Post" : "Disable Post"}
             </button>
             <button
@@ -172,11 +168,7 @@ const SinglePage = () => {
               <div className="fit-content">
                 <Link
                   className="link"
-                  to={
-                    post.user.userId === currentUser.userId
-                      ? "/profile"
-                      : `/user-profile/?id=${post.user.userId}`
-                  }
+                  to={"/user-profile/?id=" + post.user.userId}
                 >
                   <div className="user d-flex align-items-center">
                     <img

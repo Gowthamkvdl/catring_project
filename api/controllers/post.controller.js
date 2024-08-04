@@ -26,7 +26,16 @@ export const getPosts = async (req, res) => {
         createdAt: "desc", // or 'desc' for descending order
       },
       include: {
-        user: true
+        user: {
+          select: {
+            username: true,
+            avatar: true,
+            userId: true,
+            phone: true,
+            email: true,
+            starRating: true,
+          },
+        },
       },
       take: limit,
     });
@@ -47,7 +56,15 @@ export const getPost = async (req, res) => {
         postId: paramPostId,
       },
       include: {
-        user: true
+        user: {
+          select: {
+            username: true,
+            avatar: true,
+            userId: true,
+            phone: true,
+            email: true,
+          },
+        },
       },
     });
 
