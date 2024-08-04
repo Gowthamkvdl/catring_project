@@ -99,7 +99,7 @@ export const login = async (req, res) => {
         sameSite: "None", 
         maxAge: age,
       })
-      .json(userInfo);
+      .json(user);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Failed to login! " + error.message });
