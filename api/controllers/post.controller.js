@@ -47,15 +47,7 @@ export const getPost = async (req, res) => {
         postId: paramPostId,
       },
       include: {
-        user: {
-          select: {
-            username: true,
-            avatar: true,
-            userId: true,
-            phone: true,
-            email: true,
-          },
-        },
+        user: true
       },
     });
 
