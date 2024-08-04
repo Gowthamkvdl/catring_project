@@ -18,6 +18,8 @@ model Post {
   noOfStaffsReq       Int
   noOfStaffsSatisfied Int?         @default(0)
   disabled            Boolean      @default(false)
+  totalRatings        Int          @default(0)
+  averageRating       Float        @default(0.0)
   vegetableCutting    YesOrNo
   busFare             YesOrNo
   experience          YesOrNo
@@ -59,7 +61,7 @@ model User {
   address       String?
   starRating    StarRating[]
   totalRatings  Int          @default(0)
-  averageRating Float          @default(0)
+  averageRating Float        @default(0)
   honorScore    Int          @default(100)
   createdAt     DateTime     @default(now())
   posts         Post[]
