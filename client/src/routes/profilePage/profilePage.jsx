@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./profilePage.css";
 import dummyProfilePic from "../../assets/dummyProfilePic.jpg";
 import StarRating from "../../components/startRating/startRating";
@@ -19,12 +19,16 @@ const profilePage = () => {
   const [myEventsLoading, setMyEventsLoading] = useState(false);
   const [savedEventsLoading, setSavedEventsLoading] = useState(false);
   const chat = useLoaderData()
-
   const navigate = useNavigate();
+  const [totalRatings, setTotalRatings] = useState(0);
+  const [avgRatings, setAvgRatings] = useState(0);
+
+
   const handleEdit = () => {
     navigate("/update-profile");
   };
 
+  
   const showMyEvents = async () => {
     try {
       setMyEventsLoading(true);
@@ -70,6 +74,8 @@ const profilePage = () => {
     toast.success("hello")
   }
 
+  console.log(currentUser)
+
   return (
     <div className="profile container navbarHeight">
       <div className="row ">
@@ -90,7 +96,7 @@ const profilePage = () => {
               toast
             </button> */}
           </h2>
-          <div className="profile bg-light text-dark mx-2 mx-md-0 py-4 rounded-4 box-shadow mt-4 row">
+          <div className="profile bg-light text-dark mx-1 mx-md-0 py-4 rounded-4 box-shadow mt-4 row">
             <div className="profilePic  d-flex pb-3  pt-2 p-md-0 pb-md-0  flex-column col-12 col-md-4">
               <img
                 src={currentUser.avatar || dummyProfilePic}
@@ -102,14 +108,14 @@ const profilePage = () => {
                   className="stars"
                   editable={false}
                   size={25}
-                  totalStars={currentUser.starRating}
+                  totalStars={currentUser.averageRating}
                 />
-                <p className="content m-0 mt-0 mx-2">
-                  Rating :{" "}
+                <p className="m-0 mt-0 mx-2">
+                  Total Ratings :{" "}
                   <span>
-                    {currentUser.starRating <= 0
+                    {currentUser.totalRatings <= 0
                       ? "No rating"
-                      : currentUser.starRating}
+                      : currentUser.totalRatings}
                   </span>
                 </p>
                 <span className=" honorScore">

@@ -167,7 +167,6 @@ export const profilePosts = async (req, res) => {
       },
     });
 
-
     const savedPost = saved.map((item) => ({
       ...item.post,
       user: item.post.user,
@@ -177,5 +176,113 @@ export const profilePosts = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Failed to get profile posts" });
+  }
+};
+
+export const addUserRating = async (req, res) => {
+  const tokenUserId = req.userId;
+  const { profileId, starCount } = req.body;
+
+  try {
+    // Check if a rating from this user to the profile already exists
+    const existingRating = await prisma.starRating.findFirst({
+      where: {
+        giverId: tokenUserId,
+        userId: profileId,
+      },
+    });
+
+    if (existingRating) {
+      // If the rating already exists, update it instead of creating a new one
+      await prisma.starRating.update({
+        where: {
+          starRatingId: existingRating.starRatingId,
+        },
+        data: {
+          starCount,
+        },
+      });
+    } else {
+      // If no rating exists, create a new one
+      await prisma.starRating.create({
+        data: {
+          giverId: tokenUserId,
+          userId: profileId,
+          starCount,
+        },
+      });
+    }
+
+    // Fetch all ratings for the profile to recalculate total and average ratings
+    const ratings = await prisma.starRating.findMany({
+      where: {
+        userId: profileId,
+      },
+      select: {
+        starCount: true,
+      },
+    });
+
+    const totalRatings = ratings.length;
+    const averageRating =
+      totalRatings > 0
+        ? ratings.reduce((acc, rating) => acc + rating.starCount, 0) /
+          totalRatings
+        : 0;
+
+    // Round the average rating to the nearest 0.5
+    const roundedAverageRating = Math.round(averageRating * 2) / 2;
+
+    // Update the user's totalRatings and averageRating
+    await prisma.user.update({
+      where: {
+        userId: profileId,
+      },
+      data: {
+        totalRatings,
+        averageRating: roundedAverageRating,
+      },
+    });
+
+    res.status(200).json({
+      message: existingRating
+        ? "Rating updated successfully"
+        : "Rating added successfully",
+      totalRatings,
+      averageRating: roundedAverageRating,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to add or update rating" });
+  }
+};
+
+
+export const getUserRating = async (req, res) => {
+  const profileId = req.params.id;
+
+  if (!profileId) {
+    return res.status(400).json({ message: "Profile ID is required" });
+  }
+
+  try {
+    // Fetch the ratings and calculate the total number and average
+    const ratings = await prisma.user.findUnique({
+      where: {
+        userId: profileId,
+      },
+    });
+
+    const totalRatings = ratings.totalRatings;
+    const averageRating = ratings.averageRating;
+
+
+    res.status(200).json({
+      totalRatings,
+      averageRating,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to retrieve ratings" });
   }
 };
