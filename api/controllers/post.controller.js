@@ -64,6 +64,8 @@ export const getPost = async (req, res) => {
             userId: true,
             phone: true,
             email: true,
+            averageRating: true,
+            totalRatings: true,
           },
         },
       },
