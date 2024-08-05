@@ -70,8 +70,6 @@ const profilePage = () => {
     toast.success("hello")
   }
 
-  console.log(currentUser)
-
   return (
     <div className="profile container navbarHeight">
       <div className="row ">

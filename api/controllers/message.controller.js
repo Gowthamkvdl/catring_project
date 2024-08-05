@@ -43,12 +43,3 @@ export const addMessage = async (req, res) => {
     res.status(500).json({ message: "Failed to add message!" });
   }
 };
-
-export const deleteMessages = (req, res) => {
-  try {
-    prisma.message.deleteMany();
-    res.status(200).json({ message: "Messages Deleted!" });
-  } catch (error) {
-    console.log(error)
-  }
-}

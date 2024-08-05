@@ -132,7 +132,16 @@ export const profilePosts = async (req, res) => {
         userId: tokenUserId,
       },
       include: {
-        user: true
+        user: {
+          select: {
+            username: true,
+            avatar: true,
+            userId: true,
+            phone: true,
+            email: true,
+            starRating: true,
+          },
+        },
       },
     });
 
@@ -143,7 +152,16 @@ export const profilePosts = async (req, res) => {
       include: {
         post: {
           include: {
-            user: true
+            user: {
+              select: {
+                username: true,
+                avatar: true,
+                userId: true,
+                phone: true,
+                email: true,
+                starRating: true,
+              },
+            },
           },
         },
       },

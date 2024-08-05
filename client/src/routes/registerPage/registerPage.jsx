@@ -21,8 +21,7 @@ const registerPage = () => {
     const age = formData.get("age").trim();
     const city = formData.get("city").trim();
     const password = formData.get("password").trim();
-    const totalRatings = 0;
-    const averageRating = 0;
+
     // console.log(username)
     // console.log(email)
     // console.log(phone)
@@ -39,8 +38,6 @@ const registerPage = () => {
         age,
         city,
         password,
-        totalRatings,
-        averageRating
       });
       navigate("/login");
       toast.success("Registered successfully! Login to continue.");
