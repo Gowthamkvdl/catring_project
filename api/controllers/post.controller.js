@@ -26,16 +26,7 @@ export const getPosts = async (req, res) => {
         createdAt: "desc", // or 'desc' for descending order
       },
       include: {
-        user: {
-          select: {
-            username: true,
-            avatar: true,
-            userId: true,
-            phone: true,
-            email: true,
-            starRating: true,
-          },
-        },
+        user: true
       },
       take: limit,
     });
