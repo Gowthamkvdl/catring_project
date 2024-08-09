@@ -148,7 +148,10 @@ const SinglePage = () => {
                   : "d-none"
               }`}
             >
-              {postStatus ? "Enable Post" : "Disable Post"}
+              <div className="d-flex justify-content-center align-items-center">
+                {disabling && <img src={rollingLoading}></img>}
+                {postStatus ? "Updateing" : "Update"}
+              </div>
             </button>
             <button
               type="button"
