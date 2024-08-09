@@ -58,7 +58,7 @@ const SinglePage = () => {
         data: addChat.data,
       });
       navigate("/profile");
-      toast(`Now ${post.user.username} is added to your Chats`, {
+      toast.success(`Now ${post.user.username} is added to your Chats`, {
         id: "addChat",
       });
     } catch (error) {
