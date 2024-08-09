@@ -18,7 +18,9 @@ const profilePage = () => {
   const [events, setEvents] = useState(null);
   const [myEventsLoading, setMyEventsLoading] = useState(false);
   const [savedEventsLoading, setSavedEventsLoading] = useState(false);
+  const [loggingout, setLoggingOut] = useState(false);
   const chat = useLoaderData()
+  
 
   const navigate = useNavigate();
   const handleEdit = () => {
@@ -54,6 +56,7 @@ const profilePage = () => {
 
   const handleLogout = async () => {
     try {
+      setLoggingOut(true)
       await apiRequest.post("/auth/logout");
       localStorage.removeItem("user");
       updateUser(null);
@@ -63,6 +66,8 @@ const profilePage = () => {
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoggingOut(false);
     }
   };
 
@@ -84,7 +89,7 @@ const profilePage = () => {
               Edit
             </button>
             <button className="float-end btn btn-danger" onClick={handleLogout}>
-              Logout
+              {loggingout ? "Logging Out" : "Logout"}
             </button>
             {/* <button className="float-end btn btn-danger" onClick={handleToast}>
               toast
