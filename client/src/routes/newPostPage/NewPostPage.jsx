@@ -7,7 +7,6 @@ import BackBtn from "../../components/backBtn/BackBtn";
 import toast from "react-hot-toast";
 import rollingLoading from "../../assets/rollingLoading.svg";
 
-
 const NewPostPage = () => {
   const [coordinates, setCoordinates] = useState({
     lat: 11.1271225,
@@ -71,7 +70,6 @@ const NewPostPage = () => {
         toast.success("Your post is now live!");
         setIsLoading(false);
       }, 0);
-      
     } catch (error) {
       console.error(error);
       toast.error("An error occurred. Please try again later.");
@@ -79,7 +77,6 @@ const NewPostPage = () => {
       setIsLoading(false);
     }
   };
-
 
   return (
     <div className="container newPostPage navbarHeight mb-5">
@@ -269,8 +266,10 @@ const NewPostPage = () => {
               type="submit"
               className="btn w-100 fs-4 float-end btn-warning my-2"
             >
-              {isLodading && <img src={rollingLoading}></img>}
-              {isLodading ? "Posting Event" : "Post Event"}
+              <div className="d-flex flex-column justify-content-center align-items-center">
+                {isLodading && <img src={rollingLoading}></img>}
+                {isLodading ? "Posting Event" : "Post Event"}
+              </div>
             </button>
             {error && <span className="content text-dark">{error}</span>}
           </div>
