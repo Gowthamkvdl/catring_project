@@ -25,7 +25,7 @@ const homePage = () => {
             <div className="hero-section mt-lg-0 mt-3 flex-column d-flex justify-content-center align-item-center">
               <div className="hero-text mb-3">
                 <span className="">
-                  Effortless Connections for Exceptional Events.
+                  Effortless Connections for Extraordinary Events.
                 </span>
               </div>
               <Fade delay={100} triggerOnce>

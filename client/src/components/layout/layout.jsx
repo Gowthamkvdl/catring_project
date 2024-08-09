@@ -68,7 +68,7 @@ export function Layout() {
           </li>
         </ul>
         <p className="text-dark text-center">
-          &copy;2024 catering Boys | All Rights Reserved
+          &copy;2024 Catering Boys | All Rights Reserved
         </p>
         <p className="text-dark attribution text-center">
           <a className="text-dark" href="https://storyset.com/">
