@@ -9,7 +9,6 @@ import BackBtn from "../../components/backBtn/BackBtn";
 import { toast } from "react-hot-toast";
 import rollingLoading from "../../assets/rollingLoading.svg";
 
-
 const profileUpdatePage = () => {
   const navigate = useNavigate();
   const { currentUser, updateUser } = useContext(AuthContext);
@@ -69,7 +68,7 @@ const profileUpdatePage = () => {
 
   const handleDelete = async () => {
     try {
-      await apiRequest.delete("/user/"+currentUser.userId)
+      await apiRequest.delete("/user/" + currentUser.userId);
       await apiRequest.post("/auth/logout");
       localStorage.removeItem("user");
       updateUser(null);
@@ -77,7 +76,7 @@ const profileUpdatePage = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <div>
@@ -172,10 +171,12 @@ const profileUpdatePage = () => {
                   <button
                     disabled={isLodaing}
                     type="submit"
-                    className="btn btn-warning float-end"
+                    className="btn btn-warning float-end "
                   >
-                    {isLodaing && <img src={rollingLoading}></img>}
-                    {isLodaing ? "Updateing" : "Update"}
+                    <div className="d-flex justify-content-center align-items-center">
+                      {isLodaing && <img src={rollingLoading}></img>}
+                      {isLodaing ? "Updateing" : "Update"}
+                    </div>
                   </button>
                 </form>
               </div>
