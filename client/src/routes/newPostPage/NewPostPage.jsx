@@ -21,6 +21,10 @@ const NewPostPage = () => {
     setCoordinates(newPosition);
   };
 
+  useEffect(() => {
+    setIsLoading(false);
+  }, [location.pathname]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -66,7 +70,7 @@ const NewPostPage = () => {
         longitude: parseFloat(coordinates.lng),
       });
 
-       navigate(`/${post.data.postId}`, { replace: true });
+      navigate(`/${post.data.postId}`, { replace: true });
       toast.success("Your post is now live!");
       setIsLoading(false);
     } catch (error) {
