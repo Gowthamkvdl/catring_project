@@ -55,7 +55,7 @@ const Navbar = () => {
       />
       <div className="container">
         <a className="navbar-brand fs-3" href="/">
-          CATRING BOYS
+          catering BOYS
         </a>
         <button
           className={`navbar-toggler shadow-none bg-dark`}
@@ -76,7 +76,7 @@ const Navbar = () => {
         >
           <div className="offcanvas-header">
             <h5 className="offcanvas-title fs-1" id="offcanvasDarkNavbarLabel">
-              CATRING BOYS
+              catering BOYS
             </h5>
             <button
               type="button"

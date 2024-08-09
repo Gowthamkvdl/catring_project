@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiRequest = axios.create({
-  baseURL: "https://catringboys.onrender.com/api",
+  baseURL: "https://cateringboys.onrender.com/api",
   withCredentials: true,
 });
 

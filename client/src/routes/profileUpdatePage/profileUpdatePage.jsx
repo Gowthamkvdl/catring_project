@@ -104,7 +104,7 @@ const profileUpdatePage = () => {
                 <UploadWidget
                   uwConfig={{
                     cloudName: "gowthamk",
-                    uploadPreset: "catring",
+                    uploadPreset: "catering",
                     multiple: false,
                     maxImageFileSze: 2000000,
                     folder: "avatar",

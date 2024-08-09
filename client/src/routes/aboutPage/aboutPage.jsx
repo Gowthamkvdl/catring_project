@@ -21,7 +21,7 @@ const aboutPage = () => {
                 <div className="mt-4">
                   <h1 className="fs-1 mb-3">Our Story</h1>
                   <p className="content text-indend">
-                    At CATRING, we effortlessly bridge the gap between catering
+                    At catering, we effortlessly bridge the gap between catering
                     contractors and skilled server staff. Whether you're a
                     server seeking exciting job opportunities or a contractor
                     looking for top talent, our platform streamlines the
