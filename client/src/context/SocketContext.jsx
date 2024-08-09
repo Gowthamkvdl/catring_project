@@ -9,7 +9,7 @@ export const SocketContextProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    setSocket(io("https://cateringboyssocket.onrender.com"));
+    setSocket(io("https://catringboysocket.onrender.com"));
   }, []);
 
   useEffect(()=>{
