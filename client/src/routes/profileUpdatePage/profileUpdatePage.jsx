@@ -7,6 +7,8 @@ import apiRequest from "../../lib/apiRequest.js";
 import UploadWidget from "../../components/upload/Upload";
 import BackBtn from "../../components/backBtn/BackBtn";
 import { toast } from "react-hot-toast";
+import rollingLoading from "../../assets/rollingLoading.svg";
+
 
 const profileUpdatePage = () => {
   const navigate = useNavigate();
@@ -172,7 +174,8 @@ const profileUpdatePage = () => {
                     type="submit"
                     className="btn btn-warning float-end"
                   >
-                    Update
+                    {isLodaing && <img src={rollingLoading}></img>}
+                    {isLodaing ? "Updateing" : "Update"}
                   </button>
                 </form>
               </div>
