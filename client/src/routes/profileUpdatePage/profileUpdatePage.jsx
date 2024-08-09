@@ -118,17 +118,19 @@ const profileUpdatePage = () => {
                   <div className=" content mb-2">
                     Phone
                     <input
-                    required
+                      required
                       type="text"
                       className="form-control form-control-sm fs-5 shadow-none"
                       defaultValue={currentUser.phone}
                       name="phone"
+                      minLength={10}
+                      maxLength={12}
                     />
                   </div>
                   <div className=" content mb-2">
                     City
                     <input
-                    required
+                      required
                       type="text"
                       className="form-control form-control-sm fs-5 shadow-none"
                       defaultValue={currentUser.city}

@@ -80,7 +80,7 @@ const registerPage = () => {
               inputType={"text"}
               inputName={"phone"}
               minLength={10}
-              maxLength={10}
+              maxLength={12}
             />
             <InputField
               label={"Age"}
