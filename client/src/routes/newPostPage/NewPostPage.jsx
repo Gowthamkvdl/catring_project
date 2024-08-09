@@ -72,7 +72,6 @@ const NewPostPage = () => {
 
       navigate(`/${post.data.postId}`, { replace: true });
       toast.success("Your post is now live!");
-      setIsLoading(false);
     } catch (error) {
       console.error(error);
       toast.error("An error occurred. Please try again later.");
