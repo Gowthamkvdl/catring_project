@@ -110,14 +110,14 @@ const Navbar = () => {
                 to="/list?location=&date=&maxWorkingDays=100&minSalary=0&limit=5"
                 onClick={handleNavLinkClick}
               >
-                <li className={`nav-item mb-1 `}>
+                <li className={`nav-item mb-1 d-md-none `}>
                   <div className={`nav-link ${isActive("/list")}`}>
                     Search Jobs
                   </div>
                 </li>
               </Link>
               <Link to="/new-post" onClick={handleNavLinkClick}>
-                <li className={`nav-item mb-1 `}>
+                <li className={`nav-item mb-1 d-md-none`}>
                   <div className={`nav-link ${isActive("/new-post")}`}>
                     Post Event
                   </div>
