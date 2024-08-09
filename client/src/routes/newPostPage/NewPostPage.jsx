@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./newPostPage.css";
 import LocationSelector from "../../components/locationSelector/LocationSelector";
 import apiRequest from "../../lib/apiRequest.js";
