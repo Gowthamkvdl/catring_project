@@ -66,8 +66,12 @@ const NewPostPage = () => {
         longitude: parseFloat(coordinates.lng),
       });
 
-      navigate(`/${post.data.postId}`);
-      toast.success("Your post is now live!");
+      setTimeout(() => {
+        navigate(`/${post.data.postId}`);
+        toast.success("Your post is now live!");
+        setIsLoading(false);
+      }, 0);
+      
     } catch (error) {
       console.error(error);
       toast.error("An error occurred. Please try again later.");
