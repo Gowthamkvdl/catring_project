@@ -5,6 +5,8 @@ import apiRequest from "../../lib/apiRequest.js";
 import { Link, useNavigate } from "react-router-dom";
 import BackBtn from "../../components/backBtn/BackBtn";
 import toast from "react-hot-toast";
+import rollingLoading from "../../assets/rollingLoading.svg";
+
 
 const NewPostPage = () => {
   const [coordinates, setCoordinates] = useState({
@@ -263,7 +265,8 @@ const NewPostPage = () => {
               type="submit"
               className="btn w-100 fs-4 float-end btn-warning my-2"
             >
-              Post Event
+              {isLodading && <img src={rollingLoading}></img>}
+              {isLodading ? "Posting Event" : "Post Event"}
             </button>
             {error && <span className="content text-dark">{error}</span>}
           </div>
