@@ -106,6 +106,20 @@ const Navbar = () => {
                   <div className={`nav-link ${isActive("/about")}`}>About</div>
                 </li>
               </Link>
+              <Link to="/list" onClick={handleNavLinkClick}>
+                <li className={`nav-item mb-1 `}>
+                  <div className={`nav-link ${isActive("/list")}`}>
+                    Search Jobs
+                  </div>
+                </li>
+              </Link>
+              <Link to="/new-post" onClick={handleNavLinkClick}>
+                <li className={`nav-item mb-1 `}>
+                  <div className={`nav-link ${isActive("/new-post")}`}>
+                    Post Event
+                  </div>
+                </li>
+              </Link>
               <Link to="/contact" onClick={handleNavLinkClick}>
                 <li className={`nav-item mb-1 `}>
                   <div className={`nav-link ${isActive("/contact")}`}>
