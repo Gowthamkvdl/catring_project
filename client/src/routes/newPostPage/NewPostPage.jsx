@@ -13,7 +13,7 @@ const NewPostPage = () => {
     lng: 78.6568942,
   });
   const [error, setError] = useState("");
-  const [isLodading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const today = new Date().toISOString().split("T")[0];
 
@@ -45,6 +45,7 @@ const NewPostPage = () => {
         toast.error("Please select your location on the map", {
           id: "select location",
         });
+        setIsLoading(false)
         return;
       }
 
@@ -65,16 +66,13 @@ const NewPostPage = () => {
         longitude: parseFloat(coordinates.lng),
       });
 
-      setTimeout(() => {
-        navigate(`/${post.data.postId}`);
-        toast.success("Your post is now live!");
-        setIsLoading(false);
-      }, 0);
+       navigate(`/${post.data.postId}`, { replace: true });
+      toast.success("Your post is now live!");
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
       toast.error("An error occurred. Please try again later.");
-    } finally {
-      setIsLoading(false);
+      setIsLoading(false); 
     }
   };
 
@@ -262,13 +260,13 @@ const NewPostPage = () => {
               Current Coordinates: {coordinates.lat}, {coordinates.lng}
             </div>
             <button
-              disabled={isLodading}
+              disabled={isLoading}
               type="submit"
               className="btn w-100 fs-4 float-end btn-warning my-2"
             >
               <div className="d-flex justify-content-center align-items-center">
-                {isLodading && <img src={rollingLoading}></img>}
-                {isLodading ? "Posting Event" : "Post Event"}
+                {isLoading && <img src={rollingLoading}></img>}
+                {isLoading ? "Posting Event" : "Post Event"}
               </div>
             </button>
             {error && <span className="content text-dark">{error}</span>}
