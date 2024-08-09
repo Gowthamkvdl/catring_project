@@ -12,6 +12,8 @@ import shareIcon from "../../assets/share.svg";
 import WhatsappButton from "../../components/contactButtons/WhatsappButton";
 import CallButton from "../../components/contactButtons/CallButton";
 import GmailButton from "../../components/contactButtons/GmailButton";
+import rollingLoading from "../../assets/rollingLoading.svg";
+
 
 const SinglePage = () => {
   const post = useLoaderData();
@@ -150,7 +152,7 @@ const SinglePage = () => {
             >
               <div className="d-flex justify-content-center align-items-center">
                 {disabling && <img src={rollingLoading}></img>}
-                {postStatus ? "Updateing" : "Update"}
+                {postStatus ? "Enable Post" : "Desable Post"}
               </div>
             </button>
             <button
