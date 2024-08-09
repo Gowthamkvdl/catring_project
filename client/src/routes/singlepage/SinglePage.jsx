@@ -152,7 +152,7 @@ const SinglePage = () => {
             >
               <div className="d-flex justify-content-center align-items-center">
                 {disabling && <img src={rollingLoading}></img>}
-                {!disabling && postStatus ? "Enable Post" : "Desable Post"}
+                {postStatus ? "Enable Post" : "Desable Post"}
               </div>
             </button>
             <button
