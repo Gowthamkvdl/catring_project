@@ -266,7 +266,7 @@ const NewPostPage = () => {
               type="submit"
               className="btn w-100 fs-4 float-end btn-warning my-2"
             >
-              <div className="d-flex flex-column justify-content-center align-items-center">
+              <div className="d-flex justify-content-center align-items-center">
                 {isLodading && <img src={rollingLoading}></img>}
                 {isLodading ? "Posting Event" : "Post Event"}
               </div>
