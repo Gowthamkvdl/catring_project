@@ -12,6 +12,7 @@ import Loader from "../../components/loader/Loader";
 import toast from "react-hot-toast"
 import { Suspense } from "react"; 
 import { Await } from "react-router-dom";
+import rollingLoading from "../../assets/rollingLoading.svg";
 
 const profilePage = () => {
   const { currentUser, updateUser } = useContext(AuthContext);
@@ -89,6 +90,7 @@ const profilePage = () => {
               Edit
             </button>
             <button className="float-end btn btn-danger" onClick={handleLogout}>
+              {loggingout && <img src={rollingLoading}></img>}
               {loggingout ? "Logging Out" : "Logout"}
             </button>
             {/* <button className="float-end btn btn-danger" onClick={handleToast}>
