@@ -5,7 +5,7 @@ import { subDays, startOfDay } from "date-fns";
 export const getPosts = async (req, res) => {
   const query = req.query;
   const limit = parseInt(query.limit) || 5; // Set default limit to 5
-  const today = startOfDay(new Date());
+  const today = startOfDay(new Date()).toISOString();
 
   try {
     const posts = await prisma.post.findMany({
