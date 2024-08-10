@@ -21,7 +21,7 @@ export const getPosts = async (req, res) => {
         workingDays: {
           lte: parseInt(query.maxWorkingDays) || 1000000,
         },
-        startDate: { gte: query.date || today },
+        startDate: query.date ? query.date : { gte: today },
       },
       orderBy: {
         createdAt: "desc", // or 'desc' for descending order
