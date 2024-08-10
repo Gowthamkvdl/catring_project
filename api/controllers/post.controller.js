@@ -1,5 +1,6 @@
 import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
+import { subDays, startOfDay } from "date-fns";
 
 export const getPosts = async (req, res) => {
   const query = req.query;
