@@ -1,10 +1,10 @@
 import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
 
-
 export const getPosts = async (req, res) => {
   const query = req.query;
   const limit = parseInt(query.limit) || 5; // Set default limit to 5
+  const today = startOfDay(new Date());
 
   try {
     const posts = await prisma.post.findMany({
@@ -20,13 +20,13 @@ export const getPosts = async (req, res) => {
         workingDays: {
           lte: parseInt(query.maxWorkingDays) || 1000000,
         },
-        startDate: query.date || undefined,
+        startDate: { gte: query.date || today },
       },
       orderBy: {
         createdAt: "desc", // or 'desc' for descending order
       },
       include: {
-        user: true
+        user: true,
       },
       take: limit,
     });
@@ -64,7 +64,7 @@ export const getPost = async (req, res) => {
     }
 
     const token = req.cookies?.token;
-    
+
     if (token) {
       jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, user) => {
         if (!err) {
@@ -76,13 +76,14 @@ export const getPost = async (req, res) => {
               },
             },
           });
-          return res.status(200).json({...post, isSaved: saved ? true: false})
+          return res
+            .status(200)
+            .json({ ...post, isSaved: saved ? true : false });
         }
       });
-    }else{
-      return res.status(200).json({...post, isSaved: false})
+    } else {
+      return res.status(200).json({ ...post, isSaved: false });
     }
-
   } catch (error) {
     console.log(error);
     res.status(401).json({ message: "Failed to get Post" });
@@ -107,7 +108,7 @@ export const addPost = async (req, res) => {
     res.status(401).json({ message: "Failed to Add Post" });
   }
 };
-   
+
 export const updatePost = async (req, res) => {
   const tokenUserId = req.userId;
   const paramPostId = req.params.id;
@@ -141,9 +142,9 @@ export const updatePost = async (req, res) => {
 };
 
 export const updatePostStatus = async (req, res) => {
-  const tokenUserId = req.userId
-  const paramPostId = req.params.id
-  
+  const tokenUserId = req.userId;
+  const paramPostId = req.params.id;
+
   try {
     const post = await prisma.post.findUnique({
       where: {
@@ -169,7 +170,7 @@ export const updatePostStatus = async (req, res) => {
     console.log(error);
     res.status(401).json({ message: `Failed to change Post status` });
   }
-}
+};
 
 export const deletePost = async (req, res) => {
   const tokenUserId = req.userId;
@@ -208,4 +209,3 @@ export const deletePosts = async (req, res) => {
     res.status(401).json({ message: "Failed to Delete Posts" });
   }
 };
-
