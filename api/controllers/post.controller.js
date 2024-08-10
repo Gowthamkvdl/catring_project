@@ -6,9 +6,6 @@ export const getPosts = async (req, res) => {
   const query = req.query;
   const limit = parseInt(query.limit) || 5; // Set default limit to 5
 
-  // Get today's date in the same format as your `startDate` (assuming `YYYY-MM-DD`)
-  const today = new Date().toISOString().split("T")[0];
-
   try {
     const posts = await prisma.post.findMany({
       where: {
@@ -23,16 +20,13 @@ export const getPosts = async (req, res) => {
         workingDays: {
           lte: parseInt(query.maxWorkingDays) || 1000000,
         },
-        startDate: {
-          gte: today, // Include posts where startDate is today or later
-        },
-        // featured: true, // Uncomment if you have a `featured` field and want to filter based on it
+        startDate: query.date || undefined,
       },
       orderBy: {
-        createdAt: "desc", // Order posts by creation date in descending order
+        createdAt: "desc", // or 'desc' for descending order
       },
       include: {
-        user: true,
+        user: true
       },
       take: limit,
     });
@@ -43,7 +37,6 @@ export const getPosts = async (req, res) => {
     res.status(500).json({ message: "Failed to get posts" });
   }
 };
-
 
 export const getPost = async (req, res) => {
   const paramPostId = req.params.id;
